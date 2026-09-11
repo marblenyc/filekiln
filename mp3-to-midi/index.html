@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MP3 to MIDI Converter - AI Transcription | FileKiln</title>
+<meta name="description" content="Convert MP3, WAV, or OGG audio to a MIDI file using Spotify's open-source Basic Pitch model, running entirely in your browser. Audio never uploaded.">
+<link rel="canonical" href="https://filekiln.com/mp3-to-midi/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="MP3 to MIDI Converter - AI Transcription | FileKiln">
+<meta property="og:description" content="Convert MP3, WAV, or OGG audio to a MIDI file using Spotify's open-source Basic Pitch model, running entirely in your browser. Audio never uploaded.">
+<meta property="og:url" content="https://filekiln.com/mp3-to-midi/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MP3 to MIDI Converter - AI Transcription | FileKiln">
+<meta name="twitter:description" content="Convert MP3, WAV, or OGG audio to a MIDI file using Spotify's open-source Basic Pitch model, running entirely in your browser. Audio never uploaded.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MP3 to MIDI Converter","url":"https://filekiln.com/mp3-to-midi/","description":"Convert MP3, WAV, or OGG audio to a MIDI file using Spotify's open-source Basic Pitch model, running entirely in your browser. Audio never uploaded.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is my audio uploaded for processing?","acceptedAnswer":{"@type":"Answer","text":"No. The neural network runs in your browser via TensorFlow.js. After the page and the ~1 MB model load, you can disconnect from the internet and transcription still works."}},{"@type":"Question","name":"What model does the transcription use?","acceptedAnswer":{"@type":"Answer","text":"Basic Pitch, published as open source by Spotify's Audio Intelligence Lab and described in their ICASSP 2022 paper. It detects note onsets, pitches, and pitch bends, and supports polyphony - chords transcribe, not just single melodies."}},{"@type":"Question","name":"Why doesn't my MIDI sound exactly like the recording?","acceptedAnswer":{"@type":"Answer","text":"MIDI stores notes, not sound. The synthesizer or instrument you load the file into supplies the timbre. And transcription itself is probabilistic: quiet notes, heavy reverb, distortion, and drums all reduce accuracy - every audio-to-MIDI tool shares this, including the paid ones."}},{"@type":"Question","name":"What audio formats work?","acceptedAnswer":{"@type":"Answer","text":"Anything your browser can decode: MP3, WAV, OGG, FLAC, and M4A/AAC in current browsers. Length is limited only by memory and patience - a 3-4 minute song transcribes in well under a minute on a modern laptop."}},{"@type":"Question","name":"What tempo does the MIDI file use?","acceptedAnswer":{"@type":"Answer","text":"The file is written at 120 bpm with note timings in real seconds, so it plays back at the recording's true speed in any DAW. Beat-mapping to bars is a musical judgment this tool leaves to you."}},{"@type":"Question","name":"Why is this free when other MP3 to MIDI converters charge?","acceptedAnswer":{"@type":"Answer","text":"Because it costs almost nothing to run. This is a static page; the model runs on your hardware, not on a server we pay for. Converters that charge per minute are billing you for their cloud compute - here, you are the cloud."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>MP3 to MIDI Converter</h1>
+<p class="sub">Convert MP3, WAV, or OGG audio to a MIDI file using Spotify's open-source Basic Pitch model, running entirely in your browser. Audio never uploaded.</p>
+
+<div class="tool">
+  <div class="tool-head">mp3 → midi</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".mp3,.wav,.ogg,.m4a,.flac,audio/*">
+    <label for="file"><strong>Choose an audio file (.mp3, .wav, .ogg…)</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <a id="dl" class="btn-dl" hidden>Download MIDI</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <canvas id="cv" hidden></canvas>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Drop in a recording and get a MIDI file of the notes it contains, transcribed by <a href="https://github.com/spotify/basic-pitch" rel="noopener">Basic Pitch</a> - the open-source neural network Spotify's audio research team published - running entirely inside this page. Your audio is decoded, resampled, and fed through the model locally; the ~1&nbsp;MB model downloads once and nothing you play ever leaves the machine. The result renders as a piano roll so you can see what was heard before downloading, with note velocities taken from the model's confidence and pitch bends preserved. Honest expectations: transcription is an estimation problem. Solo piano, guitar, voice, and other clearly pitched sources come out remarkably well; dense mixes with drums come out impressionistic.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>Is my audio uploaded for processing?</h3>
+<p>No. The neural network runs in your browser via TensorFlow.js. After the page and the ~1 MB model load, you can disconnect from the internet and transcription still works.</p>
+<h3>What model does the transcription use?</h3>
+<p>Basic Pitch, published as open source by Spotify's Audio Intelligence Lab and described in their ICASSP 2022 paper. It detects note onsets, pitches, and pitch bends, and supports polyphony - chords transcribe, not just single melodies.</p>
+<h3>Why doesn't my MIDI sound exactly like the recording?</h3>
+<p>MIDI stores notes, not sound. The synthesizer or instrument you load the file into supplies the timbre. And transcription itself is probabilistic: quiet notes, heavy reverb, distortion, and drums all reduce accuracy - every audio-to-MIDI tool shares this, including the paid ones.</p>
+<h3>What audio formats work?</h3>
+<p>Anything your browser can decode: MP3, WAV, OGG, FLAC, and M4A/AAC in current browsers. Length is limited only by memory and patience - a 3-4 minute song transcribes in well under a minute on a modern laptop.</p>
+<h3>What tempo does the MIDI file use?</h3>
+<p>The file is written at 120 bpm with note timings in real seconds, so it plays back at the recording's true speed in any DAW. Beat-mapping to bars is a musical judgment this tool leaves to you.</p>
+<h3>Why is this free when other MP3 to MIDI converters charge?</h3>
+<p>Because it costs almost nothing to run. This is a static page; the model runs on your hardware, not on a server we pay for. Converters that charge per minute are billing you for their cloud compute - here, you are the cloud.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/bank-statement-to-csv/"><span class="t">statement → csv</span><span class="d">Statement PDF in, clean transaction CSV/Excel out - never uploaded.</span></a></li>
+<li><a href="/stl-to-gcode/"><span class="t">stl → gcode</span><span class="d">Real CuraEngine slicing in your tab - STL in, G-code out.</span></a></li>
+<li><a href="/psd-to-png/"><span class="t">psd → png</span><span class="d">Photoshop file in, flattened PNG out - parsed locally, never uploaded.</span></a></li>
+<li><a href="/pdf-to-csv/"><span class="t">pdf → csv</span><span class="d">PDF tables out as CSV - bank statements never leave your machine.</span></a></li>
+</ul>
+</section>
+<script type="module">
+import { BasicPitch, outputToNotesPoly, noteFramesToTime, addPitchBendsToNoteEvents } from "https://cdn.jsdelivr.net/npm/@spotify/basic-pitch@1.0.1/+esm";
+const MODEL = "https://cdn.jsdelivr.net/npm/@spotify/basic-pitch@1.0.1/model/model.json";
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+let bp = null;
+function writeMidi(notes) {
+  const TPS = 960; // 480 PPQ at 120 bpm
+  const evs = [];
+  for (const n of notes) {
+    const t0 = Math.max(0, Math.round(n.startTimeSeconds * TPS));
+    const t1 = Math.max(t0 + 1, Math.round((n.startTimeSeconds + n.durationSeconds) * TPS));
+    const vel = Math.max(1, Math.min(127, Math.round(n.amplitude * 127)));
+    evs.push([t0, 0x90, n.pitchMidi, vel], [t1, 0x80, n.pitchMidi, 64]);
+  }
+  evs.sort((a, b) => (a[0] - b[0]) || (a[1] - b[1]));
+  const vlq = (n) => { const s = [n & 0x7f]; while ((n >>= 7)) s.unshift((n & 0x7f) | 0x80); return s; };
+  let track = [0x00, 0xff, 0x51, 0x03, 0x07, 0xa1, 0x20];
+  let last = 0;
+  for (const [t, st, p, v] of evs) { track = track.concat(vlq(t - last), [st, p & 0x7f, v]); last = t; }
+  track = track.concat([0x00, 0xff, 0x2f, 0x00]);
+  const u32 = (n) => [n >>> 24 & 255, n >>> 16 & 255, n >>> 8 & 255, n & 255];
+  const u16 = (n) => [n >>> 8 & 255, n & 255];
+  const str = (s) => [...s].map((c) => c.charCodeAt(0));
+  return new Uint8Array([].concat(str("MThd"), u32(6), u16(0), u16(1), u16(480), str("MTrk"), u32(track.length), track));
+}
+function pianoRoll(notes, seconds) {
+  const cv = $("cv");
+  if (!notes.length) { cv.hidden = true; return; }
+  let lo = 127, hi = 0;
+  for (const n of notes) { lo = Math.min(lo, n.pitchMidi); hi = Math.max(hi, n.pitchMidi); }
+  lo = Math.max(0, lo - 2); hi = Math.min(127, hi + 2);
+  const W = Math.min(1400, Math.max(600, Math.round(seconds * 60))), rowH = Math.max(4, Math.min(10, Math.floor(320 / (hi - lo + 1))));
+  cv.width = W; cv.height = (hi - lo + 1) * rowH;
+  const ctx = cv.getContext("2d");
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--well").trim() || "#101216";
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#e0a15c";
+  for (const n of notes) {
+    const x = (n.startTimeSeconds / seconds) * W;
+    const w = Math.max(2, (n.durationSeconds / seconds) * W);
+    const y = (hi - n.pitchMidi) * rowH;
+    ctx.globalAlpha = 0.45 + 0.55 * Math.min(1, n.amplitude * 2);
+    ctx.fillRect(x, y + 1, w, rowH - 2);
+  }
+  ctx.globalAlpha = 1;
+  cv.hidden = false;
+}
+async function handle(f) {
+  $("err").textContent = ""; $("dl").hidden = true; $("cv").hidden = true;
+  if (!f) return;
+  let actx = null;
+  try {
+    $("stat").textContent = "Decoding " + f.name + " locally\u2026";
+    actx = new (window.AudioContext || window.webkitAudioContext)();
+    const raw = await actx.decodeAudioData(await f.arrayBuffer());
+    actx.close();
+    actx = null;
+    const frames = Math.ceil(raw.duration * 22050);
+    const oc = new OfflineAudioContext(1, frames, 22050);
+    const src = oc.createBufferSource();
+    src.buffer = raw; src.connect(oc.destination); src.start();
+    const mono = (await oc.startRendering()).getChannelData(0);
+    if (!bp) { $("stat").textContent = "Loading the Basic Pitch model (~1 MB, first run only)\u2026"; bp = new BasicPitch(MODEL); }
+    const fr = [], on = [], ct = [];
+    await bp.evaluateModel(mono, (fx, ox, cx) => { fr.push(...fx); on.push(...ox); ct.push(...cx); },
+      (pct) => { $("stat").textContent = "Transcribing locally\u2026 " + Math.round(pct * 100) + "%"; });
+    const notes = noteFramesToTime(addPitchBendsToNoteEvents(ct, outputToNotesPoly(fr, on, 0.25, 0.25, 5)));
+    if (!notes.length) throw new Error("No notes detected. Very quiet, very noisy, or purely percussive audio transcribes poorly - try a recording with clear pitched notes.");
+    const midi = writeMidi(notes);
+    const dl = $("dl");
+    if (dl.href) URL.revokeObjectURL(dl.href);
+    dl.href = URL.createObjectURL(new Blob([midi], { type: "audio/midi" }));
+    dl.download = f.name.replace(/\.[a-z0-9]+$/i, "") + ".mid";
+    dl.hidden = false;
+    pianoRoll(notes, raw.duration);
+    $("stat").textContent = notes.length + " notes transcribed from " + raw.duration.toFixed(1) + "s of audio. Piano roll below.";
+  } catch (e) {
+    $("stat").textContent = "";
+    $("err").textContent = "Could not transcribe that file: " + (e && e.message || e);
+  } finally {
+    if (actx) actx.close();
+  }
+}
+input.addEventListener("change", () => handle(input.files[0]));
+zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("hot"); });
+zone.addEventListener("dragleave", () => zone.classList.remove("hot"));
+zone.addEventListener("drop", (e) => { e.preventDefault(); zone.classList.remove("hot"); handle(e.dataTransfer.files[0]); });
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

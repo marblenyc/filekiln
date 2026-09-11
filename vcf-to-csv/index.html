@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VCF to CSV Converter - Contacts Out of vCard | FileKiln</title>
+<meta name="description" content="Convert a .vcf vCard file to a clean CSV or Excel contact list - names, phones, emails, addresses - entirely in your browser.">
+<link rel="canonical" href="https://filekiln.com/vcf-to-csv/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="VCF to CSV Converter - Contacts Out of vCard | FileKiln">
+<meta property="og:description" content="Convert a .vcf vCard file to a clean CSV or Excel contact list - names, phones, emails, addresses - entirely in your browser.">
+<meta property="og:url" content="https://filekiln.com/vcf-to-csv/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VCF to CSV Converter - Contacts Out of vCard | FileKiln">
+<meta name="twitter:description" content="Convert a .vcf vCard file to a clean CSV or Excel contact list - names, phones, emails, addresses - entirely in your browser.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"VCF to CSV Converter","url":"https://filekiln.com/vcf-to-csv/","description":"Convert a .vcf vCard file to a clean CSV or Excel contact list - names, phones, emails, addresses - entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert a VCF file to CSV?","acceptedAnswer":{"@type":"Answer","text":"Drop the .vcf on this page. Every contact card is parsed in your browser - name, phones, emails, organization, address, birthday - shown in a table for review, and downloaded as CSV or Excel. The file is never uploaded."}},{"@type":"Question","name":"Are my contacts uploaded to convert them?","acceptedAnswer":{"@type":"Answer","text":"No - never. A contact list is other people's personal data as much as yours, which is why this tool runs entirely as JavaScript in your tab. There is no upload endpoint on this site. Load the page, go offline, and it still converts."}},{"@type":"Question","name":"Does it handle exports from iPhone, Android, and Outlook?","acceptedAnswer":{"@type":"Answer","text":"Yes - those all export vCard. The parser reads vCard 2.1 (including its quoted-printable encoding), 3.0, and 4.0, single-contact files and combined files with hundreds of cards alike."}},{"@type":"Question","name":"Can I open the result in Excel or Google Sheets?","acceptedAnswer":{"@type":"Answer","text":"Yes - the CSV opens directly in both, and the Excel button downloads a real .xlsx workbook. Multiple phones and emails per contact land in numbered columns so nothing is silently dropped."}},{"@type":"Question","name":"Why is CSV useful for contacts?","acceptedAnswer":{"@type":"Answer","text":"CSV is the format address books, CRMs, and mail tools import - and the format you can actually read, dedupe, and clean in a spreadsheet. vCard is for syncing; CSV is for working with the data."}},{"@type":"Question","name":"Google Contacts imports VCF directly - when do I need CSV instead?","acceptedAnswer":{"@type":"Answer","text":"When the destination isn't an address book: a CRM import template, a mail-merge sheet, an invite list, a backup you can actually read, or any cleanup job (deduping, fixing formats) that wants a spreadsheet. If you're only moving contacts phone-to-phone, use the VCF as-is; the moment you need to see or edit the data, convert here."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>VCF to CSV Converter</h1>
+<p class="sub">Convert a .vcf vCard file to a clean CSV or Excel contact list - names, phones, emails, addresses - entirely in your browser. Your contacts never leave your machine.</p>
+<div class="tool">
+  <div class="tool-head">vcf → csv</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".vcf,text/vcard">
+    <label for="file"><strong>Choose a .vcf contacts file</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <a id="dl" class="btn-dl" hidden>Download CSV</a>
+      <a id="dlx" class="btn-dl" hidden>Download Excel (.xlsx)</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <div id="pv" style="overflow:auto;max-height:360px;margin:0 0 14px;"></div>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>A contact export is a strange file to be casual about: it isn't just your data, it's everyone you know - their numbers, their emails, their home addresses - in one portable blob. The web's usual VCF-to-CSV converters ask you to upload exactly that. This page doesn't: <a href="https://datatracker.ietf.org/doc/html/rfc6350" rel="noopener">the vCard format</a> is parsed by JavaScript in your tab, each card becomes a spreadsheet row, and the CSV or Excel file you download is assembled in browser memory. Load the page, unplug the network, convert - it works, because nothing was ever going to be sent.</p>
+<p>The parser reads what phones and mail clients actually export: vCard 3.0 and 4.0, and the old 2.1 flavor with its quoted-printable encoding that trips most quick scripts. Multiple phones and emails per contact land in numbered columns rather than being silently dropped, and the preview table shows every row before you download.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>How do I convert a VCF file to CSV?</h3>
+<p>Drop the .vcf on this page. Every contact card is parsed in your browser - name, phones, emails, organization, address, birthday - shown in a table for review, and downloaded as CSV or Excel. The file is never uploaded.</p>
+<h3>Are my contacts uploaded to convert them?</h3>
+<p>No - never. A contact list is other people's personal data as much as yours, which is why this tool runs entirely as JavaScript in your tab. There is no upload endpoint on this site. Load the page, go offline, and it still converts.</p>
+<h3>Does it handle exports from iPhone, Android, and Outlook?</h3>
+<p>Yes - those all export vCard. The parser reads vCard 2.1 (including its quoted-printable encoding), 3.0, and 4.0, single-contact files and combined files with hundreds of cards alike.</p>
+<h3>Can I open the result in Excel or Google Sheets?</h3>
+<p>Yes - the CSV opens directly in both, and the Excel button downloads a real .xlsx workbook. Multiple phones and emails per contact land in numbered columns so nothing is silently dropped.</p>
+<h3>Why is CSV useful for contacts?</h3>
+<p>CSV is the format address books, CRMs, and mail tools import - and the format you can actually read, dedupe, and clean in a spreadsheet. vCard is for syncing; CSV is for working with the data.</p>
+<h3>Google Contacts imports VCF directly - when do I need CSV instead?</h3>
+<p>When the destination isn't an address book: a CRM import template, a mail-merge sheet, an invite list, a backup you can actually read, or any cleanup job (deduping, fixing formats) that wants a spreadsheet. If you're only moving contacts phone-to-phone, use the VCF as-is; the moment you need to see or edit the data, convert here.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/remove-duplicate-lines/"><span class="t">dedupe lines</span><span class="d">Dedupe a list in original order, or sort it clean.</span></a></li>
+<li><a href="/csv-to-json/"><span class="t">csv → json</span><span class="d">CSV rows in, JSON array of objects out. Quoted fields handled.</span></a></li>
+<li><a href="/msg-file-viewer/"><span class="t">msg / eml → readable email</span><span class="d">Open Outlook emails - body, headers, attachments - without Outlook.</span></a></li>
+<li><a href="/mbox-viewer/"><span class="t">mbox → readable mailbox</span><span class="d">Browse a whole mail archive - Gmail Takeout included - locally.</span></a></li>
+</ul>
+</section>
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function csvCell(s){s=String(s).replace(/\s+/g," ").trim(); /* Spreadsheet formula injection: Excel, LibreOffice and Sheets EXECUTE a cell that begins with = + @ or -, so a description lifted out of a PDF can carry a payload into the machine that opens the CSV. A leading apostrophe forces text. A negative NUMBER must stay a number, so - is only neutralised when what follows is not numeric. Tab and CR need no test: the whitespace collapse above has already removed them. */ if(/^[=+@]/.test(s)||(/^-/.test(s)&&!/^-?\d+(?:\.\d+)?$/.test(s)))s="'"+s;return /[",]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+function decodeBytes(u8,cs){try{return new TextDecoder(cs||"utf-8").decode(u8);}catch(e){return new TextDecoder("utf-8").decode(u8);}}
+function qpDecode(s,cs){
+  s=s.replace(/=\r?\n/g,"");
+  var bytes=[];
+  for(var i=0;i<s.length;i++){
+    if(s[i]==="="&&i+2<s.length&&/[0-9A-Fa-f]{2}/.test(s.substr(i+1,2))){bytes.push(parseInt(s.substr(i+1,2),16));i+=2;}
+    else bytes.push(s.charCodeAt(i)&0xFF);
+  }
+  return decodeBytes(new Uint8Array(bytes),cs);
+}
+function unesc(s){return s.replace(/\\n/gi,"\n").replace(/\\,/g,",").replace(/\\;/g,";").replace(/\\\\/g,"\\");}
+
+/* minimal .xlsx writer (STORED zip, inlineStr) */
+var CRC_T=(function(){var t=[],c,k,n;for(n=0;n<256;n++){c=n;for(k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(u8){var c=0xFFFFFFFF;for(var i=0;i<u8.length;i++)c=CRC_T[(c^u8[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function makeZip(files){
+  var enc=new TextEncoder(),parts=[],cd=[],off=0;
+  function u16(n){return [n&255,(n>>8)&255];}
+  function u32(n){return [n&255,(n>>8)&255,(n>>16)&255,(n>>>24)&255];}
+  files.forEach(function(f){
+    var name=enc.encode(f[0]),data=enc.encode(f[1]),crc=crc32(data);
+    var head=[].concat(u32(0x04034b50),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0));
+    parts.push(new Uint8Array(head),name,data);
+    cd.push({name:name,crc:crc,size:data.length,off:off});
+    off+=head.length+name.length+data.length;
+  });
+  var cdStart=off,cdLen=0;
+  cd.forEach(function(e){
+    var rec=[].concat(u32(0x02014b50),u16(20),u16(20),u16(0),u16(0),u16(0),u16(0),u32(e.crc),u32(e.size),u32(e.size),u16(e.name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(e.off));
+    parts.push(new Uint8Array(rec),e.name);cdLen+=rec.length+e.name.length;
+  });
+  parts.push(new Uint8Array([].concat(u32(0x06054b50),u16(0),u16(0),u16(cd.length),u16(cd.length),u32(cdLen),u32(cdStart),u16(0))));
+  return new Blob(parts,{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+}
+function xmlEsc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function makeXlsx(header,rows){
+  var body=[header].concat(rows).map(function(r){
+    return "<row>"+r.map(function(c){return '<c t="inlineStr"><is><t xml:space="preserve">'+xmlEsc(c==null?"":c)+"</t></is></c>";}).join("")+"</row>";
+  }).join("");
+  return makeZip([
+    ["[Content_Types].xml",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>'],
+    ["_rels/.rels",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'],
+    ["xl/workbook.xml",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Contacts" sheetId="1" r:id="rId1"/></sheets></workbook>'],
+    ["xl/_rels/workbook.xml.rels",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>'],
+    ["xl/worksheets/sheet1.xml",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>'+body+"</sheetData></worksheet>"],
+  ]);
+}
+
+function parseVcf(text){
+  text=text.replace(/\r?\n[ \t]/g,"");
+  var cards=[];
+  text.split(/^BEGIN:VCARD\s*$/mi).slice(1).forEach(function(block){
+    block=block.split(/^END:VCARD\s*$/mi)[0];
+    var c={fn:"",first:"",last:"",org:"",title:"",tels:[],emails:[],adr:"",bday:"",url:"",note:""};
+    block.split(/\r?\n/).forEach(function(line){
+      var m=line.match(/^(?:item\d+\.)?([A-Za-z0-9-]+)((?:;[^:]*)?):([\s\S]*)$/);
+      if(!m)return;
+      var k=m[1].toUpperCase(),params=(m[2]||"").toUpperCase(),v=m[3];
+      if(/ENCODING=QUOTED-PRINTABLE/.test(params)){
+        var cs=(params.match(/CHARSET=([\w-]+)/)||[])[1]||"utf-8";
+        v=qpDecode(v,cs);
+      }
+      if(k==="FN")c.fn=unesc(v).trim();
+      else if(k==="N"){var p=v.split(";");c.last=unesc(p[0]||"").trim();c.first=unesc(p[1]||"").trim();}
+      else if(k==="ORG")c.org=unesc(v.split(";")[0]||"").trim();
+      else if(k==="TITLE")c.title=unesc(v).trim();
+      else if(k==="TEL"){var t=v.replace(/^tel:/i,"").trim();if(t)c.tels.push(t);}
+      else if(k==="EMAIL"){var e=v.replace(/^mailto:/i,"").trim();if(e)c.emails.push(e);}
+      else if(k==="ADR"){if(!c.adr)c.adr=v.split(";").map(unesc).map(function(s){return s.trim();}).filter(Boolean).join(", ");}
+      else if(k==="BDAY")c.bday=v.trim();
+      else if(k==="URL"){if(!c.url)c.url=v.trim();}
+      else if(k==="NOTE"){if(!c.note)c.note=unesc(v).trim();}
+    });
+    if(!c.fn)c.fn=(c.first+" "+c.last).trim();
+    if(c.fn||c.tels.length||c.emails.length)cards.push(c);
+  });
+  return cards;
+}
+async function handle(f){
+  $("err").textContent="";$("stat").textContent="";$("dl").hidden=true;$("dlx").hidden=true;$("pv").innerHTML="";
+  if(!f)return;
+  try{
+    var text=await f.text();
+    if(!/BEGIN:VCARD/i.test(text))throw new Error("This doesn't look like a .vcf file - no BEGIN:VCARD was found.");
+    var cards=parseVcf(text);
+    if(!cards.length)throw new Error("The file parsed but no contacts with a name, phone, or email were found.");
+    var maxTel=Math.min(3,Math.max.apply(null,cards.map(function(c){return c.tels.length;}).concat([1])));
+    var maxEm=Math.min(3,Math.max.apply(null,cards.map(function(c){return c.emails.length;}).concat([1])));
+    var header=["Name","First","Last"];
+    for(var i=1;i<=maxTel;i++)header.push("Phone "+i);
+    for(var j=1;j<=maxEm;j++)header.push("Email "+j);
+    header=header.concat(["Organization","Title","Address","Birthday","URL","Note"]);
+    function rowOf(c){
+      var r=[c.fn,c.first,c.last];
+      for(var i=0;i<maxTel;i++)r.push(c.tels[i]||"");
+      for(var j=0;j<maxEm;j++)r.push(c.emails[j]||"");
+      return r.concat([c.org,c.title,c.adr,c.bday,c.url,c.note]);
+    }
+    var rows=cards.map(rowOf);
+    var csv=[header.join(",")].concat(rows.map(function(r){return r.map(csvCell).join(",");})).join("\n");
+
+    var tb='<table style="width:100%;border-collapse:collapse;font-size:13px;"><tr>'+header.map(function(h){
+      return '<th style="text-align:left;padding:6px 10px;border-bottom:2px solid var(--line);white-space:nowrap;">'+h+"</th>";}).join("")+"</tr>";
+    rows.slice(0,200).forEach(function(r){
+      tb+="<tr>"+r.map(function(v){return '<td style="padding:5px 10px;border-bottom:1px solid var(--line);white-space:nowrap;max-width:220px;overflow:hidden;text-overflow:ellipsis;">'+esc(v)+"</td>";}).join("")+"</tr>";
+    });
+    tb+="</table>"+(rows.length>200?'<p class="file-stat">Preview shows first 200 contacts; exports contain all '+rows.length+".</p>":"");
+    $("pv").innerHTML=tb;
+
+    var base=f.name.replace(/\.vcf$/i,"");
+    var dl=$("dl");if(dl.href)URL.revokeObjectURL(dl.href);
+    dl.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));dl.download=base+"-contacts.csv";dl.hidden=false;
+    var dlx=$("dlx");if(dlx.href)URL.revokeObjectURL(dlx.href);
+    dlx.href=URL.createObjectURL(makeXlsx(header,rows));dlx.download=base+"-contacts.xlsx";dlx.hidden=false;
+    $("stat").textContent=cards.length+" contact"+(cards.length===1?"":"s")+" parsed locally - review the table before you trust it.";
+  }catch(e){
+    $("stat").textContent="";$("err").textContent=String(e&&e.message||e);
+  }
+}
+input.addEventListener("change",function(){handle(input.files[0]);});
+zone.addEventListener("dragover",function(e){e.preventDefault();zone.classList.add("hot");});
+zone.addEventListener("dragleave",function(){zone.classList.remove("hot");});
+zone.addEventListener("drop",function(e){e.preventDefault();zone.classList.remove("hot");handle(e.dataTransfer.files[0]);});
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

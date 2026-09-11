@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bank Statement to QBO Converter - No Upload | FileKiln</title>
+<meta name="description" content="Convert a bank statement PDF to a QuickBooks .qbo (Web Connect) file, plus .qfx for Quicken and plain .ofx, entirely in your browser.">
+<link rel="canonical" href="https://filekiln.com/bank-statement-to-qbo/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="Bank Statement to QBO Converter - No Upload | FileKiln">
+<meta property="og:description" content="Convert a bank statement PDF to a QuickBooks .qbo (Web Connect) file, plus .qfx for Quicken and plain .ofx, entirely in your browser.">
+<meta property="og:url" content="https://filekiln.com/bank-statement-to-qbo/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bank Statement to QBO Converter - No Upload | FileKiln">
+<meta name="twitter:description" content="Convert a bank statement PDF to a QuickBooks .qbo (Web Connect) file, plus .qfx for Quicken and plain .ofx, entirely in your browser.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Bank Statement to QBO Converter","url":"https://filekiln.com/bank-statement-to-qbo/","description":"Convert a bank statement PDF to a QuickBooks .qbo (Web Connect) file, plus .qfx for Quicken and plain .ofx, entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I import the .qbo file into QuickBooks?","acceptedAnswer":{"@type":"Answer","text":"QuickBooks Desktop: File → Utilities → Import → Web Connect Files, choose the .qbo, pick the account it belongs to, Continue. QuickBooks Online: Transactions → Bank transactions → Upload from file. Either way the transactions land in the bank-feed review queue, ready to categorize and match."}},{"@type":"Question","name":"Why does QuickBooks show a different bank name during import?","acceptedAnswer":{"@type":"Answer","text":"A .qbo file carries a bank label called INTU.BID, and QuickBooks checks it against a directory of enrolled banks. The label is cosmetic: you choose the real account during import, and the transactions go there. This tool defaults to a label every QuickBooks accepts; if seeing your own bank's name matters to you, pick it in the bank-label option or enter its number."}},{"@type":"Question","name":"Is my bank statement uploaded to convert it?","acceptedAnswer":{"@type":"Answer","text":"No - the statement is never uploaded, full stop. Parsing runs in your browser tab using Mozilla's open-source pdf.js, and the .qbo file is assembled in your tab's memory. There is no upload endpoint on this site. You can verify it: load the page, go offline, and convert."}},{"@type":"Question","name":"Will transactions duplicate if I import the same file twice?","acceptedAnswer":{"@type":"Answer","text":"No. Every transaction in the file carries a FITID - a fingerprint built from its date, amount, and description - and QuickBooks skips FITIDs it has already imported. The fingerprints are deterministic, so re-importing the same statement is safe."}},{"@type":"Question","name":"What is the difference between QBO, QFX, and OFX?","acceptedAnswer":{"@type":"Answer","text":"They are the same transaction format (OFX) wearing three badges: .qbo is QuickBooks' Web Connect flavor, .qfx is Quicken's, and .ofx is the plain standard most other accounting software reads. This tool downloads all three from the same parse, so use whichever your software asks for."}},{"@type":"Question","name":"My statement dates have no year. How does the file get one?","acceptedAnswer":{"@type":"Answer","text":"Many statements print dates as 07/15 with no year, but the .qbo format requires full dates. The statement-year option supplies it, and a December-to-January rollover inside one statement is detected and carried into the next year automatically. Dates that already include a year are used as printed."}},{"@type":"Question","name":"Why did it say my statement is a scan?","acceptedAnswer":{"@type":"Answer","text":"Some statements are scanned images of paper, which contain no machine-readable text - reading them requires OCR, which this tool does not pretend to do yet. Statements downloaded as PDF from online banking are digital text and parse."}},{"@type":"Question","name":"What causes QuickBooks error OL-222, and does this file avoid it?","acceptedAnswer":{"@type":"Answer","text":"OL-222 (\"unable to verify the Financial Institution\") has two usual causes in imported files: raw ampersand characters that break the OFX format, and a bank label QuickBooks' directory doesn't recognize. Files from this tool avoid both by construction - special characters are escaped to the OFX rules, and the default bank label is one QuickBooks accepts. If you ever see OL-222 on a file from elsewhere, open it in a text editor and look for a bare & first."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a></p>
+<h1>Bank Statement to QBO Converter</h1>
+<p class="sub">Convert a bank statement PDF to a QuickBooks .qbo (Web Connect) file - plus .qfx for Quicken and plain .ofx - entirely in your browser. Your statement never leaves your machine.</p>
+<div class="tool">
+  <div class="tool-head">statement → qbo</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".pdf,application/pdf">
+    <label for="file"><strong>Choose a bank statement .pdf</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div id="opts" style="display:flex;flex-wrap:wrap;gap:10px 18px;align-items:end;padding:0 0 14px;">
+      <label class="opt-l">Account type<br><select id="atype" class="opt-c">
+        <option value="CHECKING">Checking</option>
+        <option value="SAVINGS">Savings</option>
+        <option value="CC">Credit card</option>
+      </select></label>
+      <label class="opt-l">Statement year<br><input id="year" class="opt-c" type="number" min="1990" max="2100" style="width:92px"></label>
+      <label class="opt-l">Currency<br><select id="cur" class="opt-c">
+        <option>USD</option><option>CAD</option><option>GBP</option><option>EUR</option>
+        <option>AUD</option><option>NZD</option><option>INR</option><option>SGD</option>
+        <option>HKD</option><option>JPY</option><option>CHF</option><option>ZAR</option>
+        <option>MXN</option><option>BRL</option><option>PHP</option><option>NGN</option>
+        <option>AED</option><option>SEK</option><option>NOK</option><option>DKK</option>
+      </select></label>
+      <label class="opt-l">Bank label shown by QuickBooks<br><select id="bid" class="opt-c">
+        <option value="3000">Default (imports everywhere)</option>
+        <option value="10898">Chase</option>
+        <option value="custom">Custom INTU.BID&hellip;</option>
+      </select></label>
+      <label class="opt-l" id="bidc-w" hidden>INTU.BID number<br><input id="bidc" class="opt-c" type="number" placeholder="e.g. 10898" style="width:110px"></label>
+      <label class="opt-l">Account ID in file (optional)<br><input id="acct" class="opt-c" type="text" maxlength="22" placeholder="e.g. last 4 digits" style="width:140px"></label>
+    </div>
+    <div class="bar" style="padding:0 0 14px;">
+      <a id="dlq" class="btn-dl" hidden>Download QBO (QuickBooks)</a>
+      <a id="dlf" class="btn-dl" hidden>Download QFX (Quicken)</a>
+      <a id="dlo" class="btn-dl" hidden>Download OFX</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <textarea id="out" spellcheck="false" readonly style="min-height:240px;" placeholder="The Web Connect (.qbo) file content appears here, human-readable."></textarea>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Every bookkeeper hits the same wall: a bank feed reaches back ninety days, and the cleanup job on the desk is from last year. The transactions exist - as PDF statements - and QuickBooks' native way in is a <em>.qbo</em> Web Connect file, the format it treats as "a download from your bank." The usual converters will make you one, after you upload a client's bank statement to their server. This tool won't, because it can't: the statement is parsed by JavaScript inside this page, and the .qbo you download is assembled in your own browser's memory. Load the page, go offline, convert - it still works, and "your client's statement never touched a server" is a sentence you can say to the client.</p>
+<p>The parser is the same one behind our <a href="/bank-statement-to-csv/">bank statement to CSV</a> tool: it finds rows that begin with a date and carry an amount, joins wrapped description lines, reads debit/credit/balance columns from the statement's own headers, and shows every parsed transaction in a table before you download anything. The writer then does the format's paperwork for you - full dates from year-less statements (December&rarr;January rollovers handled), deterministic FITID fingerprints so a double import can't duplicate, DEBIT/CREDIT typing from the sign, and a bank label QuickBooks will accept without the dreaded "unable to verify financial institution" error. Quicken users: the QFX button is the same file wearing Quicken's badge.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>How do I import the .qbo file into QuickBooks?</h3>
+<p>QuickBooks Desktop: File &rarr; Utilities &rarr; Import &rarr; Web Connect Files, choose the .qbo, pick the account it belongs to, Continue. QuickBooks Online: Transactions &rarr; Bank transactions &rarr; Upload from file. Either way the transactions land in the bank-feed review queue, ready to categorize and match.</p>
+<h3>Why does QuickBooks show a different bank name during import?</h3>
+<p>A .qbo file carries a bank label called INTU.BID, and QuickBooks checks it against a directory of enrolled banks. The label is cosmetic: you choose the real account during import, and the transactions go there. This tool defaults to a label every QuickBooks accepts; if seeing your own bank's name matters to you, pick it in the bank-label option or enter its number.</p>
+<h3>Is my bank statement uploaded to convert it?</h3>
+<p>No - the statement is never uploaded, full stop. Parsing runs in your browser tab using Mozilla's open-source pdf.js, and the .qbo file is assembled in your tab's memory. There is no upload endpoint on this site. You can verify it: load the page, go offline, and convert.</p>
+<h3>Will transactions duplicate if I import the same file twice?</h3>
+<p>No. Every transaction in the file carries a FITID - a fingerprint built from its date, amount, and description - and QuickBooks skips FITIDs it has already imported. The fingerprints are deterministic, so re-importing the same statement is safe.</p>
+<h3>What is the difference between QBO, QFX, and OFX?</h3>
+<p>They are the same transaction format (OFX) wearing three badges: .qbo is QuickBooks' Web Connect flavor, .qfx is Quicken's, and .ofx is the plain standard most other accounting software reads. This tool downloads all three from the same parse, so use whichever your software asks for.</p>
+<h3>My statement dates have no year. How does the file get one?</h3>
+<p>Many statements print dates as 07/15 with no year, but the .qbo format requires full dates. The statement-year option supplies it, and a December-to-January rollover inside one statement is detected and carried into the next year automatically. Dates that already include a year are used as printed.</p>
+<h3>Why did it say my statement is a scan?</h3>
+<p>Some statements are scanned images of paper, which contain no machine-readable text - reading them requires OCR, which this tool does not pretend to do yet. Statements downloaded as PDF from online banking are digital text and parse.</p>
+<h3>What causes QuickBooks error OL-222, and does this file avoid it?</h3>
+<p>OL-222 ("unable to verify the Financial Institution") has two usual causes in imported files: raw ampersand characters that break the OFX format, and a bank label QuickBooks' directory doesn't recognize. Files from this tool avoid both by construction - special characters are escaped to the OFX rules, and the default bank label is one QuickBooks accepts. If you ever see OL-222 on a file from elsewhere, open it in a text editor and look for a bare &amp; first.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/bank-statement-to-csv/"><span class="t">statement → csv</span><span class="d">Statement PDF in, clean transaction CSV/Excel out - never uploaded.</span></a></li>
+<li><a href="/pdf-to-csv/"><span class="t">pdf → csv</span><span class="d">PDF tables out as CSV - bank statements never leave your machine.</span></a></li>
+<li><a href="/csv-to-json/"><span class="t">csv → json</span><span class="d">CSV rows in, JSON array of objects out. Quoted fields handled.</span></a></li>
+<li><a href="/psd-to-png/"><span class="t">psd → png</span><span class="d">Photoshop file in, flattened PNG out - parsed locally, never uploaded.</span></a></li>
+</ul>
+</section>
+<style>
+.opt-l{font-size:12.5px;color:var(--muted,inherit);line-height:2;}
+.opt-c{font:inherit;font-size:14px;color:inherit;background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 8px;}
+.opt-c:focus{outline:2px solid var(--acc,#e0a15c);outline-offset:1px;}
+select.opt-c option{color:#1b1e25;}
+</style>
+<script type="module">
+import * as pdfjs from "/assets/vendor/pdf.min.mjs";
+pdfjs.GlobalWorkerOptions.workerPort = new Worker("/assets/vendor/pdf.worker.min.mjs", { type: "module" });
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+$("year").value = new Date().getFullYear();
+
+const stage = document.querySelector(".file-stage");
+const pv = document.createElement("div");
+pv.id = "pv"; pv.style.cssText = "overflow:auto;max-height:360px;margin:0 0 14px;";
+stage.insertBefore(pv, $("out"));
+
+var MON = "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec";
+var DATE_RES = [
+  new RegExp("^\\d{1,2}[\\/.-]\\d{1,2}(?:[\\/.-]\\d{2,4})?$"),
+  new RegExp("^\\d{4}-\\d{2}-\\d{2}$"),
+  new RegExp("^(?:" + MON + ")[a-z]*\\.?\\s+\\d{1,2}(?:,?\\s*\\d{4})?$", "i"),
+  new RegExp("^\\d{1,2}\\s+(?:" + MON + ")[a-z]*\\.?(?:\\s+\\d{2,4})?$", "i"),
+];
+var DATE_PREFIX = new RegExp("^(\\d{1,2}[\\/.-]\\d{1,2}(?:[\\/.-]\\d{2,4})?)\\s+(.*)$");
+var AMT_RE = new RegExp("^[-+(]?\\$?\\s?-?\\d{1,3}(?:,\\d{3})*\\.\\d{2}\\)?-?$");
+function isDate(s) { return DATE_RES.some(function (re) { return re.test(s.trim()); }); }
+function isAmt(s) { return AMT_RE.test(s.trim()); }
+function parseAmt(s) {
+  s = s.trim();
+  var neg = /^\(/.test(s) || /-$/.test(s) || /^-/.test(s.replace(/^[($]+/, ""));
+  var v = parseFloat(s.replace(/[$,()\s]/g, "").replace(/-/g, ""));
+  return neg ? -v : v;
+}
+function xmlEsc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+// ---- OFX/QBO writer ----
+var MON_IDX = { jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12 };
+function dateParts(s) { // -> {mo, d, y|null}
+  s = s.trim();
+  var m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (m) return { y: +m[1], mo: +m[2], d: +m[3] };
+  m = s.match(/^(\d{1,2})[\/.-](\d{1,2})(?:[\/.-](\d{2,4}))?$/);
+  if (m) return { mo: +m[1], d: +m[2], y: m[3] ? (+m[3] < 100 ? 2000 + +m[3] : +m[3]) : null };
+  m = s.match(new RegExp("^(" + MON + ")[a-z]*\\.?\\s+(\\d{1,2})(?:,?\\s*(\\d{4}))?$", "i"));
+  if (m) return { mo: MON_IDX[m[1].toLowerCase().slice(0, 3)], d: +m[2], y: m[3] ? +m[3] : null };
+  m = s.match(new RegExp("^(\\d{1,2})\\s+(" + MON + ")[a-z]*\\.?(?:\\s+(\\d{2,4}))?$", "i"));
+  if (m) return { mo: MON_IDX[m[2].toLowerCase().slice(0, 3)], d: +m[1], y: m[3] ? (+m[3] < 100 ? 2000 + +m[3] : +m[3]) : null };
+  return null;
+}
+function pad2(n) { return (n < 10 ? "0" : "") + n; }
+function sgml(s) { return String(s).replace(/[^\x20-\x7E]/g, " ").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\s+/g, " ").trim(); }
+function fitHash(s) { var h = 5381; for (var i = 0; i < s.length; i++) h = (((h << 5) + h) + s.charCodeAt(i)) >>> 0; return (h % 0xFFFF).toString(16); }
+
+function buildOfx(rows, o) {
+  // assign full dates: sequence logic with year rollover
+  var baseYear = o.year, prevMo = null, yr = baseYear, dated = [], bad = 0;
+  rows.forEach(function (r) {
+    var p = dateParts(r.date);
+    if (!p) { bad++; return; }
+    if (p.y) { yr = p.y; }
+    else {
+      if (prevMo !== null) {
+        if (p.mo - prevMo < -6) yr++;        // Dec -> Jan, ascending statement
+        else if (p.mo - prevMo > 6) yr--;    // Jan -> Dec, descending statement
+      }
+    }
+    prevMo = p.mo;
+    dated.push({ ymd: "" + yr + pad2(p.mo) + pad2(p.d), amount: r.amount, desc: r.desc, balance: r.balance });
+  });
+  if (!dated.length) throw new Error("No transaction dates could be read in a known format, so a valid .qbo cannot be written. The CSV tool below exports them as-is.");
+  var seen = {};
+  dated.forEach(function (r) {
+    var key = r.ymd + Math.round(Math.abs(r.amount) * 100) + fitHash(r.desc);
+    seen[key] = (seen[key] || 0) + 1;
+    r.fitid = key + (seen[key] > 1 ? "-" + seen[key] : "");
+  });
+  var ds = dated.map(function (r) { return r.ymd; }).sort();
+  var dtStart = ds[0], dtEnd = ds[ds.length - 1];
+  var lastBal = null;
+  dated.forEach(function (r) { if (r.balance !== null && r.balance !== undefined) lastBal = r.balance; });
+  var now = new Date();
+  var dtServer = "" + now.getFullYear() + pad2(now.getMonth() + 1) + pad2(now.getDate()) + pad2(now.getHours()) + pad2(now.getMinutes()) + pad2(now.getSeconds());
+
+  var trns = dated.map(function (r) {
+    var name = sgml(r.desc).slice(0, 32) || "TRANSACTION";
+    var memo = sgml(r.desc).length > 32 ? "<MEMO>" + sgml(r.desc).slice(0, 255) : "";
+    return "<STMTTRN><TRNTYPE>" + (r.amount < 0 ? "DEBIT" : "CREDIT") + "<DTPOSTED>" + r.ymd + "120000<TRNAMT>" + r.amount.toFixed(2) + "<FITID>" + r.fitid + "<NAME>" + name + memo + "</STMTTRN>";
+  }).join("\n");
+
+  var acct = sgml(o.acct || "") || "00000000";
+  var tranList = "<BANKTRANLIST><DTSTART>" + dtStart + "120000<DTEND>" + dtEnd + "120000\n" + trns + "\n</BANKTRANLIST>";
+  var ledger = "<LEDGERBAL><BALAMT>" + (lastBal === null ? "0.00" : lastBal.toFixed(2)) + "<DTASOF>" + dtEnd + "120000</LEDGERBAL>";
+  var body;
+  if (o.atype === "CC") {
+    body = "<CREDITCARDMSGSRSV1><CCSTMTTRNRS><TRNUID>1<STATUS><CODE>0<SEVERITY>INFO</STATUS>" +
+      "<CCSTMTRS><CURDEF>" + (o.cur || "USD") + "<CCACCTFROM><ACCTID>" + acct + "</CCACCTFROM>\n" + tranList + "\n" + ledger + "</CCSTMTRS></CCSTMTTRNRS></CREDITCARDMSGSRSV1>";
+  } else {
+    body = "<BANKMSGSRSV1><STMTTRNRS><TRNUID>1<STATUS><CODE>0<SEVERITY>INFO</STATUS>" +
+      "<STMTRS><CURDEF>" + (o.cur || "USD") + "<BANKACCTFROM><BANKID>000000000<ACCTID>" + acct + "<ACCTTYPE>" + o.atype + "</BANKACCTFROM>\n" + tranList + "\n" + ledger + "</STMTRS></STMTTRNRS></BANKMSGSRSV1>";
+  }
+  var intu = o.intu ? "<INTU.BID>" + o.intu : "";
+  var doc = "OFXHEADER:100\nDATA:OFXSGML\nVERSION:102\nSECURITY:NONE\nENCODING:USASCII\nCHARSET:1252\nCOMPRESSION:NONE\nOLDFILEUID:NONE\nNEWFILEUID:NONE\n\n" +
+    "<OFX>\n<SIGNONMSGSRSV1><SONRS><STATUS><CODE>0<SEVERITY>INFO</STATUS><DTSERVER>" + dtServer +
+    "<LANGUAGE>ENG<FI><ORG>FILEKILN<FID>" + (o.intu || "3000") + "</FI>" + intu + "</SONRS></SIGNONMSGSRSV1>\n" + body + "\n</OFX>\n";
+  return { doc: doc, count: dated.length, bad: bad, dtStart: dtStart, dtEnd: dtEnd };
+}
+
+var parsed = null, baseName = "statement", parseNote = "";
+
+function opts() {
+  var bidSel = $("bid").value;
+  var intu = bidSel === "custom" ? ($("bidc").value || "3000") : bidSel;
+  return { atype: $("atype").value, year: +$("year").value || new Date().getFullYear(), intu: String(intu), acct: $("acct").value, cur: $("cur").value };
+}
+function render() {
+  if (!parsed) return;
+  $("err").textContent = "";
+  try {
+    var o = opts();
+    var q = buildOfx(parsed.rows, o);
+    $("out").value = q.doc;
+    var OFX_MIME = { ".qbo": "application/vnd.intu.qbo", ".qfx": "application/vnd.intu.qfx", ".ofx": "application/x-ofx" };
+    [["dlq", ".qbo"], ["dlf", ".qfx"], ["dlo", ".ofx"]].forEach(function (pair) {
+      var a = $(pair[0]);
+      if (a.href) URL.revokeObjectURL(a.href);
+      var doc = q.doc;
+      if (pair[1] === ".ofx") doc = doc.replace(/<INTU\.BID>\d+/, "");
+      a.href = URL.createObjectURL(new Blob([doc], { type: OFX_MIME[pair[1]] }));
+      a.download = baseName + pair[1]; a.hidden = false;
+    });
+    $("stat").textContent = q.count + " transactions written, " + q.dtStart.slice(0, 4) + "-" + q.dtStart.slice(4, 6) + "-" + q.dtStart.slice(6, 8) +
+      " to " + q.dtEnd.slice(0, 4) + "-" + q.dtEnd.slice(4, 6) + "-" + q.dtEnd.slice(6, 8) +
+      (q.bad ? " · " + q.bad + " rows dropped (unreadable date)" : "") + parseNote + " - review every row below before you trust it.";
+  } catch (e) {
+    $("out").value = ""; ["dlq", "dlf", "dlo"].forEach(function (id) { $(id).hidden = true; });
+    $("err").textContent = String(e && e.message || e);
+  }
+}
+["atype", "year", "cur", "bid", "bidc", "acct"].forEach(function (id) { $(id).addEventListener("input", function () {
+  $("bidc-w").hidden = $("bid").value !== "custom";
+  render();
+}); });
+
+async function handle(f) {
+  $("err").textContent = ""; ["dlq", "dlf", "dlo"].forEach(function (id) { $(id).hidden = true; });
+  $("out").value = ""; pv.innerHTML = ""; parsed = null;
+  if (!f) return;
+  baseName = f.name.replace(/\.pdf$/i, "");
+  $("stat").textContent = "Reading " + f.name + " (" + Math.round(f.size / 1024) + " KB) locally…";
+  try {
+    const pdf = await pdfjs.getDocument({ data: await f.arrayBuffer() }).promise;
+    var allRows = [], anyText = false;
+    for (let p = 1; p <= pdf.numPages; p++) {
+      const tc = await (await pdf.getPage(p)).getTextContent();
+      const its = tc.items.filter((it) => it.str && it.str.trim())
+        .map((it) => ({ x: it.transform[4], y: it.transform[5], s: it.str, w: it.width }));
+      if (its.length) anyText = true;
+      its.sort((a, b) => (b.y - a.y) || (a.x - b.x));
+      var rows = [], row = [], rowY = null;
+      for (const it of its) {
+        if (rowY === null || Math.abs(it.y - rowY) <= 3) { row.push(it); if (rowY === null) rowY = it.y; }
+        else { rows.push(row); row = [it]; rowY = it.y; }
+      }
+      if (row.length) rows.push(row);
+      for (const r of rows) {
+        r.sort((a, b) => a.x - b.x);
+        var cells = [], cur = r[0].s, curX = r[0].x, end = r[0].x + r[0].w;
+        for (let i = 1; i < r.length; i++) {
+          const gap = r[i].x - end;
+          if (gap > 7) { cells.push({ t: cur.trim(), x: curX }); cur = r[i].s; curX = r[i].x; }
+          else cur += (gap > 1 ? " " : "") + r[i].s;
+          end = r[i].x + r[i].w;
+        }
+        cells.push({ t: cur.trim(), x: curX });
+        allRows.push(cells);
+      }
+    }
+    if (!anyText) throw new Error("No extractable text - this statement is a scan (images of text). Scans need OCR, which this tool honestly does not do yet. Statements downloaded from online banking are digital text and work.");
+
+    // classify rows into transactions
+    var txns = [], last = null;
+    for (const cells of allRows) {
+      var work = cells.slice();
+      var m0 = work.length && !isDate(work[0].t) ? work[0].t.match(DATE_PREFIX) : null;
+      if (m0) work = [{ t: m0[1], x: work[0].x }, { t: m0[2], x: work[0].x + 40 }].concat(work.slice(1));
+      var hasDate = work.length && isDate(work[0].t);
+      var amts = work.filter((c) => isAmt(c.t));
+      if (hasDate && amts.length) {
+        var di = 1;
+        if (work[1] && isDate(work[1].t)) di = 2;
+        var descCells = work.slice(di).filter((c) => !isAmt(c.t));
+        txns.push({ date: work[0].t, desc: descCells.map((c) => c.t).join(" ").trim(), amts: amts, extra: 0 });
+        last = txns[txns.length - 1];
+      } else if (!hasDate && !amts.length && last && last.extra < 2 && work.length) {
+        var txt = work.map((c) => c.t).join(" ").trim();
+        if (txt && txt.length < 90) { last.desc = (last.desc + " " + txt).trim(); last.extra++; }
+      } else if (amts.length) { last = null; }
+    }
+    if (!txns.length) throw new Error("Text was extracted, but no transaction rows (date + amount) were recognized in this layout. Try the bank statement to CSV tool - its generic fallback extracts every row as-is so nothing is lost.");
+
+    // cluster amount x-positions into columns
+    var xs = [];
+    txns.forEach((t) => t.amts.forEach((a) => xs.push(a.x)));
+    xs.sort((a, b) => a - b);
+    var cols = [];
+    xs.forEach(function (x) {
+      var c = cols[cols.length - 1];
+      if (c && x - c.max <= 30) { c.max = Math.max(c.max, x); c.n++; }
+      else cols.push({ min: x, max: x, n: 1 });
+    });
+    var roles = cols.map(function () { return ""; });
+    for (const cells of allRows) {
+      var line = cells.map((c) => c.t.toLowerCase()).join(" ");
+      if (!/balance|debit|credit|withdraw|deposit|amount|payment/.test(line)) continue;
+      cells.forEach(function (c) {
+        var w = c.t.toLowerCase(); var ci = -1, best = 1e9;
+        cols.forEach(function (col, i) { var d = Math.abs(c.x - col.min); if (d < best) { best = d; ci = i; } });
+        if (ci < 0 || best > 120) return;
+        if (/balance/.test(w)) roles[ci] = roles[ci] || "balance";
+        else if (/withdraw|debit|payment|charge/.test(w)) roles[ci] = roles[ci] || "debit";
+        else if (/deposit|credit/.test(w)) roles[ci] = roles[ci] || "credit";
+        else if (/amount/.test(w)) roles[ci] = roles[ci] || "amount";
+      });
+      if (roles.some(Boolean)) break;
+    }
+    if (!roles.some(Boolean)) {
+      if (cols.length === 1) roles = ["amount"];
+      else if (cols.length === 2) roles = ["amount", "balance"];
+      else if (cols.length >= 3) { roles = cols.map(() => ""); roles[cols.length - 1] = "balance"; roles[cols.length - 2] = "credit"; roles[cols.length - 3] = "debit"; }
+    }
+    var colOf = function (a) { var ci = -1, best = 1e9; cols.forEach(function (col, i) { var d = Math.abs(a.x - col.min); if (d < best) { best = d; ci = i; } }); return roles[ci] || "amount"; };
+    var hasBalance = roles.indexOf("balance") >= 0;
+
+    var out = [], skipped = 0;
+    txns.forEach(function (t) {
+      var amount = null, balance = null;
+      t.amts.forEach(function (a) {
+        var role = colOf(a), v = parseAmt(a.t);
+        if (role === "balance") balance = v;
+        else if (role === "debit") amount = -Math.abs(v);
+        else if (role === "credit") amount = Math.abs(v);
+        else if (amount === null) amount = v;
+      });
+      if (amount === null) { skipped++; return; }
+      out.push({ date: t.date, desc: t.desc || "(no description)", amount: amount, balance: balance });
+    });
+    if (!out.length) throw new Error("Rows were found but every one carried only a running balance - no transaction amounts. Try the bank statement to CSV tool below.");
+
+    // preview table
+    var headerRow = hasBalance ? ["Date", "Description", "Amount", "Balance"] : ["Date", "Description", "Amount"];
+    var tb = '<table style="width:100%;border-collapse:collapse;font-size:13px;">' +
+      "<tr>" + headerRow.map(function (h) { return '<th style="text-align:' + (h === "Date" || h === "Description" ? "left" : "right") + ';padding:6px 10px;border-bottom:2px solid var(--line);white-space:nowrap;">' + h + "</th>"; }).join("") + "</tr>";
+    out.slice(0, 300).forEach(function (r) {
+      tb += '<tr><td style="padding:5px 10px;border-bottom:1px solid var(--line);white-space:nowrap;">' + xmlEsc(r.date) + "</td>" +
+        '<td style="padding:5px 10px;border-bottom:1px solid var(--line);">' + xmlEsc(r.desc) + "</td>" +
+        '<td style="padding:5px 10px;border-bottom:1px solid var(--line);text-align:right;' + (r.amount < 0 ? "" : "color:var(--ok,inherit);") + '">' + r.amount.toFixed(2) + "</td>" +
+        (hasBalance ? '<td style="padding:5px 10px;border-bottom:1px solid var(--line);text-align:right;">' + (r.balance === null ? "" : r.balance.toFixed(2)) + "</td>" : "") + "</tr>";
+    });
+    tb += "</table>" + (out.length > 300 ? '<p class="file-stat">Preview shows first 300 rows; the file contains all ' + out.length + ".</p>" : "");
+    pv.innerHTML = tb;
+
+    parseNote = " · parsed from " + pdf.numPages + " page" + (pdf.numPages === 1 ? "" : "s") + (skipped ? " · " + skipped + " balance-only rows skipped" : "");
+    parsed = { rows: out };
+    // guess credit-card type: no balance column and mostly negative amounts is weak evidence; leave user's choice alone.
+    render();
+  } catch (e) {
+    $("stat").textContent = "";
+    $("err").textContent = String(e && e.message || e);
+  }
+}
+input.addEventListener("change", () => handle(input.files[0]));
+zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("hot"); });
+zone.addEventListener("dragleave", () => zone.classList.remove("hot"));
+zone.addEventListener("drop", (e) => { e.preventDefault(); zone.classList.remove("hot"); handle(e.dataTransfer.files[0]); });
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Number Base Converter - Binary, Hex, Decimal | FileKiln</title>
+<meta name="description" content="Convert numbers between binary, decimal, hexadecimal, and octal, at any size, in your browser. Byte-grouped binary included.">
+<link rel="canonical" href="https://filekiln.com/number-base-converter/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="Number Base Converter - Binary, Hex, Decimal | FileKiln">
+<meta property="og:description" content="Convert numbers between binary, decimal, hexadecimal, and octal, at any size, in your browser. Byte-grouped binary included.">
+<meta property="og:url" content="https://filekiln.com/number-base-converter/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Number Base Converter - Binary, Hex, Decimal | FileKiln">
+<meta name="twitter:description" content="Convert numbers between binary, decimal, hexadecimal, and octal, at any size, in your browser. Byte-grouped binary included.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Number Base Converter","url":"https://filekiln.com/number-base-converter/","description":"Convert numbers between binary, decimal, hexadecimal, and octal, at any size, in your browser. Byte-grouped binary included.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does bare “ff” give an error instead of converting from hex?","acceptedAnswer":{"@type":"Answer","text":"Because “ff” could be hex or a typo, and guessing corrupts data. The prefixes 0x, 0b, and 0o make the base explicit, the same convention every modern language uses."}},{"@type":"Question","name":"How large a number can this handle?","acceptedAnswer":{"@type":"Answer","text":"Effectively unlimited - conversion uses BigInt arithmetic, so 256-bit hashes and larger convert exactly. Converters that use ordinary floating-point numbers silently round anything above 9,007,199,254,740,991."}},{"@type":"Question","name":"How are negative numbers shown in binary?","acceptedAnswer":{"@type":"Answer","text":"As a minus sign and the magnitude, not as two's complement, because two's complement is only meaningful at a fixed bit width, and this tool doesn't guess one. The bit count shown is of the magnitude."}},{"@type":"Question","name":"What is the “bytes” line?","acceptedAnswer":{"@type":"Answer","text":"The same binary value, zero-padded to whole bytes and grouped 8 bits at a time - the way you would read it in a hex dump or when working out masks and flags."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>Number Base Converter</h1>
+<p class="sub">Convert numbers between binary, decimal, hexadecimal, and octal, at any size, in your browser. Byte-grouped binary included.</p>
+
+<div class="tool">
+  <div class="tool-head">base convert</div>
+  <div class="tool-grid">
+    <div><label class="io" for="in">Number in</label>
+      <textarea id="in" spellcheck="false" placeholder="255  ·or·  0xff  ·or·  0b11111111  ·or·  0o377"></textarea></div>
+    <div><label class="io" for="out">All bases out</label>
+      <textarea id="out" spellcheck="false" readonly></textarea></div>
+  </div>
+  <div class="bar">
+    <button id="run">Convert</button>
+    <button id="copy" class="ghost" type="button">Copy result</button>
+    <button id="clear" class="ghost" type="button">Clear</button>
+    <p class="err" id="err" role="alert"></p>
+    <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+    <span class="bar-note">Local execution &middot; no network egress</span>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> The conversion happens in this page's JavaScript. Nothing you paste here leaves your machine, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Paste a number in any of the four programmer bases - decimal, hex (<code>0x</code>), binary (<code>0b</code>), or octal (<code>0o</code>) - and read off all of them at once, plus a byte-grouped binary view and the bit length. Conversion uses arbitrary-precision integers, so 64-bit values, 256-bit hashes, and anything else convert exactly; there is no silent precision loss at 2&#8309;&#179;, which is where converters built on ordinary JavaScript numbers start quietly corrupting results. Underscores and spaces in the input are ignored, so <code>0xdead_beef</code> pastes straight from source code.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>Why does bare “ff” give an error instead of converting from hex?</h3>
+<p>Because “ff” could be hex or a typo, and guessing corrupts data. The prefixes 0x, 0b, and 0o make the base explicit, the same convention every modern language uses.</p>
+<h3>How large a number can this handle?</h3>
+<p>Effectively unlimited - conversion uses BigInt arithmetic, so 256-bit hashes and larger convert exactly. Converters that use ordinary floating-point numbers silently round anything above 9,007,199,254,740,991.</p>
+<h3>How are negative numbers shown in binary?</h3>
+<p>As a minus sign and the magnitude, not as two's complement, because two's complement is only meaningful at a fixed bit width, and this tool doesn't guess one. The bit count shown is of the magnitude.</p>
+<h3>What is the “bytes” line?</h3>
+<p>The same binary value, zero-padded to whole bytes and grouped 8 bits at a time - the way you would read it in a hex dump or when working out masks and flags.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/cron-expression-parser/"><span class="t">cron explain</span><span class="d">Crontab syntax explained, with the next five real run times.</span></a></li>
+<li><a href="/regex-tester/"><span class="t">regex test</span><span class="d">Pattern on line 1, text below - every match and group listed.</span></a></li>
+<li><a href="/uuid-generator/"><span class="t">uuid v4</span><span class="d">Cryptographically random UUID v4s, one or a thousand at a time.</span></a></li>
+<li><a href="/password-generator/"><span class="t">password gen</span><span class="d">Crypto-random passwords with the entropy math shown.</span></a></li>
+</ul>
+</section>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function convert(input, input2) { 
+      var s = input.trim().toLowerCase().replace(/[_\s]/g, "");
+      if (!s) return "";
+      var neg = s.charAt(0) === "-";
+      if (neg) s = s.slice(1);
+      var v;
+      if (/^0x[0-9a-f]+$/.test(s) || /^0b[01]+$/.test(s) || /^0o[0-7]+$/.test(s) || /^[0-9]+$/.test(s)) v = BigInt(s);
+      else if (/^[0-9a-f]+$/.test(s)) throw new Error("Ambiguous digits - if that is hex, write it as 0x" + s + ".");
+      else throw new Error("Use decimal (255), hex (0xff), binary (0b11111111), or octal (0o377). Underscores and spaces are ignored.");
+      if (neg) v = -v;
+      var abs = v < 0n ? -v : v;
+      var bin = abs.toString(2);
+      var pad = bin.length % 8 ? "0".repeat(8 - (bin.length % 8)) : "";
+      var grouped = (pad + bin).replace(/([01]{8})(?=[01])/g, "$1 ");
+      var sign = v < 0n ? "-" : "";
+      return [
+        "decimal  " + v.toString(10),
+        "hex      " + sign + "0x" + abs.toString(16),
+        "octal    " + sign + "0o" + abs.toString(8),
+        "binary   " + sign + "0b" + bin,
+        "bytes    " + sign + grouped,
+        "bits     " + bin.length
+      ].join("\n"); }
+  function fail(e) { $("out").value = ""; $("err").textContent = String(e.message || e); }
+  $("run").addEventListener("click", function () {
+    $("err").textContent = "";
+    var i2 = $("in2") ? $("in2").value : undefined;
+    try { Promise.resolve(convert($("in").value, i2)).then(function (v) { $("out").value = v; }, fail); }
+    catch (e) { fail(e); }
+  });
+  $("copy").addEventListener("click", function () {
+    if ($("out").value) navigator.clipboard.writeText($("out").value);
+  });
+  $("clear").addEventListener("click", function () {
+    $("in").value = ""; if ($("in2")) $("in2").value = "";
+    $("out").value = ""; $("err").textContent = "";
+    var pv = $("preview"); if (pv) pv.innerHTML = "";
+  });
+})();
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

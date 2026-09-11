@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF to CSV Converter - Extract Tables, No Upload | FileKiln</title>
+<meta name="description" content="Extract tables and text from a PDF into CSV, entirely in your browser. Built for bank statements and reports that should never touch a server.">
+<link rel="canonical" href="https://filekiln.com/pdf-to-csv/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="PDF to CSV Converter - Extract Tables, No Upload | FileKiln">
+<meta property="og:description" content="Extract tables and text from a PDF into CSV, entirely in your browser. Built for bank statements and reports that should never touch a server.">
+<meta property="og:url" content="https://filekiln.com/pdf-to-csv/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to CSV Converter - Extract Tables, No Upload | FileKiln">
+<meta name="twitter:description" content="Extract tables and text from a PDF into CSV, entirely in your browser. Built for bank statements and reports that should never touch a server.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PDF to CSV Converter","url":"https://filekiln.com/pdf-to-csv/","description":"Extract tables and text from a PDF into CSV, entirely in your browser. Built for bank statements and reports that should never touch a server.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I convert a PDF to CSV without uploading it anywhere?","acceptedAnswer":{"@type":"Answer","text":"Yes - nothing is uploaded. The PDF is parsed by JavaScript in this tab using Mozilla's pdf.js library. Load the page, go offline, and extraction still works. There is no server that could store your bank statement."}},{"@type":"Question","name":"Why do my columns come out slightly wrong?","acceptedAnswer":{"@type":"Answer","text":"PDFs store positioned text, not tables, so every converter - including expensive ones - reconstructs columns by guessing at alignment. This tool splits columns at horizontal gaps, which suits statements and reports. If a wide cell swallows its neighbor, fix it in your spreadsheet; the row text itself is extracted faithfully."}},{"@type":"Question","name":"My PDF produced an error about scans and OCR. What does that mean?","acceptedAnswer":{"@type":"Answer","text":"Some statements are scanned images of paper rather than digital text. Those contain no extractable characters, and reading them requires optical character recognition, which this tool does not pretend to do. Statements downloaded from online banking are almost always digital text and work."}},{"@type":"Question","name":"Can it handle multi-page statements?","acceptedAnswer":{"@type":"Answer","text":"Yes - every page is extracted in order, with a blank line separating pages so month boundaries stay visible. Page count and row count are reported after extraction."}},{"@type":"Question","name":"Does it work on password-protected PDFs?","acceptedAnswer":{"@type":"Answer","text":"Not currently. Remove the password first (your PDF viewer's print-to-PDF usually does it) and the extraction will run."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>PDF to CSV Converter</h1>
+<p class="sub">Extract tables and text from a PDF into CSV, entirely in your browser. Built for bank statements and reports - files that should never touch someone else's server.</p>
+
+<div class="tool">
+  <div class="tool-head">pdf → csv</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".pdf,application/pdf">
+    <label for="file"><strong>Choose a .pdf file</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <a id="dl" class="btn-dl" hidden>Download CSV</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <textarea id="out" spellcheck="false" readonly style="min-height:240px;" placeholder="Extracted rows appear here as CSV."></textarea>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Drop in a PDF - a bank statement, a card statement, an exported report - and get its text back as CSV rows you can open in a spreadsheet. Extraction runs on Mozilla's open-source <code>pdf.js</code>, the same engine Firefox uses to display PDFs, entirely inside this page. That matters more here than for any other tool on this site: a bank statement is the single worst file to hand to a random "free converter" server, and with this one there is no server. The reconstruction is honest about being heuristic: text is grouped into rows by position and split into columns at visible gaps, which works well on statement-style layouts - and you can see every row on screen before you download, so nothing is silently wrong.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>Can I convert a PDF to CSV without uploading it anywhere?</h3>
+<p>Yes - nothing is uploaded. The PDF is parsed by JavaScript in this tab using Mozilla's pdf.js library. Load the page, go offline, and extraction still works. There is no server that could store your bank statement.</p>
+<h3>Why do my columns come out slightly wrong?</h3>
+<p>PDFs store positioned text, not tables, so every converter - including expensive ones - reconstructs columns by guessing at alignment. This tool splits columns at horizontal gaps, which suits statements and reports. If a wide cell swallows its neighbor, fix it in your spreadsheet; the row text itself is extracted faithfully.</p>
+<h3>My PDF produced an error about scans and OCR. What does that mean?</h3>
+<p>Some statements are scanned images of paper rather than digital text. Those contain no extractable characters, and reading them requires optical character recognition, which this tool does not pretend to do. Statements downloaded from online banking are almost always digital text and work.</p>
+<h3>Can it handle multi-page statements?</h3>
+<p>Yes - every page is extracted in order, with a blank line separating pages so month boundaries stay visible. Page count and row count are reported after extraction.</p>
+<h3>Does it work on password-protected PDFs?</h3>
+<p>Not currently. Remove the password first (your PDF viewer's print-to-PDF usually does it) and the extraction will run.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/bank-statement-to-csv/"><span class="t">statement → csv</span><span class="d">Statement PDF in, clean transaction CSV/Excel out - never uploaded.</span></a></li>
+<li><a href="/stl-to-gcode/"><span class="t">stl → gcode</span><span class="d">Real CuraEngine slicing in your tab - STL in, G-code out.</span></a></li>
+<li><a href="/psd-to-png/"><span class="t">psd → png</span><span class="d">Photoshop file in, flattened PNG out - parsed locally, never uploaded.</span></a></li>
+<li><a href="/mp3-to-midi/"><span class="t">mp3 → midi</span><span class="d">Audio in, MIDI notes out - Spotify's ML model, run locally.</span></a></li>
+</ul>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Printable templates</h2>
+<ul class="tool-index">
+<li><a href="/templates/rent-receipt/"><span class="t">rent receipt</span><span class="d">A month's rent, receipted: amount, period, method, signature line.</span></a></li>
+</ul>
+</section>
+<script type="module">
+import * as pdfjs from "/assets/vendor/pdf.min.mjs";
+pdfjs.GlobalWorkerOptions.workerPort = new Worker("/assets/vendor/pdf.worker.min.mjs", { type: "module" });
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+function csvCell(s) { s = s.replace(/\s+/g, " ").trim(); /* Spreadsheet formula injection: Excel, LibreOffice and Sheets EXECUTE a cell that begins with = + @ or -, so a description lifted out of a PDF can carry a payload into the machine that opens the CSV. A leading apostrophe forces text. A negative NUMBER must stay a number, so - is only neutralised when what follows is not numeric. Tab and CR need no test: the whitespace collapse above has already removed them. */ if(/^[=+@]/.test(s)||(/^-/.test(s)&&!/^-?\d+(?:\.\d+)?$/.test(s)))s="'"+s; return /[",]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+async function handle(f) {
+  $("err").textContent = ""; $("dl").hidden = true; $("out").value = "";
+  if (!f) return;
+  $("stat").textContent = "Reading " + f.name + " (" + Math.round(f.size / 1024) + " KB) locally\u2026";
+  try {
+    const pdf = await pdfjs.getDocument({ data: await f.arrayBuffer() }).promise;
+    const lines = []; let rowCount = 0;
+    for (let p = 1; p <= pdf.numPages; p++) {
+      const tc = await (await pdf.getPage(p)).getTextContent();
+      const its = tc.items
+        .filter((it) => it.str && it.str.trim())
+        .map((it) => ({ x: it.transform[4], y: it.transform[5], s: it.str, w: it.width }));
+      its.sort((a, b) => (b.y - a.y) || (a.x - b.x));
+      const rows = []; let row = [], rowY = null;
+      for (const it of its) {
+        if (rowY === null || Math.abs(it.y - rowY) <= 3) { row.push(it); if (rowY === null) rowY = it.y; }
+        else { rows.push(row); row = [it]; rowY = it.y; }
+      }
+      if (row.length) rows.push(row);
+      for (const r of rows) {
+        r.sort((a, b) => a.x - b.x);
+        const cells = []; let cur = r[0].s, end = r[0].x + r[0].w;
+        for (let i = 1; i < r.length; i++) {
+          const gap = r[i].x - end;
+          if (gap > 7) { cells.push(cur); cur = r[i].s; }
+          else cur += (gap > 1 ? " " : "") + r[i].s;
+          end = r[i].x + r[i].w;
+        }
+        cells.push(cur);
+        lines.push(cells.map(csvCell).join(","));
+        rowCount++;
+      }
+      if (p < pdf.numPages) lines.push("");
+    }
+    const csv = lines.join("\n");
+    if (!rowCount) throw new Error("No extractable text found - this PDF is likely a scan (images of text). Scanned statements need OCR, which this tool honestly does not do.");
+    $("out").value = csv;
+    const dl = $("dl");
+    if (dl.href) URL.revokeObjectURL(dl.href);
+    dl.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    dl.download = f.name.replace(/\.pdf$/i, "") + ".csv";
+    dl.hidden = false;
+    $("stat").textContent = pdf.numPages + " page" + (pdf.numPages === 1 ? "" : "s") + " \u2192 " + rowCount + " rows of CSV. Review below, then download.";
+  } catch (e) {
+    $("stat").textContent = "";
+    $("err").textContent = "Could not extract from that PDF: " + (e && e.message || e);
+  }
+}
+input.addEventListener("change", () => handle(input.files[0]));
+zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("hot"); });
+zone.addEventListener("dragleave", () => zone.classList.remove("hot"));
+zone.addEventListener("drop", (e) => { e.preventDefault(); zone.classList.remove("hot"); handle(e.dataTransfer.files[0]); });
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

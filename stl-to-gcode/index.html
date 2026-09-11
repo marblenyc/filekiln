@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STL to G-code Converter - CuraEngine Slicer | FileKiln</title>
+<meta name="description" content="Slice an STL into printable G-code with the real CuraEngine compiled to WebAssembly. Pick your printer, get layers, time, and filament.">
+<link rel="canonical" href="https://filekiln.com/stl-to-gcode/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="STL to G-code Converter - CuraEngine Slicer | FileKiln">
+<meta property="og:description" content="Slice an STL into printable G-code with the real CuraEngine compiled to WebAssembly. Pick your printer, get layers, time, and filament.">
+<meta property="og:url" content="https://filekiln.com/stl-to-gcode/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="STL to G-code Converter - CuraEngine Slicer | FileKiln">
+<meta name="twitter:description" content="Slice an STL into printable G-code with the real CuraEngine compiled to WebAssembly. Pick your printer, get layers, time, and filament.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"STL to G-code Converter (Slicer)","url":"https://filekiln.com/stl-to-gcode/","description":"Slice an STL into printable G-code with the real CuraEngine compiled to WebAssembly. Pick your printer, get layers, time, and filament.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this a real slicer or an approximation?","acceptedAnswer":{"@type":"Answer","text":"Real. The WebAssembly build wraps the actual CuraEngine C++ code, so paths, supports-free perimeters, infill, and estimates come from the same algorithms desktop Cura uses with the selected printer's stock definition."}},{"@type":"Question","name":"How is this different from other online STL to G-code converters?","acceptedAnswer":{"@type":"Answer","text":"Most online converters are cloud slicers: your model goes to their server, gets sliced there, and the G-code comes back. Here the slicer itself comes to you, compiled to WebAssembly, so nothing travels the other way."}},{"@type":"Question","name":"Is it safe to print the output directly?","acceptedAnswer":{"@type":"Answer","text":"Treat it like G-code from any slicer with default settings: review before printing. The profile sets temperatures, speeds, and bed size for the stock printer model - if your machine is modified, has a different nozzle, or runs custom firmware, check those values in the preview first. You are responsible for what your printer executes."}},{"@type":"Question","name":"Why does my STL fail with an unsupported-format error?","acceptedAnswer":{"@type":"Answer","text":"The loader wants binary STL, which is what nearly every CAD tool exports by default. If you have an ASCII STL (it starts with the word 'solid' and is human-readable), re-export it as binary."}},{"@type":"Question","name":"Which settings can I change?","acceptedAnswer":{"@type":"Answer","text":"Printer model and layer height here; everything else follows the printer's stock Cura profile. This is deliberate - a wall of half-understood sliders is how bad prints happen. For deep tuning, desktop Cura remains the right tool."}},{"@type":"Question","name":"Is my model uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The engine, the printer definitions, and your STL all live in this browser tab. After the ~5 MB engine loads once, slicing works offline."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>STL to G-code Converter (Slicer)</h1>
+<p class="sub">Slice an STL into printable G-code with the real CuraEngine compiled to WebAssembly, running in your browser. Pick your printer, get layers, time, and filament estimates.</p>
+
+<div class="tool">
+  <div class="tool-head">stl → gcode</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".stl,model/stl">
+    <label for="file"><strong>Choose a .stl file (binary STL)</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <label class="ok-note" style="display:flex;align-items:center;gap:6px;">printer
+      <select id="printer">
+        <option value="creality_ender3">Creality Ender 3</option>
+        <option value="creality_cr10">Creality CR-10</option>
+        <option value="prusa_i3">Prusa i3</option>
+        <option value="ultimaker2" selected>Ultimaker 2</option>
+        <option value="ultimaker3">Ultimaker 3</option>
+        <option value="anycubic_i3_mega">Anycubic i3 Mega</option>
+        <option value="anet_a8">Anet A8</option>
+        <option value="fdmprinter">Generic FDM printer</option>
+      </select></label>
+    <label class="ok-note" style="display:flex;align-items:center;gap:6px;">layer height
+      <select id="layerh">
+        <option value="0.1">0.1 mm (fine)</option>
+        <option value="0.2" selected>0.2 mm (standard)</option>
+        <option value="0.3">0.3 mm (draft)</option>
+      </select></label><p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <a id="dl" class="btn-dl" hidden>Download G-code</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <textarea id="out" spellcheck="false" readonly style="min-height:240px;" placeholder="The first lines of your G-code appear here for review."></textarea>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>This is not a G-code "estimator" - it is <a href="https://github.com/Ultimaker/CuraEngine" rel="noopener">CuraEngine</a>, the slicing engine inside Ultimaker Cura, compiled to WebAssembly and running in your browser tab. Pick your printer model and a layer height, drop a binary STL, and it produces real, complete G-code with layer count, estimated print time, and filament usage, using that printer's stock Cura profile. Your model never leaves your machine. <strong>One serious caution:</strong> G-code drives physical hardware. These are stock profiles, not your tuned settings - review the preview, check the first layers, and confirm temperatures and bed size match your machine before you print. If you have a calibrated profile in desktop Cura, prefer it for production prints; this tool is for quick slicing, estimates, and machines that match stock configs.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>Is this a real slicer or an approximation?</h3>
+<p>Real. The WebAssembly build wraps the actual CuraEngine C++ code, so paths, supports-free perimeters, infill, and estimates come from the same algorithms desktop Cura uses with the selected printer's stock definition.</p>
+<h3>How is this different from other online STL to G-code converters?</h3>
+<p>Most online converters are cloud slicers: your model goes to their server, gets sliced there, and the G-code comes back. Here the slicer itself comes to you, compiled to WebAssembly, so nothing travels the other way.</p>
+<h3>Is it safe to print the output directly?</h3>
+<p>Treat it like G-code from any slicer with default settings: review before printing. The profile sets temperatures, speeds, and bed size for the stock printer model - if your machine is modified, has a different nozzle, or runs custom firmware, check those values in the preview first. You are responsible for what your printer executes.</p>
+<h3>Why does my STL fail with an unsupported-format error?</h3>
+<p>The loader wants binary STL, which is what nearly every CAD tool exports by default. If you have an ASCII STL (it starts with the word 'solid' and is human-readable), re-export it as binary.</p>
+<h3>Which settings can I change?</h3>
+<p>Printer model and layer height here; everything else follows the printer's stock Cura profile. This is deliberate - a wall of half-understood sliders is how bad prints happen. For deep tuning, desktop Cura remains the right tool.</p>
+<h3>Is my model uploaded to a server?</h3>
+<p>No. The engine, the printer definitions, and your STL all live in this browser tab. After the ~5 MB engine loads once, slicing works offline.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/bank-statement-to-csv/"><span class="t">statement → csv</span><span class="d">Statement PDF in, clean transaction CSV/Excel out - never uploaded.</span></a></li>
+<li><a href="/psd-to-png/"><span class="t">psd → png</span><span class="d">Photoshop file in, flattened PNG out - parsed locally, never uploaded.</span></a></li>
+<li><a href="/pdf-to-csv/"><span class="t">pdf → csv</span><span class="d">PDF tables out as CSV - bank statements never leave your machine.</span></a></li>
+<li><a href="/mp3-to-midi/"><span class="t">mp3 → midi</span><span class="d">Audio in, MIDI notes out - Spotify's ML model, run locally.</span></a></li>
+</ul>
+</section>
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+let CuraWASM = null, resolveDefinition = null;
+async function handle(f) {
+  $("err").textContent = ""; $("dl").hidden = true; $("out").value = "";
+  if (!f) return;
+  let slicer = null;
+  try {
+    if (!CuraWASM) {
+      $("stat").textContent = "Loading CuraEngine (~5 MB, first run only)\u2026";
+      const [m, d] = await Promise.all([
+        import("https://cdn.jsdelivr.net/npm/cura-wasm@1.5.2/+esm"),
+        import("https://cdn.jsdelivr.net/npm/cura-wasm-definitions@1.5.1/+esm"),
+      ]);
+      CuraWASM = m.CuraWASM; resolveDefinition = d.resolveDefinition;
+    }
+    const printer = $("printer").value, layerh = $("layerh").value;
+    slicer = new CuraWASM({
+      definition: resolveDefinition(printer),
+      overrides: [{ key: "layer_height", value: layerh }],
+      transfer: false,
+    });
+    slicer.on("progress", (pct) => { $("stat").textContent = "Slicing with CuraEngine locally\u2026 " + pct + "%"; });
+    $("stat").textContent = "Slicing " + f.name + " for " + $("printer").selectedOptions[0].textContent + "\u2026";
+    const { gcode, metadata } = await slicer.slice(await f.arrayBuffer(), "stl");
+    const txt = new TextDecoder().decode(gcode);
+    const layers = (txt.match(/LAYER_COUNT:(\d+)/) || [])[1];
+    const mins = metadata && metadata.printTime ? Math.round(metadata.printTime / 60) : null;
+    const fil = metadata && metadata.filamentUsage ? (metadata.filamentUsage / 1000).toFixed(2) : null;
+    $("out").value = txt.split("\n").slice(0, 120).join("\n") + "\n\n; \u2026 (" + txt.split("\n").length + " lines total - download for the full file)";
+    const dl = $("dl");
+    if (dl.href) URL.revokeObjectURL(dl.href);
+    dl.href = URL.createObjectURL(new Blob([txt], { type: "text/x.gcode" }));
+    dl.download = f.name.replace(/\.stl$/i, "") + ".gcode";
+    dl.hidden = false;
+    $("stat").textContent = (layers ? layers + " layers" : "Sliced") +
+      (mins ? " \u00b7 est. " + Math.floor(mins / 60) + "h " + (mins % 60) + "m print" : "") +
+      (fil ? " \u00b7 ~" + fil + " m filament" : "") +
+      " \u00b7 review the preview before printing.";
+  } catch (e) {
+    $("stat").textContent = "";
+    $("err").textContent = "Could not slice that file: " + (e && e.message || e) + (String(e).indexOf("Unsupported") >= 0 ? " (ASCII STL? Re-export as binary STL.)" : "");
+  } finally {
+    try { if (slicer) (slicer.dispose || slicer.destroy || function(){}).call(slicer); } catch (e) {}
+  }
+}
+input.addEventListener("change", () => handle(input.files[0]));
+zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("hot"); });
+zone.addEventListener("dragleave", () => zone.classList.remove("hot"));
+zone.addEventListener("drop", (e) => { e.preventDefault(); zone.classList.remove("hot"); handle(e.dataTransfer.files[0]); });
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

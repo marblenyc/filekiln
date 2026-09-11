@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QBO to CSV Converter - QFX, OFX &amp; QIF Too | FileKiln</title>
+<meta name="description" content="Convert QBO, QFX, OFX, and QIF bank files to clean CSV or Excel transactions - entirely in your browser. Your financial data never leaves your machine.">
+<link rel="canonical" href="https://filekiln.com/qbo-to-csv/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="QBO to CSV Converter - QFX, OFX &amp; QIF Too | FileKiln">
+<meta property="og:description" content="Convert QBO, QFX, OFX, and QIF bank files to clean CSV or Excel transactions - entirely in your browser. Your financial data never leaves your machine.">
+<meta property="og:url" content="https://filekiln.com/qbo-to-csv/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QBO to CSV Converter - QFX, OFX &amp; QIF Too | FileKiln">
+<meta name="twitter:description" content="Convert QBO, QFX, OFX, and QIF bank files to clean CSV or Excel transactions - entirely in your browser. Your financial data never leaves your machine.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"QBO to CSV Converter","url":"https://filekiln.com/qbo-to-csv/","description":"Convert QBO, QFX, OFX, and QIF bank files to clean CSV or Excel transactions - entirely in your browser. Your financial data never leaves your machine.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert a QBO file to CSV?","acceptedAnswer":{"@type":"Answer","text":"Drop the .qbo file on this page. It is parsed in your browser - date, description, amount, and type for every transaction - shown in a table for review, and downloaded as CSV or a real Excel workbook. Nothing is uploaded anywhere."}},{"@type":"Question","name":"Does it read QFX, OFX, and QIF files too?","acceptedAnswer":{"@type":"Answer","text":"Yes. QBO (QuickBooks Web Connect) and QFX (Quicken) are both flavors of the OFX standard and parse identically; plain .ofx works the same. The older .qif format that Quicken and many banks still export is parsed as well - all four land in the same clean table."}},{"@type":"Question","name":"Is my bank data uploaded to convert it?","acceptedAnswer":{"@type":"Answer","text":"No - never. These files carry your account activity, which is exactly why this tool runs entirely as JavaScript in your tab. There is no upload endpoint on this site. Load the page, disconnect from the internet, and it still converts."}},{"@type":"Question","name":"Why would I convert out of QBO format?","acceptedAnswer":{"@type":"Answer","text":"QBO and OFX are import formats - fine for QuickBooks, useless in a spreadsheet. Converting to CSV or Excel lets you analyze transactions, hand them to an accountant who works in Excel, load them into other software, or keep a plain-text archive that will open in twenty years."}},{"@type":"Question","name":"Can I go the other way - PDF or CSV into QBO?","acceptedAnswer":{"@type":"Answer","text":"Yes - our bank statement to QBO converter does the reverse trip: statement PDF in, QuickBooks-ready .qbo out, equally local. Between the two pages the statement engine runs in both directions."}},{"@type":"Question","name":"Can't I just open the .qbo file in Excel directly?","acceptedAnswer":{"@type":"Answer","text":"You can try, but Excel treats it as one column of OFX tag soup - dates like 20260105120000 wedged between markup, amounts and payees on separate lines. This page does the unwrapping first, so what reaches Excel is a real table: one row per transaction, amounts as signed numbers that sum correctly."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>QBO to CSV Converter</h1>
+<p class="sub">Convert QBO, QFX, OFX, and QIF bank files to clean CSV or Excel transactions - entirely in your browser. Your financial data never leaves your machine.</p>
+<div class="tool">
+  <div class="tool-head">qbo / qfx / ofx / qif → csv</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".qbo,.qfx,.ofx,.qif">
+    <label for="file"><strong>Choose a .qbo, .qfx, .ofx, or .qif file</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <a id="dl" class="btn-dl" hidden>Download CSV</a>
+      <a id="dlx" class="btn-dl" hidden>Download Excel (.xlsx)</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <div id="pv" style="overflow:auto;max-height:360px;margin:0 0 14px;"></div>
+    <textarea id="out" spellcheck="false" readonly style="min-height:200px;" placeholder="Parsed transactions appear here as CSV."></textarea>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>QBO, QFX, and OFX are import formats: perfect for feeding QuickBooks or Quicken, useless for actually looking at your money. The transactions are in there - wrapped in a machine format - and the usual way out is a converter site with an upload button, which for a file of your bank activity is the wrong deal. This page does the unwrapping in your browser: every <code>STMTTRN</code> block (or QIF record) becomes a row with date, description, amount, and type, shown in a table you can check before downloading CSV or a real Excel workbook.</p>
+<p>It pairs with our <a href="/bank-statement-to-qbo/">bank statement to QBO converter</a>, which makes the opposite trip - together the statement engine runs in both directions, and neither direction touches a server. Amounts come out as true signed numbers, so spreadsheet sums work immediately; QuickBooks' 32-character name truncation is undone where the memo field carries the full text.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>How do I convert a QBO file to CSV?</h3>
+<p>Drop the .qbo file on this page. It is parsed in your browser - date, description, amount, and type for every transaction - shown in a table for review, and downloaded as CSV or a real Excel workbook. Nothing is uploaded anywhere.</p>
+<h3>Does it read QFX, OFX, and QIF files too?</h3>
+<p>Yes. QBO (QuickBooks Web Connect) and QFX (Quicken) are both flavors of the OFX standard and parse identically; plain .ofx works the same. The older .qif format that Quicken and many banks still export is parsed as well - all four land in the same clean table.</p>
+<h3>Is my bank data uploaded to convert it?</h3>
+<p>No - never. These files carry your account activity, which is exactly why this tool runs entirely as JavaScript in your tab. There is no upload endpoint on this site. Load the page, disconnect from the internet, and it still converts.</p>
+<h3>Why would I convert out of QBO format?</h3>
+<p>QBO and OFX are import formats - fine for QuickBooks, useless in a spreadsheet. Converting to CSV or Excel lets you analyze transactions, hand them to an accountant who works in Excel, load them into other software, or keep a plain-text archive that will open in twenty years.</p>
+<h3>Can I go the other way - PDF or CSV into QBO?</h3>
+<p>Yes - our <a href="/bank-statement-to-qbo/">bank statement to QBO converter</a> does the reverse trip: statement PDF in, QuickBooks-ready .qbo out, equally local. Between the two pages the statement engine runs in both directions.</p>
+<h3>Can't I just open the .qbo file in Excel directly?</h3>
+<p>You can try, but Excel treats it as one column of OFX tag soup - dates like 20260105120000 wedged between markup, amounts and payees on separate lines. This page does the unwrapping first, so what reaches Excel is a real table: one row per transaction, amounts as signed numbers that sum correctly.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/bank-statement-to-qbo/"><span class="t">statement → qbo</span><span class="d">The reverse trip: statement PDF in, QuickBooks Web Connect file out.</span></a></li>
+<li><a href="/bank-statement-to-csv/"><span class="t">statement → csv</span><span class="d">Statement PDF in, clean transaction CSV/Excel out - never uploaded.</span></a></li>
+<li><a href="/csv-to-json/"><span class="t">csv → json</span><span class="d">CSV rows in, JSON array of objects out. Quoted fields handled.</span></a></li>
+<li><a href="/msg-file-viewer/"><span class="t">msg / eml → readable email</span><span class="d">Open Outlook emails - body, headers, attachments - without Outlook.</span></a></li>
+</ul>
+</section>
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+
+function csvCell(s){s=String(s).replace(/\s+/g," ").trim(); /* Spreadsheet formula injection: Excel, LibreOffice and Sheets EXECUTE a cell that begins with = + @ or -, so a description lifted out of a PDF can carry a payload into the machine that opens the CSV. A leading apostrophe forces text. A negative NUMBER must stay a number, so - is only neutralised when what follows is not numeric. Tab and CR need no test: the whitespace collapse above has already removed them. */ if(/^[=+@]/.test(s)||(/^-/.test(s)&&!/^-?\d+(?:\.\d+)?$/.test(s)))s="'"+s;return /[",]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+function xmlEsc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function unescOfx(s){return s.replace(/&amp;/gi,"&").replace(/&lt;/gi,"<").replace(/&gt;/gi,">").replace(/&nbsp;/gi," ").replace(/&apos;/gi,"'").replace(/&quot;/gi,'"');}
+
+/* minimal .xlsx writer: STORED zip + inlineStr sheet, zero deps */
+var CRC_T=(function(){var t=[],c,k,n;for(n=0;n<256;n++){c=n;for(k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(u8){var c=0xFFFFFFFF;for(var i=0;i<u8.length;i++)c=CRC_T[(c^u8[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function makeZip(files){
+  var enc=new TextEncoder(),parts=[],cd=[],off=0;
+  function u16(n){return [n&255,(n>>8)&255];}
+  function u32(n){return [n&255,(n>>8)&255,(n>>16)&255,(n>>>24)&255];}
+  files.forEach(function(f){
+    var name=enc.encode(f[0]),data=enc.encode(f[1]),crc=crc32(data);
+    var head=[].concat(u32(0x04034b50),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0));
+    parts.push(new Uint8Array(head),name,data);
+    cd.push({name:name,crc:crc,size:data.length,off:off});
+    off+=head.length+name.length+data.length;
+  });
+  var cdStart=off,cdLen=0;
+  cd.forEach(function(e){
+    var rec=[].concat(u32(0x02014b50),u16(20),u16(20),u16(0),u16(0),u16(0),u16(0),u32(e.crc),u32(e.size),u32(e.size),u16(e.name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(e.off));
+    parts.push(new Uint8Array(rec),e.name);cdLen+=rec.length+e.name.length;
+  });
+  parts.push(new Uint8Array([].concat(u32(0x06054b50),u16(0),u16(0),u16(cd.length),u16(cd.length),u32(cdLen),u32(cdStart),u16(0))));
+  return new Blob(parts,{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+}
+function makeXlsx(header,rows){
+  var body=[header].concat(rows).map(function(r,ri){
+    return "<row>"+r.map(function(c){
+      if(ri>0&&typeof c==="number")return '<c t="n"><v>'+c+"</v></c>";
+      return '<c t="inlineStr"><is><t xml:space="preserve">'+xmlEsc(c==null?"":c)+"</t></is></c>";
+    }).join("")+"</row>";
+  }).join("");
+  return makeZip([
+    ["[Content_Types].xml",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>'],
+    ["_rels/.rels",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'],
+    ["xl/workbook.xml",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Transactions" sheetId="1" r:id="rId1"/></sheets></workbook>'],
+    ["xl/_rels/workbook.xml.rels",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>'],
+    ["xl/worksheets/sheet1.xml",'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>'+body+"</sheetData></worksheet>"],
+  ]);
+}
+
+/* OFX-family parser (QBO / QFX / OFX) */
+function parseOfx(text){
+  var i=text.search(/<OFX/i); if(i>=0)text=text.slice(i);
+  var cur=(text.match(/<CURDEF>([^<\r\n]+)/i)||[])[1]||"";
+  var rows=text.split(/<STMTTRN>/i).slice(1).map(function(b){
+    b=b.split(/<\/STMTTRN>/i)[0];
+    function g(t){var m=b.match(new RegExp("<"+t+">([^<\\r\\n]*)","i"));return m?m[1].trim():"";}
+    var dt=g("DTPOSTED").replace(/[^0-9]/g,"");
+    var name=unescOfx(g("NAME")),memo=unescOfx(g("MEMO"));
+    var desc=name;
+    if(memo&&memo!==name){desc=memo.indexOf(name)===0?memo:(name?name+" "+memo:memo);}
+    return {
+      date:dt.length>=8?dt.slice(0,4)+"-"+dt.slice(4,6)+"-"+dt.slice(6,8):"",
+      desc:desc||"(no description)",
+      amount:parseFloat(g("TRNAMT"))||0,
+      type:g("TRNTYPE")||"", fitid:g("FITID")
+    };
+  });
+  return {rows:rows,cur:cur,kind:"OFX"};
+}
+
+/* QIF parser */
+function qifDate(v){
+  var m=v.match(/^(\d{1,2})[\/.-](\d{1,2})['\/.-](\d{2,4})$/)||v.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})$/);
+  if(!m)return v;
+  var y=+m[3];if(y<100)y+=2000;
+  function p2(n){return (n<10?"0":"")+n;}
+  return y+"-"+p2(+m[1])+"-"+p2(+m[2]);
+}
+function parseQif(text){
+  var rows=[],r={};
+  text.split(/\r?\n/).forEach(function(l){
+    if(!l)return;
+    var c=l[0],v=l.slice(1).trim();
+    if(c==="D")r.date=qifDate(v);
+    else if(c==="T"||c==="U")r.amount=parseFloat(v.replace(/[,$]/g,""))||0;
+    else if(c==="P")r.payee=v;
+    else if(c==="M")r.memo=v;
+    else if(c==="^"){
+      if(r.date!==undefined||r.amount!==undefined){
+        var desc=r.payee||"";
+        if(r.memo&&r.memo!==r.payee)desc=desc?desc+" "+r.memo:r.memo;
+        rows.push({date:r.date||"",desc:desc||"(no description)",amount:r.amount||0,type:(r.amount||0)<0?"DEBIT":"CREDIT",fitid:""});
+      }
+      r={};
+    }
+  });
+  return {rows:rows,cur:"",kind:"QIF"};
+}
+
+async function handle(f){
+  $("err").textContent="";$("stat").textContent="";$("dl").hidden=true;$("dlx").hidden=true;$("out").value="";$("pv").innerHTML="";
+  if(!f)return;
+  $("stat").textContent="Reading "+f.name+" locally…";
+  try{
+    var text=await f.text();
+    var res;
+    if(/<OFX|OFXHEADER|<STMTTRN>/i.test(text))res=parseOfx(text);
+    else if(/^!Type:|\n!Type:|^\^|\nD\d/m.test(text))res=parseQif(text);
+    else throw new Error("This doesn't look like a QBO, QFX, OFX, or QIF file - no OFX tags or QIF records were found.");
+    if(!res.rows.length)throw new Error("The file parsed as "+res.kind+" but carries no transactions.");
+
+    var header=["Date","Description","Amount","Type"];
+    var csv=[header.join(",")].concat(res.rows.map(function(r){
+      return [csvCell(r.date),csvCell(r.desc),r.amount.toFixed(2),csvCell(r.type)].join(",");
+    })).join("\n");
+    $("out").value=csv;
+
+    var tb='<table style="width:100%;border-collapse:collapse;font-size:13px;"><tr>'+header.map(function(h){
+      return '<th style="text-align:'+(h==="Amount"?"right":"left")+';padding:6px 10px;border-bottom:2px solid var(--line);white-space:nowrap;">'+h+"</th>";}).join("")+"</tr>";
+    res.rows.slice(0,300).forEach(function(r){
+      tb+='<tr><td style="padding:5px 10px;border-bottom:1px solid var(--line);white-space:nowrap;">'+xmlEsc(r.date)+"</td>"+
+        '<td style="padding:5px 10px;border-bottom:1px solid var(--line);">'+xmlEsc(r.desc)+"</td>"+
+        '<td style="padding:5px 10px;border-bottom:1px solid var(--line);text-align:right;'+(r.amount<0?"":"color:var(--ok,inherit);")+'">'+r.amount.toFixed(2)+"</td>"+
+        '<td style="padding:5px 10px;border-bottom:1px solid var(--line);">'+xmlEsc(r.type)+"</td></tr>";
+    });
+    tb+="</table>"+(res.rows.length>300?'<p class="file-stat">Preview shows first 300 rows; exports contain all '+res.rows.length+".</p>":"");
+    $("pv").innerHTML=tb;
+
+    var base=f.name.replace(/\.(qbo|qfx|ofx|qif)$/i,"");
+    var dl=$("dl");if(dl.href)URL.revokeObjectURL(dl.href);
+    dl.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));dl.download=base+"-transactions.csv";dl.hidden=false;
+    var dlx=$("dlx");if(dlx.href)URL.revokeObjectURL(dlx.href);
+    dlx.href=URL.createObjectURL(makeXlsx(header,res.rows.map(function(r){return [r.date,r.desc,r.amount,r.type];})));
+    dlx.download=base+"-transactions.xlsx";dlx.hidden=false;
+
+    $("stat").textContent=res.rows.length+" transactions parsed from "+res.kind+(res.cur?" ("+res.cur+")":"")+" - review every row below before you trust it.";
+  }catch(e){
+    $("stat").textContent="";
+    $("err").textContent=String(e&&e.message||e);
+  }
+}
+input.addEventListener("change",function(){handle(input.files[0]);});
+zone.addEventListener("dragover",function(e){e.preventDefault();zone.classList.add("hot");});
+zone.addEventListener("dragleave",function(){zone.classList.remove("hot");});
+zone.addEventListener("drop",function(e){e.preventDefault();zone.classList.remove("hot");handle(e.dataTransfer.files[0]);});
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

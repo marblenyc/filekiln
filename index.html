@@ -1,0 +1,1098 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Free converters and text tools that run entirely in your browser. YAML, JSON, CSV, Base64, diff, word count, Markdown, cron, regex. Nothing uploaded.">
+<title>FileKiln - File & Data Converters, Nothing Uploaded</title>
+<link rel="canonical" href="https://filekiln.com/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="FileKiln - File &amp; Data Converters, Nothing Uploaded">
+<meta property="og:description" content="Free converters and text tools that run entirely in your browser. Nothing you paste is ever uploaded.">
+<meta property="og:url" content="https://filekiln.com/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FileKiln - File &amp; Data Converters, Nothing Uploaded">
+<meta name="twitter:description" content="Free converters and text tools that run entirely in your browser. Nothing you paste is ever uploaded.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"FileKiln","url":"https://filekiln.com/","description":"In-browser file and data conversion tools. Nothing is uploaded.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<style>
+/* ── FileKiln · "Glaze" direction ─────────────────────────────
+   Graphite ground, warm bone text, one kiln-glow accent.
+   Tokens on :root (light); dark redefines tokens only.        */
+:root{
+  --bg:#eceef1; --panel:#ffffff; --raised:#f5f6f8; --well:#f0f2f5;
+  --line:#d9dde4; --line-strong:#c3c9d3;
+  --text:#1a1d24; --muted:#5b616d; --faint:#666c77;
+  --accent:#a05820; --accent-soft:#f3e4d6; --accent-ink:#8a4b1c; --accent-glow:rgba(160,88,32,.20);
+  /* Foreground for text sitting ON the accent. The two themes need OPPOSITE
+     answers: white clears 5.37 on the light theme's deep amber but only 2.23
+     on the dark theme's pale amber, where dark ink clears 8.41. */
+  --on-accent:#ffffff;
+  --cobalt:#415b98; --cobalt-soft:#dfe7f8; --cobalt-ink:#33487a; --cobalt-glow:rgba(88,120,196,.18);
+  --live:#15803d; --live-glow:rgba(21,128,61,.45); --live-glow-soft:rgba(21,128,61,.08);
+  --ok:#8a4b1c; --err:#b0433b; --err-soft:#f8e6e4;
+  --shadow:0 1px 2px rgba(20,24,32,.10),0 5px 12px -3px rgba(20,24,32,.08),0 18px 38px -12px rgba(20,24,32,.24);
+  --shadow-lift:0 2px 5px rgba(20,24,32,.11),0 12px 22px -5px rgba(20,24,32,.13),0 28px 54px -14px rgba(20,24,32,.32);
+  --r-lg:18px; --r-md:12px; --r-sm:8px;
+  --display:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#14161b; --panel:#1b1e25; --raised:#22262f; --well:#101216;
+    --line:#2b3039; --line-strong:#3a404c;
+    --text:#e8e5de; --muted:#9a9ea8; --faint:#8b909c;
+    --accent:#e0a15c; --accent-soft:#2c241b; --accent-ink:#f0c58f; --accent-glow:rgba(224,161,92,.16); --on-accent:#101216;
+    --cobalt:#8aaefc; --cobalt-soft:#212f4f; --cobalt-ink:#b2cdff; --cobalt-glow:rgba(138,174,252,.16);
+    --live:#4ade80; --live-glow:rgba(74,222,128,.55); --live-glow-soft:rgba(74,222,128,.10);
+    --ok:#f0c58f; --err:#e08a80; --err-soft:#3a2321;
+    --shadow:0 1px 0 rgba(255,255,255,.04) inset,0 12px 32px -14px rgba(0,0,0,.6);
+    --shadow-lift:0 1px 0 rgba(255,255,255,.06) inset,0 20px 44px -14px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14161b; --panel:#1b1e25; --raised:#22262f; --well:#101216;
+  --line:#2b3039; --line-strong:#3a404c;
+  --text:#e8e5de; --muted:#9a9ea8; --faint:#8b909c;
+  --accent:#e0a15c; --accent-soft:#2c241b; --accent-ink:#f0c58f; --accent-glow:rgba(224,161,92,.16); --on-accent:#101216;
+  --cobalt:#8aaefc; --cobalt-soft:#212f4f; --cobalt-ink:#b2cdff; --cobalt-glow:rgba(138,174,252,.16);
+  --live:#4ade80; --live-glow:rgba(74,222,128,.55); --live-glow-soft:rgba(74,222,128,.10);
+  --ok:#f0c58f; --err:#e08a80; --err-soft:#3a2321;
+  --shadow:0 1px 0 rgba(255,255,255,.04) inset,0 12px 32px -14px rgba(0,0,0,.6);
+  --shadow-lift:0 1px 0 rgba(255,255,255,.06) inset,0 20px 44px -14px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+
+/* Mobile-first: base styles are the phone layout — converter within one
+   thumb-reach of the top, inputs >=16px so iOS never auto-zooms, tap
+   targets >=44px. Desktop layers on at min-width:880px. */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 var(--sans);
+  -webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px;border-radius:var(--r-sm)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(14px,3vw,32px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* ── header ─────────────────────────────────────────── */
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(10px);
+  background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:4px;height:56px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em}
+.brand .kiln{width:26px;height:26px;border-radius:8px;background:var(--panel);border:1px solid var(--line-strong);
+  display:grid;place-items:center;box-shadow:var(--shadow)}
+.brand .kiln i{display:block;width:10px;height:10px;border-radius:3px;background:var(--accent);box-shadow:0 0 12px var(--accent-glow)}
+.nav .spacer{flex:1}
+.nav a.lnk{white-space:nowrap;font-size:14px;font-weight:500;color:var(--muted);padding:11px 6px;border-radius:var(--r-sm)}
+.nav a.lnk[href="#tools"],.nav a.lnk[href="/templates/"]{display:none}
+.nav a.lnk:hover{color:var(--text);background:var(--raised)}
+.toggle{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 10px 0 8px;border-radius:999px;
+  border:1px solid var(--line);background:var(--panel);font-size:13px;font-weight:500;color:var(--muted);box-shadow:var(--shadow)}
+.toggle:hover{color:var(--text);border-color:var(--line-strong)}
+.toggle svg{width:16px;height:16px}
+.toggle .lbl-dark, :root[data-theme="dark"] .toggle .lbl-light{display:none}
+:root[data-theme="dark"] .toggle .lbl-dark{display:inline}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .toggle .lbl-light{display:none}
+  :root:not([data-theme="light"]) .toggle .lbl-dark{display:inline}
+}
+/* ≤479px the toggle is icon-only so brand + links + toggle fit a 320px header */
+@media (max-width:479px){
+  .toggle{padding:0 9px}
+  .toggle .lbl-light,.toggle .lbl-dark{display:none!important}
+}
+
+/* ── hero — one thumb-scroll max on a phone, panel is a desktop garnish ── */
+.hero{position:relative;display:grid;grid-template-columns:1fr;gap:12px;padding:16px 0 14px}
+.hero::before{content:"";position:absolute;left:-90px;top:-40px;width:640px;height:340px;pointer-events:none;
+  background:radial-gradient(560px 260px at 30% 45%,var(--accent-glow),transparent 70%);z-index:-1}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,7.4vw,58px);line-height:1.06;
+  letter-spacing:-.028em;margin:0 0 8px;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--accent);text-shadow:0 0 28px var(--accent-glow)}
+.hero-copy p{margin:0;color:var(--muted);font-size:15px;max-width:46ch;line-height:1.55}
+/* phone-only jump past the workbench to the directory (desktop has the nav link) */
+.hero-jump{display:inline-flex;align-items:center;gap:7px;margin-top:6px;padding:10px 0;
+  font:500 13px var(--mono);color:var(--cobalt-ink)}
+.hero-jump:hover{color:var(--cobalt)}
+@media (min-width:640px){.hero-jump{display:none}}
+.hero-panel{display:none}
+.hero-panel{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-lift);padding:22px 24px;overflow:hidden}
+@media (min-width:880px){.hero-panel{display:block}}
+.hero-panel::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(240px 130px at 18% 0%,var(--live-glow-soft),transparent 72%)}
+.lamp-row{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.lamp{width:14px;height:14px;border-radius:50%;background:var(--live);flex:none;
+  box-shadow:0 0 6px var(--live),0 0 18px var(--live-glow),0 0 38px var(--live-glow);
+  animation:lampPulse 2.6s ease-in-out infinite}
+.lamp-row strong{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.hero-stat{font:13px/2 var(--mono);color:var(--faint);margin:0;position:relative}
+.hero-stat b{color:var(--text);font-weight:500}
+.hero-stat i{font-style:normal;color:var(--live)}
+@keyframes lampPulse{0%,100%{opacity:1}50%{opacity:.5}}
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.badge b{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 20%,transparent)}
+
+/* ── workbench — phone: select picker + stacked panes; desktop: rail grid ── */
+.bench{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden;
+  display:block}
+.rail{display:none;flex-direction:column;padding:10px;
+  border-right:1px solid var(--line);background:var(--raised);overflow-y:auto;scrollbar-width:thin}
+#railsel{flex:1 1 100%;width:100%;min-height:46px;padding:10px 12px;border-radius:var(--r-md);
+  border:1px solid var(--line);background:var(--well);color:var(--text);font:500 16px var(--sans)}
+#railsel:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 3px var(--cobalt-glow)}
+@media (min-width:880px){
+  .bench{display:grid;grid-template-columns:238px minmax(0,1fr);grid-template-rows:auto auto 1fr auto}
+  .bench>*{grid-column:2}
+  .rail{grid-column:1;grid-row:1/5;height:0;min-height:100%;display:flex}
+  #railsel{display:none}
+}
+.rgrp{padding:7px 0}
+.rgrp+.rgrp{border-top:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
+.rgrp .glbl{display:block;font:600 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:color-mix(in srgb,var(--accent) 55%,var(--muted));padding:0 6px 5px}
+.rgrp .gset{display:flex;flex-direction:column;gap:2px}
+.rail a.pg{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 10px;border-radius:8px;
+  font:500 13.5px var(--sans);color:var(--muted);text-decoration:none}
+.rail a.pg:hover{color:var(--text);background:color-mix(in srgb,var(--panel) 60%,transparent)}
+.rail a.pg .k{font-family:var(--mono);font-size:12px;color:var(--faint)}
+.nd{flex:none;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent-glow),0 0 12px var(--accent-glow)}
+.rail button{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 10px;border-radius:8px;text-align:left;
+  font-size:13.5px;font-weight:500;color:var(--muted);white-space:nowrap;transition:background .15s,color .15s}
+.rail button:hover{color:var(--text);background:color-mix(in srgb,var(--panel) 60%,transparent)}
+.rail button[aria-selected="true"]{background:var(--panel);color:var(--text);box-shadow:var(--shadow)}
+.rail button .k{font-family:var(--mono);font-size:12px;color:var(--faint)}
+.rail button[aria-selected="true"] .k{color:var(--cobalt)}
+
+.bench-head{display:flex;align-items:center;gap:10px 14px;padding:12px 14px 0;flex-wrap:wrap}
+.bench-head h2{display:none;font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:-.01em;margin:0}
+@media (min-width:880px){.bench-head h2{display:block}}
+.bench-head p{margin:0;color:var(--muted);font-size:13.5px;flex:1 1 100%}
+.bench-head .grow{flex:1}
+.seg[hidden]{display:none}
+.seg{display:inline-flex;max-width:100%;overflow-x:auto;scrollbar-width:none;
+  background:var(--raised);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg::-webkit-scrollbar{display:none}
+.seg button{height:38px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:500;color:var(--muted);white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--panel);color:var(--text);box-shadow:var(--shadow)}
+
+.io{display:grid;grid-template-columns:1fr;gap:10px;padding:12px 14px 0;align-items:stretch}
+.pane{display:flex;flex-direction:column;gap:6px;min-width:0}
+.pane label{display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+.pane label span.meta{font-family:var(--mono);font-weight:400;letter-spacing:0;text-transform:none;font-size:11.5px}
+textarea{width:100%;min-height:150px;resize:vertical;padding:12px 14px;border-radius:var(--r-md);border:1px solid var(--line);
+  background:var(--well);color:var(--text);font:16px/1.55 var(--mono);tab-size:2;transition:border-color .15s,box-shadow .15s}
+textarea::placeholder{color:var(--faint)}
+textarea:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 4px var(--cobalt-glow)}
+textarea[readonly]{color:var(--text)}
+.mid{display:flex;align-items:center;justify-content:center}
+.swap{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--panel);display:grid;place-items:center;color:var(--muted);box-shadow:var(--shadow);transition:transform .2s,color .15s}
+.swap:hover{color:var(--accent);transform:rotate(180deg)}
+.swap svg{width:18px;height:18px}
+.swatch{display:none;align-items:center;gap:12px;margin-top:8px}
+.swatch .chip{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:
+  conic-gradient(var(--line) 25%,transparent 0 50%,var(--line) 0 75%,transparent 0) 0 0/12px 12px;position:relative;overflow:hidden}
+.swatch .chip::after{content:"";position:absolute;inset:0;background:var(--sw,transparent)}
+.swatch small{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+.bar{display:flex;align-items:center;gap:8px;padding:12px 14px 16px;flex-wrap:wrap}
+.btn{min-height:44px;padding:0 16px;border-radius:10px;font-size:15px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .12s,background .15s}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--text);color:var(--bg);flex:1 1 100%}
+.btn.primary:hover{background:var(--accent);color:#fff}
+.btn.ghost{border:1px solid var(--line);background:var(--panel);color:var(--muted);flex:1 1 auto}
+.btn.ghost:hover{color:var(--text);border-color:var(--line-strong)}
+.status{font-family:var(--mono);font-size:12.5px;color:var(--faint);display:flex;align-items:center;gap:8px;width:100%}
+.status.ok{color:var(--cobalt-ink)}
+.status.err{color:var(--err)}
+.err-box{display:none;margin:0 14px 14px;padding:10px 14px;border-radius:var(--r-md);background:var(--err-soft);color:var(--err);font:13px/1.5 var(--mono);white-space:pre-wrap}
+.err-box[data-show]{display:block}
+@media (min-width:880px){
+  .bench-head{padding:16px 20px 0;gap:14px}
+  .bench-head h2{font-size:20px}
+  .bench-head p{font-size:14px;flex:0 1 auto}
+  .seg button{height:28px;padding:0 12px;font-size:13px}
+  .io{grid-template-columns:1fr auto 1fr;gap:12px;padding:14px 20px 0}
+  textarea{min-height:230px;padding:14px 16px;font-size:13.5px;line-height:1.6}
+  .bar{padding:14px 20px 18px}
+  .btn{min-height:36px;font-size:14px}
+  .btn.primary{flex:0 0 auto}
+  .btn.ghost{flex:0 0 auto}
+  .status{margin-left:auto;width:auto}
+  .err-box{margin:0 20px 16px}
+}
+
+/* ── catalog index ──────────────────────────────────── */
+.sect{padding:32px 0 8px;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+@media (min-width:880px){.sect{padding:44px 0 8px;flex-direction:row;align-items:baseline;justify-content:space-between;gap:16px}}
+.sect h2{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.01em;margin:0}
+.sect p{margin:0;color:var(--muted);font-size:14px}
+.grid{padding-top:2px}
+.tgrp-lbl{display:flex;align-items:center;gap:12px;margin:24px 0 4px;
+  font:600 11px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.tgrp-lbl::after{content:"";flex:1;height:1px;background:var(--line)}
+details.catalog{margin-top:36px;border-top:1px solid var(--line)}
+details.catalog summary{display:flex;align-items:baseline;gap:14px;padding:22px 0 18px;cursor:pointer;list-style:none}
+details.catalog summary::-webkit-details-marker{display:none}
+.cat-h{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.01em}
+.cat-n{color:var(--muted);font-size:14px}
+.chev{margin-left:auto;color:var(--faint);font-size:15px;transition:transform .2s}
+details.catalog[open] .chev{transform:rotate(180deg)}
+details.catalog summary:hover .cat-h{color:var(--cobalt-ink)}
+details.catalog>.grid,details.catalog>.tool-filter{margin-bottom:10px}
+.tool-filter{width:100%;max-width:340px;margin:6px 0 2px;padding:10px 14px;border-radius:999px;
+  border:1px solid var(--line);background:var(--panel);color:var(--text);font:16px var(--sans);box-shadow:var(--shadow)}
+.tool-filter::placeholder{color:var(--faint)}
+.tool-filter:focus{outline:none;border-color:var(--cobalt);box-shadow:0 0 0 3px var(--cobalt-glow)}
+.tidx{display:grid;grid-template-columns:1fr;gap:0 36px}
+@media (min-width:640px){.tidx{grid-template-columns:1fr 1fr}}
+@media (min-width:880px){.tidx{grid-template-columns:1fr 1fr 1fr}}
+.trow{position:relative;display:flex;align-items:center;gap:10px;width:100%;padding:9px 4px;min-height:44px;
+  border-bottom:1px solid var(--line);cursor:pointer;text-align:left;font:500 14px var(--sans);color:var(--text)}
+.trow .k{flex:none;width:38px;font:500 11px var(--mono);color:var(--accent);letter-spacing:.02em}
+.trow .nd{margin-left:0}
+.trow:hover{color:var(--cobalt-ink)}
+.trow:hover .k{color:var(--cobalt)}
+.trow[data-active="true"]{color:var(--cobalt-ink);box-shadow:inset 3px 0 0 var(--cobalt);padding-left:10px}
+.trow .pp{margin-left:auto;font:500 12px var(--sans);color:var(--faint);opacity:0;padding:6px 8px;border-radius:6px}
+.trow:hover .pp{opacity:1}
+.trow .pp:hover{color:var(--cobalt-ink);background:var(--raised)}
+a.trow{text-decoration:none;color:var(--text)}
+a.trow:hover{text-decoration:none}
+@media (hover:none){.trow .pp{opacity:1}}
+@media (min-width:880px){.trow{min-height:0;padding:7px 4px}.trow[data-active="true"]{padding-left:10px}}
+
+/* ── heavy machines row ─────────────────────────────── */
+.feat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:6px}
+@media (min-width:880px){.feat-row{grid-template-columns:repeat(4,1fr);gap:12px}}
+.feat{display:flex;flex-direction:column;gap:5px;padding:14px 16px;border-radius:var(--r-md);cursor:pointer;
+  background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);color:inherit;
+  transition:box-shadow .15s,border-color .15s,transform .2s}
+.feat:hover{box-shadow:var(--shadow-lift);border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.feat b{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:15px}
+.feat b .k{color:var(--accent);font:500 11px var(--mono)}
+.feat span{color:var(--muted);font-size:12.5px;line-height:1.45}
+
+/* ── template rail ──────────────────────────────────── */
+/* ── the wedding suite: one card that opens into its five documents ──── */
+.tpl-suite{position:relative;cursor:pointer;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r-md);overflow:visible;box-shadow:var(--shadow);color:inherit;text-align:left;
+  padding:0;font:inherit;display:flex;flex-direction:column;min-width:0;
+  transition:transform .2s,box-shadow .2s,border-color .2s}
+/* two leaves of paper peeking out behind the top sheet */
+.tpl-suite::before,.tpl-suite::after{content:"";position:absolute;inset:8px 8px auto 8px;height:70%;
+  background:var(--raised);border:1px solid var(--line);border-radius:var(--r-md);z-index:0}
+.tpl-suite::before{transform:rotate(-2.4deg) translateY(-7px)}
+.tpl-suite::after{transform:rotate(1.8deg) translateY(-4px)}
+.tpl-suite>*{position:relative;z-index:1}
+.tpl-suite img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;
+  background:#28211a;border-radius:var(--r-md) var(--r-md) 0 0}
+.tpl-suite .tn{padding:9px 12px 11px;font:500 12.5px var(--mono);color:var(--accent-ink);line-height:1.35}
+.tpl-suite .cnt{position:absolute;top:10px;right:10px;z-index:2;
+  font:600 10.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--on-accent);background:var(--accent);border-radius:999px;padding:5px 9px;
+  box-shadow:0 4px 14px var(--accent-glow)}
+.tpl-suite:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:var(--accent)}
+.tpl-suite .open{padding:0 12px 11px;font:600 11px var(--sans);color:var(--muted)}
+.tpl-suite[aria-expanded="true"] .open::after{content:" ▲"}
+.tpl-suite[aria-expanded="false"] .open::after{content:" ▼"}
+/* the drawer spans the whole row so the grid never reflows raggedly */
+.wed-panel{grid-column:1/-1;display:grid;gap:14px;grid-template-columns:repeat(2,minmax(0,1fr));
+  padding:14px;margin:2px 0 4px;border:1px dashed var(--line);border-radius:var(--r-md);
+  background:linear-gradient(180deg,var(--accent-glow),transparent 70%)}
+@media (min-width:700px){.wed-panel{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.wed-panel[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.tpl-suite{transition:none}.tpl-suite:hover{transform:none}}
+
+/* A grid, not a scroller: every card is reachable without a sideways drag,
+   nothing is sliced at the edge, and no raw scrollbar sits under the row. */
+.tpl-rail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:6px 0 4px}
+@media (min-width:700px){.tpl-rail{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.tpl-rail a{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow);color:inherit;min-width:0;
+  transition:transform .2s,box-shadow .2s,border-color .2s}
+.tpl-rail a:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:var(--accent);text-decoration:none}
+.tpl-rail img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;background:#28211a}
+.tpl-rail .tn{padding:9px 12px 11px;font:500 12.5px var(--mono);color:var(--accent-ink);
+  line-height:1.35;overflow-wrap:break-word}
+.tpl-rail .more{align-items:center;justify-content:center;text-align:center;min-height:120px;
+  background:var(--raised);font:600 13.5px var(--sans);color:var(--muted);padding:12px}
+.tpl-rail .more:hover{color:var(--cobalt-ink);border-color:var(--cobalt)}
+@media (prefers-reduced-motion:reduce){.tpl-rail a{transition:none}.tpl-rail a:hover{transform:none}}
+
+/* ── why strip ──────────────────────────────────────── */
+/* ---- flagship: the bank statement to QuickBooks banner ---- */
+.flagship{position:relative;overflow:hidden;display:grid;gap:24px;align-items:center;margin:30px 0 4px;
+  padding:26px 22px;border:1px solid var(--accent);border-radius:var(--r-lg);
+  background:linear-gradient(130deg,var(--panel) 45%,var(--accent-soft) 130%);box-shadow:var(--shadow-lift)}
+.flagship::before{content:"";position:absolute;top:-70px;right:-70px;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(closest-side,var(--accent-glow),transparent 70%);pointer-events:none}
+.flagship h2{font-family:var(--display);font-size:clamp(21px,3.2vw,27px);line-height:1.15;margin:0 0 10px}
+.flagship h2 em{font-style:normal;color:var(--accent-ink)}
+.flagship p{color:var(--muted);font-size:14.5px;line-height:1.55;margin:0 0 18px;max-width:58ch}
+.fs-ctas{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap}
+a.fs-btn{display:inline-flex;align-items:center;min-height:44px;padding:10px 20px;border-radius:var(--r-sm);
+  background:var(--accent);color:#fff;font:600 14px var(--sans);box-shadow:0 6px 16px -6px var(--accent-glow)}
+a.fs-btn:hover{filter:brightness(1.08);text-decoration:none}
+a.fs-alt{color:var(--cobalt-ink);font:500 13.5px var(--sans)}
+.fs-soon{margin-left:auto;font:500 10.5px var(--mono);letter-spacing:.07em;text-transform:uppercase;
+  color:var(--accent-ink);border:1px dashed var(--accent);border-radius:999px;padding:4px 11px}
+.fs-art{display:flex;align-items:center;gap:14px;justify-content:center}
+.fs-doc{background:var(--well);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.08);min-width:0}
+.fs-doc i{display:block;font:11.5px/2 var(--mono);font-style:normal;color:var(--muted);white-space:nowrap}
+.fs-doc i s{text-decoration:none;color:var(--faint);margin-right:8px}
+.fs-doc i b{font-weight:500;color:var(--text);float:right;margin-left:14px}
+.fs-doc i b.cr{color:var(--cobalt-ink)}
+.fs-arrow{font:600 20px var(--display);color:var(--accent)}
+.fs-chip{font:600 15px var(--mono);color:var(--on-accent);background:var(--accent);border-radius:var(--r-sm);
+  padding:12px 16px;box-shadow:var(--shadow-lift)}
+@media (min-width:880px){.flagship{grid-template-columns:1.4fr .9fr;padding:32px 36px}}
+@media (max-width:879px){.fs-soon{margin-left:0}.fs-art{display:none}}
+.why{margin:40px 0 0;padding:24px 0 26px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr;gap:20px}
+@media (min-width:640px){.why{grid-template-columns:1fr 1fr;gap:24px}}
+@media (min-width:880px){.why{margin:48px 0 0;padding:28px 0 30px;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:28px}}
+.why h2{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:-.015em;margin:0 0 8px;text-wrap:balance}
+.why p{margin:0;color:var(--muted);font-size:14px;max-width:38ch}
+.why h4{margin:0 0 6px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px}
+.why h4 i{width:8px;height:8px;border-radius:2px;background:var(--accent)}
+footer{border-top:1px solid var(--line);padding:16px 0 34px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--faint)}
+footer a{display:inline-block;padding:12px 0}
+footer a:hover{color:var(--text)}
+footer .spacer{flex:1}
+/* the family line sits on its own row, matching every other page's footer */
+footer .family{flex-basis:100%;padding-top:2px}
+footer .family a{display:inline;padding:0;font-weight:700;color:var(--cobalt)}
+footer .family a[href*="shapekiln.com"]{color:var(--accent)}
+footer .family a[href*="makerkiln.com"]{color:var(--ok)}
+/* featured-on strip (SaaSHub), sits above the footer - GradeKiln's convention */
+.featured{border-top:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:18px 0;flex-wrap:wrap}
+.featured .fk-label{font:600 11px/1.1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.featured a{display:inline-flex;align-items:center;opacity:.92;transition:opacity .15s}
+.featured a:hover{opacity:1}
+.featured img{border-radius:6px}
+
+/* ── desktop layer ──────────────────────────────────── */
+@media (min-width:640px){
+  .nav{gap:20px;height:58px}
+  .nav a.lnk{padding:6px 10px}
+  .nav a.lnk[href="#tools"],.nav a.lnk[href="/templates/"]{display:inline}
+}
+@media (min-width:880px){
+  .wrap{padding:0 clamp(16px,3vw,32px)}
+  .hero{grid-template-columns:1.25fr .9fr;gap:clamp(20px,4vw,48px);align-items:center;padding:26px 0 18px}
+  .hero h1{font-size:clamp(34px,4.8vw,58px);line-height:1.02;margin-bottom:16px}
+  .hero-copy p{font-size:clamp(15px,1.4vw,17px);line-height:1.6}
+  .swap{width:40px;height:40px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="FileKiln home"><span class="kiln"><i></i></span>FileKiln</a>
+    <span class="spacer"></span>
+    <a class="lnk" href="#tools">All tools</a>
+    <a class="lnk" href="/templates/">Templates</a>
+    <a class="lnk" href="/how-it-works/">How it works</a>
+    <a class="lnk" href="/about/">About</a>
+    <button class="toggle" id="theme" type="button" aria-label="Toggle color theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg>
+      <span class="lbl-light">Light</span><span class="lbl-dark">Dark</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Converters that <em>never see</em> your data.</h1>
+      <p>Paste a config, drop a PSD, feed it a bank statement. Every conversion happens on your machine - unplug the network and it still works.</p>
+      <a class="hero-jump" href="#tools">browse all <span id="jumpcount">39</span> tools ↓</a>
+    </div>
+    <aside class="hero-panel" aria-label="Live status">
+      <div class="lamp-row"><span class="lamp" aria-hidden="true"></span><strong>Local execution · live</strong></div>
+      <p class="hero-stat">
+        status&nbsp;&nbsp;&nbsp;<i>● running in this tab</i><br>
+        uploads&nbsp;&nbsp;<b>0 - by design</b><br>
+        tools&nbsp;&nbsp;&nbsp;&nbsp;<b><span id="toolcount">…</span> loaded</b><br>
+        network&nbsp;&nbsp;<b>optional after page load</b>
+      </p>
+    </aside>
+  </section>
+
+  <section class="bench" aria-label="Converter workbench">
+    <div class="rail" role="tablist" id="rail"></div>
+    <div class="bench-head">
+      <label class="sr" for="railsel">Choose a tool</label>
+      <select id="railsel"></select>
+      <h2 id="tname"></h2>
+      <p id="tdesc"></p>
+      <span class="grow"></span>
+      <div class="seg" id="modes" hidden></div>
+    </div>
+    <div class="io">
+      <div class="pane">
+        <label for="in"><span id="inlbl">Input</span><span class="meta" id="inmeta"></span></label>
+        <textarea id="in" spellcheck="false" autocapitalize="off" autocorrect="off"></textarea>
+      </div>
+      <div class="mid"><button class="swap" id="swap" type="button" title="Swap direction" aria-label="Swap direction">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></button></div>
+      <div class="pane">
+        <label for="out"><span id="outlbl">Output</span><span class="meta" id="outmeta"></span></label>
+        <textarea id="out" spellcheck="false" readonly></textarea>
+        <div class="swatch" id="swatch"><span class="chip"></span><small id="swtxt"></small></div>
+      </div>
+    </div>
+    <div class="err-box" id="err" role="alert"></div>
+    <div class="bar">
+      <button class="btn primary" id="run" type="button">Convert</button>
+      <button class="btn ghost" id="copy" type="button">Copy result</button>
+      <button class="btn ghost" id="sample" type="button">Load sample</button>
+      <button class="btn ghost" id="clear" type="button">Clear</button>
+      <span class="status" id="status">Local execution · no network egress</span>
+    </div>
+  </section>
+
+<section class="flagship" aria-label="Bank statement to QuickBooks converter">
+    <div class="fs-copy">
+      <h2>Bank statements &rarr; QuickBooks. <em>Nothing uploaded.</em></h2>
+      <p>The one file people rightly refuse to upload, handled the FileKiln way: drop a statement PDF, review every parsed transaction, and download a QuickBooks-ready <strong>.qbo</strong> - or QFX, OFX, CSV, Excel. The bank data never leaves your tab.</p>
+      <div class="fs-ctas">
+        <a class="btn primary fs-btn" href="/bank-statement-to-qbo/">Convert to QBO &rarr;</a>
+        <a class="fs-alt" href="/bank-statement-to-csv/">or to CSV / Excel</a>
+        <span class="fs-soon">Batch runs for bookkeepers - coming</span>
+      </div>
+    </div>
+    <div class="fs-art" aria-hidden="true">
+      <div class="fs-doc">
+        <i><s>12/28</s> CARD PURCHASE <b>&minus;82.45</b></i>
+        <i><s>01/02</s> PAYROLL DEPOSIT <b class="cr">+2,150.00</b></i>
+        <i><s>01/05</s> CHECK 1044 <b>&minus;300.00</b></i>
+      </div>
+      <span class="fs-arrow">&rarr;</span>
+      <span class="fs-chip">.qbo</span>
+    </div>
+  </section>
+
+  <div class="sect">
+    <h2>Paper that fills itself in</h2>
+    <p><a href="/templates/">All <span id="tplcount">25</span> templates &rarr;</a></p>
+  </div>
+  <div class="tpl-rail" id="tplrail"></div>
+
+  <div class="sect">
+    <h2>The heavy machines</h2>
+    <p>Real engines compiled for your browser - files this size normally get uploaded. Not here.</p>
+  </div>
+  <div class="feat-row" id="featrow"></div>
+
+  <details class="catalog" id="tools">
+    <summary><span class="cat-h">The catalog</span><span class="cat-n"><span id="catcount">39</span> converters &middot; browse or filter</span><span class="chev" aria-hidden="true">&#9662;</span></summary>
+    <input class="tool-filter" id="toolfilter" type="text" placeholder="Filter tools - try “jwt” or “csv”" autocomplete="off">
+    <div class="grid" id="grid"></div>
+  </details>
+
+  <section class="why">
+    <div>
+      <h2>Why in-browser matters</h2>
+      <p>Config files carry secrets and exports carry customer data. Most “free online converters” quietly ship both to a server. FileKiln has no upload endpoint to trust, because there is no upload.</p>
+    </div>
+    <div><h4><i></i>Static pages</h4><p>Each tool is a plain page with its logic in readable JavaScript. Nothing is minified past inspection.</p></div>
+    <div><h4><i></i>Real parsers</h4><p>YAML runs on js-yaml, CSV follows RFC 4180 quoting. Errors come back with line numbers, not shrugs.</p></div>
+    <div><h4><i></i>Works offline</h4><p>Load once, disconnect, keep converting. The network is only needed to fetch the page itself.</p></div>
+  </section>
+
+  <aside class="featured">
+    <span class="fk-label">Featured on</span>
+    <a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+    <a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+  </aside>
+
+  <footer>
+    <span>© FileKiln</span><span class="spacer"></span>
+    <a href="/templates/">Templates</a><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/contact/">Contact</a>
+    <span class="family">Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+  </footer>
+</main>
+
+<script src="/assets/vendor/js-yaml-4.1.0.min.js"></script>
+<script src="/assets/vendor/marked-12.0.2.umd.min.js"></script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const root=document.documentElement;
+
+/* theme toggle — explicit choice stamps data-theme; system default stamps nothing */
+const themeBtn=$('theme');
+function currentDark(){const t=root.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+try{const s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')root.setAttribute('data-theme',s);}catch(e){}
+themeBtn.addEventListener('click',()=>{const next=currentDark()?'light':'dark';root.setAttribute('data-theme',next);try{localStorage.setItem('fk-theme',next);}catch(e){}});
+
+/* ── converters ─────────────────────────────────────── */
+function csvParse(text){
+  const rows=[];let row=[],f='',q=false;
+  for(let i=0;i<text.length;i++){const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){f+='"';i++;} else q=false; } else f+=c; }
+    else if(c==='"')q=true;
+    else if(c===','){row.push(f);f='';}
+    else if(c==='\n'||c==='\r'){ if(c==='\r'&&text[i+1]==='\n')i++; row.push(f);rows.push(row);row=[];f=''; }
+    else f+=c;
+  }
+  if(f!==''||row.length){row.push(f);rows.push(row);}
+  return rows.filter(r=>!(r.length===1&&r[0]===''));
+}
+const csvCell=v=>{v=v==null?'':(typeof v==='object'?JSON.stringify(v):String(v));return /[",\r\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+const coerce=s=>{if(s==='')return '';if(s==='true')return true;if(s==='false')return false;if(s==='null')return null;if(/^-?(0|[1-9]\d*)(\.\d+)?$/.test(s)&&s.length<16)return Number(s);return s;};
+const b64enc=s=>{const b=new TextEncoder().encode(s);let bin='';b.forEach(x=>bin+=String.fromCharCode(x));return btoa(bin);};
+const b64dec=s=>{const bin=atob(s.replace(/-/g,'+').replace(/_/g,'/').replace(/\s+/g,''));const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new TextDecoder('utf-8',{fatal:true}).decode(u);};
+
+function parseColor(s){
+  s=s.trim();let m;
+  if((m=s.match(/^#?([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i))){
+    let h=m[1];if(h.length<=4)h=h.split('').map(c=>c+c).join('');
+    const n=parseInt(h,16);
+    return h.length===8?{r:n>>>24,g:n>>>16&255,b:n>>>8&255,a:(n&255)/255}:{r:n>>>16,g:n>>>8&255,b:n&255,a:1};
+  }
+  if((m=s.match(/^rgba?\(\s*([\d.]+)\s*[, ]\s*([\d.]+)\s*[, ]\s*([\d.]+)\s*(?:[,/]\s*([\d.]+%?))?\s*\)$/i))){
+    let a=1;if(m[4]!=null)a=m[4].endsWith('%')?parseFloat(m[4])/100:parseFloat(m[4]);
+    return {r:+m[1],g:+m[2],b:+m[3],a};
+  }
+  if((m=s.match(/^([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?$/)))return {r:+m[1],g:+m[2],b:+m[3],a:m[4]!=null?+m[4]:1};
+  throw new Error('Not a color I recognise. Try #1b1e25, #e0a15c80, rgb(224 161 92) or rgba(224,161,92,.5).');
+}
+function colorOut(c){
+  const hx=n=>Math.round(n).toString(16).padStart(2,'0');
+  const hex='#'+hx(c.r)+hx(c.g)+hx(c.b);
+  const hexa=hex+(c.a<1?hx(c.a*255):'');
+  const r=c.r/255,g=c.g/255,b=c.b/255,max=Math.max(r,g,b),min=Math.min(r,g,b),l=(max+min)/2;let h=0,s=0;
+  if(max!==min){const d=max-min;s=l>.5?d/(2-max-min):d/(max+min);
+    h=max===r?(g-b)/d+(g<b?6:0):max===g?(b-r)/d+2:(r-g)/d+4;h*=60;}
+  const rgb=`rgb(${Math.round(c.r)}, ${Math.round(c.g)}, ${Math.round(c.b)})`;
+  const rgba=`rgba(${Math.round(c.r)}, ${Math.round(c.g)}, ${Math.round(c.b)}, ${+c.a.toFixed(3)})`;
+  const hsl=`hsl(${Math.round(h)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+  return {text:`hex   ${hexa}\nrgb   ${rgb}\nrgba  ${rgba}\nhsl   ${hsl}\nalpha ${+c.a.toFixed(3)}`,css:rgba,label:hexa.toUpperCase()};
+}
+function epochToDate(s){
+  const n=Number(s.trim());if(!Number.isFinite(n))throw new Error('Enter an integer epoch (seconds or milliseconds).');
+  const ms=Math.abs(n)>=1e11?n:n*1000;const d=new Date(ms);if(isNaN(d))throw new Error('Out of range.');
+  const unit=Math.abs(n)>=1e11?'milliseconds':'seconds';
+  const diff=(Date.now()-ms)/1000,abs=Math.abs(diff),rel=abs<60?`${Math.round(abs)}s`:abs<3600?`${Math.round(abs/60)}m`:abs<86400?`${Math.round(abs/3600)}h`:`${Math.round(abs/86400)}d`;
+  return `detected  ${unit}\nISO 8601  ${d.toISOString()}\nUTC       ${d.toUTCString()}\nlocal     ${d.toLocaleString(undefined,{dateStyle:'full',timeStyle:'long'})}\nrelative  ${rel} ${diff>=0?'ago':'from now'}\nseconds   ${Math.floor(ms/1000)}\nmillis    ${Math.floor(ms)}`;
+}
+function dateToEpoch(s){
+  const d=new Date(s.trim());if(isNaN(d))throw new Error('Could not parse that date. ISO 8601 (2026-08-31T14:00:00Z) is safest.');
+  return `seconds  ${Math.floor(d.getTime()/1000)}\nmillis   ${d.getTime()}\nISO      ${d.toISOString()}`;
+}
+
+const TOOLS=[
+ {id:'yaml-json',key:'Y→J',name:'YAML → JSON',href:'/yaml-to-json/',blurb:'Paste YAML, get formatted JSON. Real parser, real error lines.',
+  inl:'YAML in',outl:'JSON out',rev:'json-yaml',
+  sample:'name: filekiln\nports:\n  - 80\n  - 443\nprivate: true\n',
+  run:s=>{const docs=jsyaml.loadAll(s);return JSON.stringify(docs.length===1?docs[0]:docs,null,2);}},
+ {id:'json-yaml',key:'J→Y',name:'JSON → YAML',href:'/json-to-yaml/',blurb:'Turn JSON into clean YAML for configs and manifests.',
+  inl:'JSON in',outl:'YAML out',rev:'yaml-json',
+  sample:'{"name":"filekiln","ports":[80,443],"private":true}',
+  run:s=>jsyaml.dump(JSON.parse(s),{lineWidth:100,noRefs:true})},
+ {id:'csv-json',key:'C→J',name:'CSV → JSON',href:'/csv-to-json/',blurb:'CSV rows in, JSON array of objects out. Quoted fields handled.',
+  inl:'CSV in',outl:'JSON out',rev:'json-csv',
+  sample:'id,name,city\n1,Ada,"London, UK"\n2,Grace,New York\n',
+  run:s=>{const rows=csvParse(s);if(rows.length<2)throw new Error('Need a header row plus at least one data row.');const h=rows[0];
+    return JSON.stringify(rows.slice(1).map(r=>Object.fromEntries(h.map((k,i)=>[k,coerce(r[i]??'')]))),null,2);}},
+ {id:'json-csv',key:'J→C',name:'JSON → CSV',href:'/json-to-csv/',blurb:'JSON array of objects in, spreadsheet-ready CSV out.',
+  inl:'JSON in',outl:'CSV out',rev:'csv-json',
+  sample:'[{"id":1,"name":"Ada","city":"London, UK"},{"id":2,"name":"Grace","city":"New York"}]',
+  run:s=>{let a=JSON.parse(s);if(!Array.isArray(a))a=[a];if(!a.length)throw new Error('Empty array.');
+    const keys=[...new Set(a.flatMap(o=>Object.keys(o||{})))];
+    return [keys.map(csvCell).join(','),...a.map(o=>keys.map(k=>csvCell(o?o[k]:'')).join(','))].join('\n');}},
+ {id:'base64',key:'B64',name:'Base64 ⇄ Text',href:'/base64-encode-decode/',blurb:'Base64 both directions, UTF-8 safe, emoji included.',
+  modes:[{l:'Encode',inl:'Text in',outl:'Base64 out',sample:'FileKiln → local only ✓',run:b64enc},
+         {l:'Decode',inl:'Base64 in',outl:'Text out',sample:'RmlsZUtpbG4g4oaSIGxvY2FsIG9ubHkg4pyT',run:s=>{try{return b64dec(s);}catch(e){throw new Error('Invalid Base64 or not valid UTF-8.');}}}]},
+ {id:'url',key:'URL',name:'URL ⇄ Text',href:'/url-encode-decode/',blurb:'Percent-encoding both ways, component or whole-URL mode.',
+  modes:[{l:'Encode component',inl:'Text in',outl:'Encoded out',sample:'q=kiln fire&lang=en/us',run:encodeURIComponent},
+         {l:'Encode URL',inl:'URL in',outl:'Encoded out',sample:'https://filekiln.com/search?q=kiln fire',run:encodeURI},
+         {l:'Decode',inl:'Encoded in',outl:'Text out',sample:'q%3Dkiln%20fire%26lang%3Den%2Fus',run:s=>{try{return decodeURIComponent(s.replace(/\+/g,' '));}catch(e){throw new Error('Malformed percent-encoding.');}}}]},
+ {id:'epoch',key:'⏱',name:'Epoch ⇄ Date',href:'/unix-timestamp-converter/',blurb:'Epoch seconds or millis to real dates, and back.',
+  modes:[{l:'Epoch → Date',inl:'Epoch in',outl:'Date out',sample:String(Math.floor(Date.now()/1000)),run:epochToDate},
+         {l:'Date → Epoch',inl:'Date in',outl:'Epoch out',sample:new Date().toISOString(),run:dateToEpoch}]},
+ {id:'color',key:'#',name:'HEX ⇄ RGB',href:'/hex-to-rgb/',blurb:'HEX, RGB, and alpha conversions with a live swatch.',
+  inl:'Color in',outl:'Conversions',sample:'#e0a15c',swatch:true,
+  run:s=>colorOut(parseColor(s))},
+ {id:'json-fmt',key:'{}',name:'JSON Format',href:'/json-formatter/',blurb:'Pretty-print, validate, or minify JSON with exact error positions.',
+  modes:[{l:'Format',inl:'JSON in',outl:'Formatted out',sample:'{"name":"filekiln","tools":24}',run:s=>JSON.stringify(JSON.parse(s),null,2)},
+         {l:'Minify',inl:'JSON in',outl:'Minified out',sample:'{\n  "name": "filekiln",\n  "tools": 24\n}',run:s=>JSON.stringify(JSON.parse(s))}]},
+ {id:'jwt',key:'JWT',name:'JWT Decode',href:'/jwt-decoder/',blurb:'Decode token header, payload, and expiry - locally, because tokens are credentials.',
+  inl:'Token in',outl:'Decoded out',
+  sample:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZGEiLCJleHAiOjE3OTM1MDA4MDB9.x',
+  run:s=>{const p=s.trim().split('.');if(p.length!==3)throw new Error('A JWT has three dot-separated parts; this has '+p.length+'.');
+    const dec=g=>{let b=g.replace(/-/g,'+').replace(/_/g,'/');while(b.length%4)b+='=';return JSON.parse(b64dec(b));};
+    let h,pl;try{h=dec(p[0]);}catch(e){throw new Error('Header is not valid Base64URL JSON.');}
+    try{pl=dec(p[1]);}catch(e){throw new Error('Payload is not valid Base64URL JSON.');}
+    let o='HEADER\n'+JSON.stringify(h,null,2)+'\n\nPAYLOAD\n'+JSON.stringify(pl,null,2);
+    if(pl.exp){const ms=pl.exp*1000,now=Date.now();o+='\n\nEXPIRY\n'+new Date(ms).toISOString()+(now>ms?'  (EXPIRED ':'  (valid for ')+Math.abs(Math.round((ms-now)/60000))+' min'+(now>ms?' ago)':' more)');}
+    return o+'\n\nSignature present but NOT verified - that requires the signing key.';}},
+ {id:'uuid',key:'ID',name:'UUID v4',href:'/uuid-generator/',blurb:'Cryptographically random UUIDs, one or a thousand at a time.',
+  inl:'How many? (1-1000)',outl:'UUIDs out',sample:'10',
+  run:s=>{let n=parseInt(s.trim()||'1',10);if(!Number.isFinite(n)||n<1)n=1;if(n>1000)throw new Error('Capped at 1000 per batch.');
+    return Array.from({length:n},()=>crypto.randomUUID()).join('\n');}},
+ {id:'sha',key:'∑',name:'SHA Hash',href:'/sha256-hash-generator/',blurb:'SHA-256, SHA-1, and SHA-512 digests of any text, computed locally.',
+  inl:'Text in',outl:'Digests out',sample:'The quick brown fox jumps over the lazy dog',
+  run:s=>{const d=new TextEncoder().encode(s);const hex=b=>Array.from(new Uint8Array(b),x=>x.toString(16).padStart(2,'0')).join('');
+    return Promise.all([crypto.subtle.digest('SHA-256',d),crypto.subtle.digest('SHA-1',d),crypto.subtle.digest('SHA-512',d)])
+      .then(r=>'SHA-256  '+hex(r[0])+'\n\nSHA-1    '+hex(r[1])+'\n\nSHA-512  '+hex(r[2]));}},
+ {id:'words',key:'W#',name:'Word Counter',href:'/word-counter/',blurb:'Words, characters, sentences, reading and speaking time.',
+  inl:'Text in',outl:'Counts out',sample:'Ada wrote the first algorithm. Grace built the first compiler. Count on both.',
+  run:s=>{const words=(s.match(/[\p{L}\p{N}][\p{L}\p{N}'’-]*/gu)||[]).length;
+    const sent=(s.match(/[^.!?…]+[.!?…]+/g)||[]).length||1;
+    const paras=s.split(/\n\s*\n/).filter(p=>p.trim()).length;
+    const t=m=>{const sec=Math.round(m*60);return sec<60?sec+' sec':Math.floor(sec/60)+' min '+sec%60+' sec';};
+    return 'words          '+words+'\ncharacters     '+s.length+'\nno spaces      '+s.replace(/\s/g,'').length+
+      '\nsentences      '+sent+'\nparagraphs     '+paras+'\nlines          '+s.split('\n').length+
+      '\nreading time   '+t(words/238)+'  (238 wpm)\nspeaking time  '+t(words/130)+'  (130 wpm)';}},
+ {id:'diff',key:'±',name:'Text Diff',href:'/text-diff-checker/',blurb:'Compare two texts line by line. Two-box version on its own page.',
+  inl:'A, a line with ===, then B',outl:'Diff out',
+  sample:'the quick brown fox\njumps over the dog\n===\nthe quick brown fox\nleaps over the dog',
+  run:s=>{const all=s.split('\n'),ix=all.indexOf('===');
+    if(ix<0)throw new Error('Separate the two texts with a line containing only ===  (or use the two-box UI on the tool’s own page).');
+    const a=all.slice(0,ix),b=all.slice(ix+1);
+    let pre=0,suf=0;
+    while(pre<a.length&&pre<b.length&&a[pre]===b[pre])pre++;
+    while(suf<a.length-pre&&suf<b.length-pre&&a[a.length-1-suf]===b[b.length-1-suf])suf++;
+    const A=a.slice(pre,a.length-suf),B=b.slice(pre,b.length-suf);
+    if(A.length>2000||B.length>2000)throw new Error('More than 2000 differing lines per side.');
+    const n=A.length,m=B.length,W=m+1,L=new Uint16Array((n+1)*W);
+    for(let i=n-1;i>=0;i--)for(let j=m-1;j>=0;j--)L[i*W+j]=A[i]===B[j]?L[(i+1)*W+j+1]+1:Math.max(L[(i+1)*W+j],L[i*W+j+1]);
+    const out=[];let add=0,del=0,same=0,p;
+    for(p=0;p<pre;p++){out.push('  '+a[p]);same++;}
+    let x=0,y=0;
+    while(x<n&&y<m){if(A[x]===B[y]){out.push('  '+A[x]);same++;x++;y++;}
+      else if(L[(x+1)*W+y]>=L[x*W+y+1]){out.push('- '+A[x]);del++;x++;}
+      else{out.push('+ '+B[y]);add++;y++;}}
+    while(x<n){out.push('- '+A[x]);del++;x++;}
+    while(y<m){out.push('+ '+B[y]);add++;y++;}
+    for(p=a.length-suf;p<a.length;p++){out.push('  '+a[p]);same++;}
+    if(!add&&!del)return 'Texts are identical ('+same+' lines).';
+    return '+'+add+' added   -'+del+' removed   '+same+' unchanged\n\n'+out.join('\n');}},
+ {id:'case',key:'Aa',name:'Case Convert',href:'/case-converter/',blurb:'Every naming convention at once: camel, snake, kebab, title…',
+  inl:'Text in',outl:'All cases out',sample:'user profile settings',
+  run:s=>{const w=s.trim().replace(/([a-z0-9])([A-Z])/g,'$1 $2').replace(/([A-Z]+)([A-Z][a-z])/g,'$1 $2').split(/[^A-Za-z0-9]+/).filter(Boolean).map(x=>x.toLowerCase());
+    if(!w.length)throw new Error('No letters or digits found.');
+    const up=x=>x[0].toUpperCase()+x.slice(1);
+    return ['camelCase        '+w[0]+w.slice(1).map(up).join(''),'PascalCase       '+w.map(up).join(''),
+      'snake_case       '+w.join('_'),'SCREAMING_SNAKE  '+w.join('_').toUpperCase(),
+      'kebab-case       '+w.join('-'),'dot.case         '+w.join('.'),
+      'Title Case       '+w.map(up).join(' '),'Sentence case    '+up(w.join(' ')),
+      'lowercase        '+w.join(' '),'UPPERCASE        '+w.join(' ').toUpperCase()].join('\n');}},
+ {id:'md',key:'MD',name:'Markdown → HTML',href:'/markdown-to-html/',blurb:'Markdown in, HTML out. Rendered preview on the tool’s own page.',
+  inl:'Markdown in',outl:'HTML out',sample:'# Notes\n\nSome **bold** text and a [link](https://filekiln.com).\n\n- one\n- two',
+  run:s=>marked.parse(s)},
+ {id:'cron',key:'✱',name:'Cron Explain',href:'/cron-expression-parser/',blurb:'Crontab syntax explained, with the next five real run times.',
+  inl:'Cron expression in',outl:'Schedule out',sample:'*/15 9-17 * * mon-fri',
+  run:s=>{const f=s.trim().split(/\s+/);if(f.length!==5)throw new Error('A cron expression has 5 fields; this has '+f.length+'.');
+    const N={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12,sun:0,mon:1,tue:2,wed:3,thu:4,fri:5,sat:6};
+    const pf=(fl,lo,hi,dw)=>{fl=fl.toLowerCase().replace(/[a-z]{3}/g,w=>N[w]===undefined?w:String(N[w]));
+      const set={},star=fl==='*';
+      fl.split(',').forEach(part=>{let st=1;const sm=part.match(/^(.+)\/(\d+)$/);
+        if(sm){part=sm[1];st=+sm[2];if(st<1)throw new Error('Step must be at least 1.');}
+        let a,b,rm;
+        if(part==='*'){a=lo;b=hi;}
+        else if(/^\d+$/.test(part)){a=b=+part;}
+        else if((rm=part.match(/^(\d+)-(\d+)$/))){a=+rm[1];b=+rm[2];}
+        else throw new Error('Cannot parse "'+part+'".');
+        if(a<lo||b>hi||a>b)throw new Error('"'+part+'" is outside '+lo+'-'+hi+'.');
+        for(let v=a;v<=b;v+=st)set[dw&&v===7?0:v]=true;});
+      return{set,star};};
+    const MI=pf(f[0],0,59),HR=pf(f[1],0,23),DM=pf(f[2],1,31),MO=pf(f[3],1,12),DW=pf(f[4],0,7,true);
+    const li=(p,nm)=>p.star?'every '+nm:Object.keys(p.set).map(Number).sort((a,b)=>a-b).join(', ');
+    const runs=[],d=new Date();d.setSeconds(0,0);d.setMinutes(d.getMinutes()+1);let g=0;
+    while(runs.length<5&&g++<400000){
+      const dayOk=DM.star&&DW.star?true:(!DM.star&&!DW.star)?(DM.set[d.getDate()]||DW.set[d.getDay()]):DM.star?DW.set[d.getDay()]:DM.set[d.getDate()];
+      if(!MO.set[d.getMonth()+1]||!dayOk){d.setDate(d.getDate()+1);d.setHours(0,0,0,0);continue;}
+      if(!HR.set[d.getHours()]){d.setHours(d.getHours()+1,0,0,0);continue;}
+      if(!MI.set[d.getMinutes()]){d.setMinutes(d.getMinutes()+1);continue;}
+      runs.push(new Date(d));d.setMinutes(d.getMinutes()+1);}
+    const out=['minute        '+li(MI,'minute'),'hour          '+li(HR,'hour'),'day of month  '+li(DM,'day'),
+      'month         '+li(MO,'month'),'day of week   '+li(DW,'weekday')+(DW.star?'':'   (0 = Sunday)')];
+    if(!DM.star&&!DW.star)out.push('','note: both day fields restricted - standard cron fires when EITHER matches.');
+    out.push('',runs.length?'next '+runs.length+' runs (your local time):':'No matching time found - impossible date?');
+    runs.forEach(r=>out.push('  '+r.toLocaleString(undefined,{weekday:'short',year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'})));
+    return out.join('\n');}},
+ {id:'pass',key:'PW',name:'Password Gen',href:'/password-generator/',blurb:'Crypto-random passwords with the entropy math shown.',
+  inl:'Length (8-128)',outl:'Passwords out',sample:'20',
+  run:s=>{const n=parseInt(s.trim()||'20',10);
+    if(!Number.isFinite(n)||n<8)throw new Error('Use a length of at least 8 - 16+ recommended.');
+    if(n>128)throw new Error('Capped at 128 characters.');
+    const alpha='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*-_=+?';
+    const limit=Math.floor(4294967296/alpha.length)*alpha.length,buf=new Uint32Array(1);
+    const pw=()=>{let o='';for(let i=0;i<n;i++){do{crypto.getRandomValues(buf);}while(buf[0]>=limit);o+=alpha[buf[0]%alpha.length];}return o;};
+    return Array.from({length:5},pw).join('\n')+'\n\n~'+Math.floor(n*Math.log2(alpha.length))+' bits of entropy each';}},
+ {id:'lorem',key:'Lo',name:'Lorem Ipsum',href:'/lorem-ipsum-generator/',blurb:'Classic placeholder paragraphs, one to fifty at a time.',
+  inl:'Paragraphs (1-50)',outl:'Placeholder out',sample:'3',
+  run:s=>{let n=parseInt(s.trim()||'3',10);if(!Number.isFinite(n)||n<1)n=1;if(n>50)throw new Error('Capped at 50 paragraphs.');
+    const W='lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure in reprehenderit voluptate velit esse cillum eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum'.split(' ');
+    const ri=m=>Math.floor(Math.random()*m);
+    const sen=()=>{const l=6+ri(10),w=[];for(let i=0;i<l;i++)w.push(W[ri(W.length)]);const t=w.join(' ');return t[0].toUpperCase()+t.slice(1)+'.';};
+    const out=[];
+    for(let p=0;p<n;p++){const c=4+ri(4),ss=[];
+      if(p===0)ss.push('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
+      while(ss.length<c)ss.push(sen());out.push(ss.join(' '));}
+    return out.join('\n\n');}},
+ {id:'base',key:'0x',name:'Base Convert',href:'/number-base-converter/',blurb:'Binary, decimal, hex, octal - any size, byte-grouped.',
+  inl:'Number in',outl:'All bases out',sample:'0xdead_beef',
+  run:s=>{s=s.trim().toLowerCase().replace(/[_\s]/g,'');if(!s)return'';
+    const neg=s[0]==='-';if(neg)s=s.slice(1);let v;
+    if(/^0x[0-9a-f]+$/.test(s)||/^0b[01]+$/.test(s)||/^0o[0-7]+$/.test(s)||/^[0-9]+$/.test(s))v=BigInt(s);
+    else if(/^[0-9a-f]+$/.test(s))throw new Error('Ambiguous digits - if that is hex, write 0x'+s+'.');
+    else throw new Error('Use decimal (255), hex (0xff), binary (0b…), or octal (0o…).');
+    if(neg)v=-v;const abs=v<0n?-v:v,bin=abs.toString(2);
+    const pad=bin.length%8?'0'.repeat(8-bin.length%8):'';
+    const sign=v<0n?'-':'';
+    return 'decimal  '+v.toString(10)+'\nhex      '+sign+'0x'+abs.toString(16)+'\noctal    '+sign+'0o'+abs.toString(8)+
+      '\nbinary   '+sign+'0b'+bin+'\nbytes    '+sign+(pad+bin).replace(/([01]{8})(?=[01])/g,'$1 ')+'\nbits     '+bin.length;}},
+ {id:'entities',key:'&',name:'HTML Entities',href:'/html-entity-encode-decode/',blurb:'Escape text for HTML, or decode entities back to text.',
+  modes:[{l:'Encode',inl:'Text in',outl:'Escaped out',sample:'if (a < b && c > "d") { … }',
+      run:s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')},
+    {l:'Decode',inl:'Entities in',outl:'Text out',sample:'if (a &lt; b &amp;&amp; c &gt; &quot;d&quot;) { &hellip; }',
+      run:s=>{const t=document.createElement('textarea');t.innerHTML=s;return t.value;}}]},
+ {id:'dedupe',key:'≡',name:'Dedupe Lines',href:'/remove-duplicate-lines/',blurb:'Dedupe a list in original order, or sort it clean.',
+  modes:[{l:'Keep order',inl:'Lines in',outl:'Unique out',sample:'apple\nbanana\napple\ncherry\nbanana',
+      run:s=>{const seen=new Set(),out=[];s.split('\n').forEach(l=>{if(!seen.has(l)){seen.add(l);out.push(l);}});return out.join('\n');}},
+    {l:'Sort + dedupe',inl:'Lines in',outl:'Sorted unique out',sample:'cherry\napple\nbanana\napple',
+      run:s=>Array.from(new Set(s.split('\n'))).sort((a,b)=>a.localeCompare(b)).join('\n')}]},
+ {id:'regex',key:'.*',name:'Regex Test',href:'/regex-tester/',blurb:'Pattern on line 1, text below - every match and group listed.',
+  inl:'Pattern + text in',outl:'Matches out',sample:'/\\w+@\\w+\\.\\w+/g\nContact ada@example.com or grace@navy.mil for access.',
+  run:s=>{const lines=s.split('\n'),first=(lines.shift()||'').trim();
+    if(!first)throw new Error('Line 1 is the pattern (/pattern/flags or bare). The text to search goes below it.');
+    const text=lines.join('\n'),m=first.match(/^\/(.*)\/([a-z]*)$/);
+    let pat,flags;if(m){pat=m[1];flags=m[2];}else{pat=first;flags='';}
+    if(!flags.includes('g'))flags+='g';
+    let re;try{re=new RegExp(pat,flags);}catch(e){throw new Error('Invalid regex: '+e.message);}
+    const out=[];let match,count=0;
+    while((match=re.exec(text))&&count<1000){count++;
+      let entry=count+'. @'+match.index+'  '+JSON.stringify(match[0]);
+      for(let g=1;g<match.length;g++)entry+='\n     group '+g+': '+(match[g]===undefined?'(no match)':JSON.stringify(match[g]));
+      if(match.groups)for(const k in match.groups)entry+='\n     <'+k+'>: '+(match.groups[k]===undefined?'(no match)':JSON.stringify(match.groups[k]));
+      out.push(entry);if(match.index===re.lastIndex)re.lastIndex++;}
+    return count?count+(count===1?' match':' matches')+'   (flags: '+flags+')\n\n'+out.join('\n'):'No matches.';}},
+ {id:'ab',key:'A/B',name:'A/B Significance',href:'/ab-test-calculator/',blurb:'Is your test result real? Rates, p-value, and a plain verdict.',
+  inl:'Variants in (name, visitors, conversions)',outl:'Analysis out',sample:'A, 12000, 320\nB, 11800, 401',
+  run:s=>{const lines=s.split('\n').map(l=>l.trim()).filter(Boolean);
+    if(lines.length<2)throw new Error('Give at least two lines - control first: name, visitors, conversions.');
+    const vs=lines.map((l,i)=>{const m=l.split(/[,\t]+/).map(x=>x.trim());
+      if(m.length<3)throw new Error('Line '+(i+1)+' needs: name, visitors, conversions.');
+      const n=Number(m[1]),c=Number(m[2]);
+      if(!Number.isFinite(n)||!Number.isFinite(c)||n<=0||c<0)throw new Error('Line '+(i+1)+': bad numbers.');
+      if(c>n)throw new Error('Line '+(i+1)+': conversions exceed visitors.');
+      return{name:m[0],n,c,p:c/n};});
+    const erf=x=>{const sg=x<0?-1:1;x=Math.abs(x);const t=1/(1+0.3275911*x);
+      return sg*(1-((((1.061405429*t-1.453152027)*t+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x));};
+    const phi=z=>0.5*(1+erf(z/Math.SQRT2));
+    const ctrl=vs[0],out=['CONVERSION RATES'];
+    vs.forEach(v=>{const h=1.96*Math.sqrt(v.p*(1-v.p)/v.n);
+      out.push('  '+v.name+'  '+(v.p*100).toFixed(2)+'%  ('+v.c+'/'+v.n+')   95% CI '+((v.p-h)*100).toFixed(2)+'% - '+((v.p+h)*100).toFixed(2)+'%');});
+    out.push('');
+    vs.slice(1).forEach(v=>{const pp=(ctrl.c+v.c)/(ctrl.n+v.n);
+      const se=Math.sqrt(pp*(1-pp)*(1/ctrl.n+1/v.n));const z=se?(v.p-ctrl.p)/se:0;
+      const pv=2*(1-phi(Math.abs(z)));const lift=ctrl.p?((v.p-ctrl.p)/ctrl.p)*100:0;
+      out.push(v.name+' vs '+ctrl.name,'  relative lift   '+(lift>=0?'+':'')+lift.toFixed(2)+'%','  z-score         '+z.toFixed(3),'  p-value         '+(pv<0.0001?'< 0.0001':pv.toFixed(4))+'   (two-tailed)','  verdict         '+(pv<0.05?'SIGNIFICANT at 95% confidence':'not significant at 95% - keep collecting data'),'');});
+    return out.join('\n').trim();}},
+ {id:'utm',key:'UTM',name:'UTM Builder',href:'/utm-builder/',blurb:'Campaign URLs with correctly-encoded UTM parameters.',
+  inl:'URL + parameters in',outl:'Campaign URL out',sample:'https://example.com/pricing\nsource: newsletter\nmedium: email\ncampaign: launch-week',
+  run:s=>{const lines=s.split('\n').map(l=>l.trim()).filter(Boolean);if(!lines.length)return'';
+    const url=lines.shift();
+    if(!/^https?:\/\//i.test(url))throw new Error('Line 1 must be the full URL (http:// or https://).');
+    let u;try{u=new URL(url);}catch(e){throw new Error('Line 1 is not a valid URL.');}
+    const allowed={source:'utm_source',medium:'utm_medium',campaign:'utm_campaign',term:'utm_term',content:'utm_content'};
+    const seen=[];
+    lines.forEach((l,i)=>{const m=l.match(/^(source|medium|campaign|term|content)\s*[:=]\s*(.+)$/i);
+      if(!m)throw new Error('Line '+(i+2)+': use "key: value" (source, medium, campaign, term, content).');
+      u.searchParams.set(allowed[m[1].toLowerCase()],m[2].trim());seen.push(m[1].toLowerCase());});
+    if(!seen.includes('source'))throw new Error('utm_source is required.');
+    return u.toString();}},
+ {id:'og',key:'OG',name:'OG Meta Tags',href:'/open-graph-preview/',blurb:'Social-card meta tags from title, description, image. Live preview on its page.',
+  inl:'Card fields in',outl:'Meta tags out',sample:'title: My product launch\ndescription: The one-line pitch.\nimage: https://example.com/og.png\nurl: https://example.com/launch',
+  run:s=>{const lines=s.split('\n').map(l=>l.trim()).filter(Boolean);if(!lines.length)return'';
+    const d={};
+    lines.forEach((l,i)=>{const m=l.match(/^(title|description|image|url|site)\s*:\s*(.+)$/i);
+      if(!m)throw new Error('Line '+(i+1)+': use "key: value" (title, description, image, url, site).');
+      d[m[1].toLowerCase()]=m[2].trim();});
+    if(!d.title)throw new Error('A title line is required.');
+    const esc=x=>x.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const tags=['<meta property="og:type" content="website">'];
+    if(d.site)tags.push('<meta property="og:site_name" content="'+esc(d.site)+'">');
+    tags.push('<meta property="og:title" content="'+esc(d.title)+'">');
+    if(d.description)tags.push('<meta property="og:description" content="'+esc(d.description)+'">');
+    if(d.url)tags.push('<meta property="og:url" content="'+esc(d.url)+'">');
+    if(d.image)tags.push('<meta property="og:image" content="'+esc(d.image)+'">');
+    tags.push('<meta name="twitter:card" content="'+(d.image?'summary_large_image':'summary')+'">');
+    tags.push('<meta name="twitter:title" content="'+esc(d.title)+'">');
+    if(d.description)tags.push('<meta name="twitter:description" content="'+esc(d.description)+'">');
+    if(d.image)tags.push('<meta name="twitter:image" content="'+esc(d.image)+'">');
+    return tags.join('\n');}},
+ {id:'psd',key:'PSD',name:'PSD → PNG',href:'/psd-to-png/',blurb:'Photoshop file in, flattened PNG out - parsed locally, never uploaded.',pageOnly:true},
+ {id:'midi',key:'♪',name:'MP3 → MIDI',href:'/mp3-to-midi/',blurb:'Audio in, MIDI notes out - Spotify’s ML model, run locally in your tab.',pageOnly:true},
+ {id:'stl',key:'STL',name:'STL → G-code',href:'/stl-to-gcode/',blurb:'Real CuraEngine slicing in your tab - STL in, printable G-code out.',pageOnly:true},
+ {id:'pdfcsv',key:'PDF',name:'PDF → CSV',href:'/pdf-to-csv/',blurb:'Bank statements and reports out as CSV - the PDF never leaves your machine.',pageOnly:true},
+ {id:'bankcsv',key:'BNK',name:'Bank statement → CSV',href:'/bank-statement-to-csv/',blurb:'Statement PDF in, clean CSV out - parsed in your tab, never uploaded.',pageOnly:true},
+ {id:'bankqbo',key:'QBO',name:'Bank statement → QBO',href:'/bank-statement-to-qbo/',blurb:'Statement PDF to a QuickBooks .qbo file - transactions stay on your machine.',pageOnly:true},
+ {id:'qbocsv',key:'Q→C',name:'QBO → CSV',href:'/qbo-to-csv/',blurb:'QuickBooks .qbo in, spreadsheet-ready CSV out - all local.',pageOnly:true},
+ {id:'vcfcsv',key:'VCF',name:'VCF → CSV',href:'/vcf-to-csv/',blurb:'Contacts file in, spreadsheet out - names and numbers stay local.',pageOnly:true},
+ {id:'icsview',key:'ICS',name:'ICS file viewer',href:'/ics-file-viewer/',blurb:'Open an .ics calendar file and read every event - no calendar app needed.',pageOnly:true},
+ {id:'mboxview',key:'MBX',name:'MBOX viewer',href:'/mbox-viewer/',blurb:'Open an .mbox mail archive and read messages right in your browser.',pageOnly:true},
+ {id:'msgview',key:'MSG',name:'MSG file viewer',href:'/msg-file-viewer/',blurb:'Open Outlook .msg files - sender, body, attachments - without Outlook.',pageOnly:true},
+ {id:'pdfmeta',key:'META',name:'PDF & Word metadata remover',href:'/remove-pdf-metadata/',blurb:'See and strip hidden author and software metadata from PDF and Word files.',pageOnly:true},
+ {id:'tpl-wed',key:'WED',name:'Wedding seating chart',href:'/templates/wedding-seating-chart/',blurb:'Type your table lists, print an elegant chart. Guest names stay local.',pageOnly:true},
+ {id:'tpl-wedprog',key:'PRG',name:'Wedding program',href:'/templates/wedding-program/',blurb:'Ceremony order and wedding party on one elegant page - in your palette.',pageOnly:true},
+ {id:'tpl-wedtime',key:'DAY',name:'Wedding day timeline',href:'/templates/wedding-day-timeline/',blurb:'The whole day, hour by hour, on one printable schedule for everyone.',pageOnly:true},
+ {id:'tpl-wedguest',key:'RSVP',name:'Wedding guest list',href:'/templates/wedding-guest-list/',blurb:'Invites, RSVPs, and meals tracked with live counts - names stay local.',pageOnly:true},
+ {id:'tpl-wedcards',key:'PLC',name:'Wedding place cards',href:'/templates/wedding-place-cards/',blurb:'Names and table numbers, eight cards a page, ready to cut.',pageOnly:true},
+ {id:'tpl-est',key:'EST',name:'Construction estimate',href:'/templates/construction-estimate/',blurb:'Line items, tax, and totals computed live into a printable estimate.',pageOnly:true},
+ {id:'tpl-photo',key:'PACT',name:'Photography contract',href:'/templates/photography-contract/',blurb:'Fill the shoot terms, print a clean agreement. Client data stays local.',pageOnly:true},
+ {id:'tpl-tattoo',key:'INK',name:'Tattoo consent form',href:'/templates/tattoo-consent-form/',blurb:'Studio-ready consent and release form, filled in and printed in-browser.',pageOnly:true},
+ {id:'tpl-pod',key:'POD',name:'Podcast script',href:'/templates/podcast-script/',blurb:'Cold open to outro - a script sheet that keeps an episode on the rails.',pageOnly:true},
+ {id:'tpl-flyer',key:'MLS',name:'Real estate flyer',href:'/templates/real-estate-flyer/',blurb:'Listing details and a photo in, a clean printable property flyer out.',pageOnly:true},
+ {id:'tpl-rent',key:'RENT',name:'Rent receipt',href:'/templates/rent-receipt/',blurb:'A month’s rent receipted: amount, period, method, signature line.',pageOnly:true},
+ {id:'tpl-waiver',key:'RISK',name:'Liability waiver',href:'/templates/liability-waiver/',blurb:'Activity release form with initial-each acknowledgments and signatures.',pageOnly:true},
+ {id:'tpl-gift',key:'GIFT',name:'Gift certificate',href:'/templates/gift-certificate/',blurb:'A certificate your business can issue: value, number, expiry, signature.',pageOnly:true},
+ {id:'tpl-resign',key:'BYE',name:'Resignation letter',href:'/templates/resignation-letter/',blurb:'A clean notice letter: role, last day, thanks, handover - ready to sign.',pageOnly:true},
+ {id:'tpl-release',key:'LENS',name:'Model release',href:'/templates/model-release/',blurb:'The photo contract’s companion: a signed grant of rights for the images.',pageOnly:true},
+ {id:'tpl-intake',key:'SPA',name:'Massage intake form',href:'/templates/massage-intake-form/',blurb:'Client intake with health-history checklist, printed under your letterhead.',pageOnly:true},
+ {id:'tpl-signin',key:'LOG',name:'Sign-in sheet',href:'/templates/sign-in-sheet/',blurb:'Titled, columned, and ruled - a sheet ready for the front-desk clipboard.',pageOnly:true},
+ {id:'tpl-change',key:'CHG',name:'Change order',href:'/templates/change-order/',blurb:'The estimate’s follow-up: scope change, cost delta, new total - signed.',pageOnly:true},
+{id:'tpl-minor',key:'MNR',name:'Minor waiver',href:'/templates/minor-waiver/',blurb:'The waiver the adult release does not cover: parental consent for a minor.',pageOnly:true},
+{id:'tpl-permission',key:'PRM',name:'Permission slip',href:'/templates/permission-slip/',blurb:'Trip, transport, medical, emergency contact, guardian signature - one page.',pageOnly:true},
+{id:'tpl-medical',key:'MDC',name:'Medical consent',href:'/templates/medical-consent/',blurb:'Lets a caregiver authorize treatment when the parent cannot be reached.',pageOnly:true},
+{id:'tpl-media',key:'MDA',name:'Media consent',href:'/templates/media-consent/',blurb:'Consent to use someone’s image, voice, name, or words - with a withdrawal route.',pageOnly:true},
+{id:'tpl-piercing',key:'PRC',name:'Piercing consent',href:'/templates/piercing-consent/',blurb:'Placement, jewellery, medical disclosure, aftercare, release - on one signed page.',pageOnly:true},
+{id:'tpl-treatment',key:'TRT',name:'Treatment consent',href:'/templates/treatment-consent/',blurb:'Patch test, products used, medical disclosure, aftercare - for salon and clinic work.',pageOnly:true},
+{id:'tpl-bgcheck',key:'BGC',name:'Background check consent',href:'/templates/background-check-consent/',blurb:'Standalone disclosure plus written authorization - the order the process expects.',pageOnly:true},
+ {id:'slug',key:'-',name:'Slug It',href:'/slug-generator/',blurb:'Titles in, clean hyphenated URL slugs out - batch by line.',
+  inl:'Titles in (one per line)',outl:'Slugs out',sample:'How Frédéric’s Café Doubled Revenue - A 2026 Case Study',
+  run:s=>s.split('\n').map(l=>l.normalize('NFKD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')).join('\n')},
+];
+
+/* ── workbench state ────────────────────────────────── */
+let cur=TOOLS[0],mode=0,timer;
+const inp=$('in'),out=$('out'),err=$('err'),status=$('status');
+function active(){return cur.modes?cur.modes[mode]:cur;}
+
+function select(id,focus){
+  cur=TOOLS.find(t=>t.id===id)||TOOLS[0];mode=0;
+  $('tname').textContent=cur.name;$('tdesc').textContent=cur.blurb;
+  document.querySelectorAll('#rail button').forEach(b=>b.setAttribute('aria-selected',b.dataset.id===id));
+  document.querySelectorAll('#grid .trow').forEach(t=>t.dataset.active=t.dataset.id===id);
+  const modes=$('modes');modes.innerHTML='';
+  if(cur.modes){modes.hidden=false;cur.modes.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.textContent=m.l;b.setAttribute('aria-pressed',i===0);b.onclick=()=>{mode=i;paint();go();};modes.appendChild(b);});}
+  else modes.hidden=true;
+  inp.value='';out.value='';paint();
+  const rs=$('railsel');if(rs&&rs.options.length)rs.value=cur.id;
+  try{history.replaceState(null,'','#'+cur.id);}catch(e){}
+  if(focus)inp.focus();
+}
+function paint(){
+  const a=active();$('inlbl').textContent=a.inl;$('outlbl').textContent=a.outl;
+  inp.placeholder=a.sample;
+  $('modes').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',i===mode));
+  $('swatch').style.display='none';setStatus('');clearErr();
+}
+function setStatus(msg,cls){status.textContent=msg||'Local execution · no network egress';status.className='status'+(cls?' '+cls:'');}
+function clearErr(){err.removeAttribute('data-show');err.textContent='';}
+function go(){
+  const s=inp.value;clearErr();
+  $('inmeta').textContent=s?`${s.length} chars`:'';
+  if(!s.trim()){out.value='';$('outmeta').textContent='';$('swatch').style.display='none';setStatus('');return;}
+  const fail=e=>{out.value='';$('outmeta').textContent='';err.textContent=e.message||String(e);err.setAttribute('data-show','');setStatus('Check input','err');};
+  try{
+    Promise.resolve(active().run(s)).then(r=>{
+      if(r&&typeof r==='object'&&r.css){out.value=r.text;$('swatch').style.display='flex';$('swatch').style.setProperty('--sw',r.css);$('swtxt').textContent=r.label;}
+      else{out.value=String(r);$('swatch').style.display='none';}
+      $('outmeta').textContent=`${out.value.length} chars`;
+      setStatus('Converted · '+new Date().toLocaleTimeString(),'ok');
+    }).catch(fail);
+  }catch(e){fail(e);}
+}
+inp.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(go,180);});
+$('run').onclick=go;
+$('clear').onclick=()=>{inp.value='';go();inp.focus();};
+$('sample').onclick=()=>{inp.value=active().sample;go();};
+$('copy').onclick=async()=>{if(!out.value)return;try{await navigator.clipboard.writeText(out.value);setStatus('Copied to clipboard','ok');}catch(e){out.select();document.execCommand&&document.execCommand('copy');setStatus('Copied','ok');}};
+$('swap').onclick=()=>{
+  const prev=out.value;
+  if(cur.modes){mode=(mode+1)%cur.modes.length;paint();}
+  else if(cur.rev){select(cur.rev);}
+  else return;
+  if(prev){inp.value=prev;go();}
+};
+inp.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='Enter')go();});
+
+/* ── build rail + tiles (new tools lead the grid) ───── */
+const rail=$('rail'),grid=$('grid');
+const NEW_IDS=['stl','midi','psd','pdfcsv','ab','utm','og'];
+const RAIL_GROUPS=[
+ ['data',['yaml-json','json-yaml','csv-json','json-csv','json-fmt']],
+ ['encode',['base64','url','jwt','entities','base','sha']],
+ ['text',['words','diff','case','dedupe','regex','slug','md']],
+ ['generate',['uuid','pass','lorem']],
+ ['time',['epoch','cron']],
+ ['web',['color','ab','utm','og']],
+ ['files',['stl','midi','psd','pdfcsv']],
+ ['templates',['tpl-wed','tpl-wedprog','tpl-wedtime','tpl-wedguest','tpl-wedcards','tpl-est','tpl-photo','tpl-tattoo','tpl-pod','tpl-flyer','tpl-rent','tpl-waiver','tpl-gift','tpl-resign','tpl-release','tpl-intake','tpl-signin','tpl-change']],
+];
+RAIL_GROUPS.forEach(([label,ids])=>{
+  const row=document.createElement('div');row.className='rgrp';
+  row.innerHTML=`<span class="glbl">${label}</span>`;
+  const set=document.createElement('div');set.className='gset';
+  ids.forEach(id=>{
+    const t=TOOLS.find(x=>x.id===id);if(!t)return;
+    const dot=NEW_IDS.includes(t.id)?'<span class="nd"></span>':'';
+    if(t.pageOnly){
+      const a=document.createElement('a');a.className='pg';a.href=t.href;
+      a.innerHTML=`${dot}<span class="k">${t.key}</span>${t.name}`;set.appendChild(a);
+    }else{
+      const b=document.createElement('button');b.type='button';b.role='tab';b.dataset.id=t.id;
+      b.innerHTML=`${dot}<span class="k">${t.key}</span>${t.name}`;b.onclick=()=>select(t.id,true);set.appendChild(b);
+    }
+  });
+  row.appendChild(set);rail.appendChild(row);
+});
+/* Catalog index: dense one-line rows, three merged groups. Files and
+   templates get their own sections below - different click behavior,
+   different furniture. */
+const INDEX_GROUPS=[
+ ['Data & encoding',['yaml-json','json-yaml','csv-json','json-csv','json-fmt','base64','url','jwt','entities','base','sha']],
+ ['Text',['words','diff','case','dedupe','regex','slug','md']],
+ ['Generators & web',['uuid','pass','lorem','epoch','cron','color','ab','utm','og']],
+ ['Files & documents',['pdfcsv','bankcsv','bankqbo','qbocsv','vcfcsv','icsview','mboxview','msgview','pdfmeta','psd','stl','midi']],
+];
+INDEX_GROUPS.forEach(([label,ids])=>{
+  const lbl=document.createElement('h3');lbl.className='tgrp-lbl';lbl.textContent=label;grid.appendChild(lbl);
+  const g=document.createElement('div');g.className='tidx';
+  ids.forEach(id=>{
+    const t=TOOLS.find(x=>x.id===id);if(!t)return;
+    if(t.pageOnly){
+      const a=document.createElement('a');a.className='trow';a.href=t.href;a.dataset.id=t.id;
+      a.dataset.q=(t.name+' '+t.key+' '+t.blurb).toLowerCase();
+      const nd=NEW_IDS.includes(t.id)?'<span class="nd"></span>':'';
+      a.innerHTML=`<span class="k">${t.key}</span><span>${t.name}</span>${nd}<span class="pp">page →</span>`;
+      g.appendChild(a);return;
+    }
+    const b=document.createElement('button');b.type='button';b.className='trow';b.dataset.id=t.id;
+    b.dataset.q=(t.name+' '+t.key+' '+t.blurb).toLowerCase();
+    const dot=NEW_IDS.includes(t.id)?'<span class="nd"></span>':'';
+    b.innerHTML=`<span class="k">${t.key}</span><span>${t.name}</span>${dot}<a class="pp" href="${t.href}" title="Open this tool's own page">page →</a>`;
+    b.onclick=e=>{
+      if(e.target.closest('.pp'))return;
+      select(t.id,true);document.querySelector('.bench').scrollIntoView({behavior:'smooth',block:'start'});
+    };
+    g.appendChild(b);
+  });
+  grid.appendChild(g);
+});
+/* Filter: hides non-matching rows; a group label with nothing left hides too. */
+const tf=$('toolfilter');
+if(tf)tf.addEventListener('input',()=>{
+  const q=tf.value.trim().toLowerCase();
+  document.querySelectorAll('#grid .tidx').forEach(g=>{
+    let vis=0;
+    g.querySelectorAll('.trow').forEach(r=>{const on=!q||r.dataset.q.includes(q);r.style.display=on?'':'none';if(on)vis++;});
+    g.style.display=vis?'':'none';
+    g.previousElementSibling.style.display=vis?'':'none';
+  });
+});
+/* Collapsed by default; the nav's "All tools" link opens it. */
+const cat=document.getElementById('tools');
+const openCat=()=>{if(cat&&!cat.open)cat.open=true};
+if(location.hash==='#tools')openCat();
+addEventListener('hashchange',()=>{if(location.hash==='#tools')openCat()});
+document.querySelectorAll('a[href="#tools"]').forEach(a=>a.addEventListener('click',openCat));
+$('catcount').textContent=INDEX_GROUPS.reduce((n,g)=>n+g[1].length,0);
+/* Heavy machines: the four in-browser file engines. */
+['psd','stl','midi','pdfcsv'].forEach(id=>{
+  const t=TOOLS.find(x=>x.id===id);if(!t)return;
+  const a=document.createElement('a');a.className='feat';a.href=t.href;
+  a.innerHTML=`<b><span class="k">${t.key}</span>${t.name}</b><span>${t.blurb}</span>`;
+  $('featrow').appendChild(a);
+});
+/* Template grid: a teaser row of scene thumbnails; the hub holds the full set.
+   Counts are derived, never typed, so they cannot go stale as templates land. */
+const TPLS=TOOLS.filter(t=>t.href&&t.href.startsWith('/templates/')&&t.href!=='/templates/');
+const slugOf=t=>t.href.split('/')[2];
+const card=t=>{
+  const a=document.createElement('a');a.href=t.href;
+  a.innerHTML=`<img src="/assets/tpl/${slugOf(t)}.png?v=2" alt="${t.name} template on a desk" loading="lazy" width="1000" height="750"><span class="tn">${t.name}</span>`;
+  return a;
+};
+/* The five wedding documents ride together under one cover card, so the row
+   reads as six things to choose from rather than nine near-identical papers. */
+const WED=TPLS.filter(t=>slugOf(t).startsWith('wedding-'));
+const REST=TPLS.filter(t=>!slugOf(t).startsWith('wedding-'));
+const TPL_SHOWN=6;
+if(WED.length){
+  const suite=document.createElement('button');
+  suite.type='button';suite.className='tpl-suite';suite.setAttribute('aria-expanded','false');
+  suite.innerHTML=`<span class="cnt">${WED.length} templates</span>`+
+    `<img src="/assets/tpl/${slugOf(WED[0])}.png?v=2" alt="The wedding template suite" loading="lazy" width="1000" height="750">`+
+    `<span class="tn">Wedding suite</span><span class="open">Seating, program, timeline, guest list, place cards</span>`;
+  $('tplrail').appendChild(suite);
+  const panel=document.createElement('div');panel.className='wed-panel';panel.hidden=true;
+  panel.id='wedpanel';suite.setAttribute('aria-controls','wedpanel');
+  WED.forEach(t=>panel.appendChild(card(t)));
+  $('tplrail').appendChild(panel);
+  suite.addEventListener('click',()=>{
+    const open=suite.getAttribute('aria-expanded')==='true';
+    suite.setAttribute('aria-expanded',String(!open));
+    panel.hidden=open;
+  });
+}
+REST.slice(0,TPL_SHOWN).forEach(t=>$('tplrail').appendChild(card(t)));
+const more=document.createElement('a');more.href='/templates/';more.className='more';
+more.textContent=TPLS.length>TPL_SHOWN?`See all ${TPLS.length} templates →`:'Open the templates room →';
+$('tplrail').appendChild(more);
+const tplCount=$('tplcount');if(tplCount)tplCount.textContent=String(TPLS.length);
+/* Mobile tool picker: a native select is the one drilldown control phones do well. */
+const railsel=$('railsel');
+RAIL_GROUPS.forEach(([label,ids])=>{
+  const og=document.createElement('optgroup');og.label=label;
+  ids.forEach(id=>{
+    const t=TOOLS.find(x=>x.id===id);if(!t)return;
+    const o=document.createElement('option');o.value=t.id;
+    o.textContent=t.name+(t.pageOnly?' ↗':'');
+    og.appendChild(o);
+  });
+  railsel.appendChild(og);
+});
+railsel.addEventListener('change',()=>{
+  const t=TOOLS.find(x=>x.id===railsel.value);if(!t)return;
+  if(t.pageOnly){location.href=t.href;return;}
+  select(t.id,false);
+});
+
+const NCONV=TOOLS.filter(t=>!t.href.startsWith('/templates/')).length;
+const tc=$('toolcount');if(tc)tc.textContent=NCONV;
+const jc=$('jumpcount');if(jc)jc.textContent=NCONV;
+const hash=location.hash.replace('#','');
+select(TOOLS.some(t=>t.id===hash&&!t.pageOnly)?hash:'yaml-json');
+})();
+</script>
+
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+</body>
+</html>

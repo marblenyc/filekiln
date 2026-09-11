@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remove PDF Metadata - Word Docs Too, Locally | FileKiln</title>
+<meta name="description" content="See and remove hidden metadata from PDF and Word files - author, title, creation dates, editing software - entirely in your browser.">
+<link rel="canonical" href="https://filekiln.com/remove-pdf-metadata/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="Remove PDF Metadata - Word Docs Too, Locally | FileKiln">
+<meta property="og:description" content="See and remove hidden metadata from PDF and Word files - author, title, creation dates, editing software - entirely in your browser.">
+<meta property="og:url" content="https://filekiln.com/remove-pdf-metadata/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Remove PDF Metadata - Word Docs Too, Locally | FileKiln">
+<meta name="twitter:description" content="See and remove hidden metadata from PDF and Word files - author, title, creation dates, editing software - entirely in your browser.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PDF & Word Metadata Remover","url":"https://filekiln.com/remove-pdf-metadata/","description":"See and remove hidden metadata from PDF and Word files - author, title, creation dates, editing software - entirely in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What metadata hides in a PDF or Word document?","acceptedAnswer":{"@type":"Answer","text":"More than people expect: the author's name (often a real login name), company, title, the software and version used, creation and modification dates, and sometimes template paths. This page shows you exactly what your file carries before anything is removed."}},{"@type":"Question","name":"How does the removal work - is my document uploaded?","acceptedAnswer":{"@type":"Answer","text":"Never. The file is edited by JavaScript in your tab. For PDFs, the metadata values are blanked in place so the file structure stays byte-for-byte valid; for Word files, the document properties parts are replaced with empty ones. The cleaned file downloads straight from browser memory."}},{"@type":"Question","name":"Does this also redact the document's contents?","acceptedAnswer":{"@type":"Answer","text":"No - and it is important to be clear about that. This tool removes the properties ABOUT the document (author, dates, software). Text inside the document, including anything under a black rectangle, is untouched. Never rely on drawn boxes for redaction."}},{"@type":"Question","name":"What exactly is removed from a Word file?","acceptedAnswer":{"@type":"Answer","text":"The core properties (author, last modified by, title, dates, revision number), the app properties (software, company, editing time), and every value in the custom properties part. The document text, images, and formatting are copied over untouched."}},{"@type":"Question","name":"Are there PDFs it can't fully clean?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it tells you when. Encrypted PDFs are refused outright. Some PDFs store their info dictionary inside compressed object streams where in-place blanking can't reach - the tool reports what it found and what it could not clear, rather than claiming a clean it didn't do."}},{"@type":"Question","name":"How do I just see what metadata a document carries, without changing it?","acceptedAnswer":{"@type":"Answer","text":"Drop it here and read the table - the values are shown before anything downloads, and your original file on disk is never modified (the clean copy is a separate download). Adobe Reader's File > Properties and Word's File > Info show some of the same fields, but not the XMP packet or custom properties this page surfaces."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>PDF &amp; Word Metadata Remover</h1>
+<p class="sub">See and remove hidden metadata from PDF and Word files - author, title, creation dates, editing software - entirely in your browser. The document never leaves your machine.</p>
+<div class="tool">
+  <div class="tool-head">pdf / docx → cleaned copy</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".pdf,.docx,application/pdf">
+    <label for="file"><strong>Choose a .pdf or .docx file</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div id="found"></div>
+    <div class="bar" style="padding:14px 0;">
+      <a id="dl" class="btn-dl" hidden>Download cleaned copy</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Every PDF and Word file carries a little dossier about itself: who wrote it (frequently a real account name), what company license produced it, which software and version, when it was created and every time it was touched since. Most people have sent a "clean" document that quietly named a colleague, a client, or a template path. The first thing this page does is show you that dossier - for your file, exactly as written. The second thing it does is remove it, in your browser: PDFs are blanked in place so the file stays byte-for-byte structurally valid, Word files get their properties parts swapped for empty ones with the document itself copied untouched.</p>
+<p>One honest boundary, stated plainly on the page and in the FAQ: metadata removal is not redaction. This cleans the properties <em>about</em> the document; it does not touch text <em>inside</em> the document. And where a PDF stores its info dictionary somewhere in-place blanking can't reach, the tool says what it could not clear instead of pretending. Files that would need guessing are refused, not mangled.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>What metadata hides in a PDF or Word document?</h3>
+<p>More than people expect: the author's name (often a real login name), company, title, the software and version used, creation and modification dates, and sometimes template paths. This page shows you exactly what your file carries before anything is removed.</p>
+<h3>How does the removal work - is my document uploaded?</h3>
+<p>Never. The file is edited by JavaScript in your tab. For PDFs, the metadata values are blanked in place so the file structure stays byte-for-byte valid; for Word files, the document properties parts are replaced with empty ones. The cleaned file downloads straight from browser memory.</p>
+<h3>Does this also redact the document's contents?</h3>
+<p>No - and it is important to be clear about that. This tool removes the properties ABOUT the document (author, dates, software). Text inside the document, including anything under a black rectangle, is untouched. Never rely on drawn boxes for redaction.</p>
+<h3>What exactly is removed from a Word file?</h3>
+<p>The core properties (author, last modified by, title, dates, revision number), the app properties (software, company, editing time), and every value in the custom properties part. The document text, images, and formatting are copied over untouched.</p>
+<h3>Are there PDFs it can't fully clean?</h3>
+<p>Yes, and it tells you when. Encrypted PDFs are refused outright. Some PDFs store their info dictionary inside compressed object streams where in-place blanking can't reach - the tool reports what it found and what it could not clear, rather than claiming a clean it didn't do.</p>
+<h3>How do I just see what metadata a document carries, without changing it?</h3>
+<p>Drop it here and read the table - the values are shown before anything downloads, and your original file on disk is never modified (the clean copy is a separate download). Adobe Reader's File &gt; Properties and Word's File &gt; Info show some of the same fields, but not the XMP packet or custom properties this page surfaces.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/pdf-to-csv/"><span class="t">pdf → csv</span><span class="d">PDF tables out as CSV - bank statements never leave your machine.</span></a></li>
+<li><a href="/msg-file-viewer/"><span class="t">msg / eml → readable email</span><span class="d">Open Outlook emails - body, headers, attachments - without Outlook.</span></a></li>
+<li><a href="/sha256-hash-generator/"><span class="t">sha hash</span><span class="d">SHA-256, SHA-1, and SHA-512 digests of any text, computed locally.</span></a></li>
+<li><a href="/bank-statement-to-csv/"><span class="t">statement → csv</span><span class="d">Statement PDF in, clean transaction CSV/Excel out - never uploaded.</span></a></li>
+</ul>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Printable templates</h2>
+<ul class="tool-index">
+<li><a href="/templates/medical-consent/"><span class="t">medical consent</span><span class="d">Lets a caregiver authorize treatment when the parent cannot be reached.</span></a></li>
+<li><a href="/templates/massage-intake-form/"><span class="t">massage intake form</span><span class="d">Client intake with the health-history checklist, printed under your letterhead.</span></a></li>
+<li><a href="/templates/liability-waiver/"><span class="t">liability waiver</span><span class="d">Release form with the acknowledgments that make a waiver mean something.</span></a></li>
+</ul>
+</section>
+<style>
+#found table{width:100%;border-collapse:collapse;font-size:13px;}
+#found th{text-align:left;padding:6px 10px;border-bottom:2px solid var(--line);white-space:nowrap;}
+#found td{padding:5px 10px;border-bottom:1px solid var(--line);}
+#found td.k{font:12px var(--mono);color:var(--accent-ink);white-space:nowrap;}
+#found .gone{text-decoration:line-through;color:var(--faint);}
+</style>
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+/* ---------- PDF: length-preserving in-place scrub ---------- */
+const PDF_KEYS=["Title","Author","Subject","Keywords","Creator","Producer","CreationDate","ModDate"];
+function latin1(u8){var s="";for(var i=0;i<u8.length;i+=32768)s+=String.fromCharCode.apply(null,u8.subarray(i,i+32768));return s;}
+function decodePdfString(raw){
+  if(raw.length>=2&&raw.charCodeAt(0)===0xFE&&raw.charCodeAt(1)===0xFF){
+    var out="";for(var i=2;i+1<raw.length;i+=2)out+=String.fromCharCode((raw.charCodeAt(i)<<8)|raw.charCodeAt(i+1));return out;
+  }
+  return raw.replace(/\\([nrtbf()\\])/g,function(_,c){return {n:"\n",r:"\r",t:"\t",b:"\b",f:"\f","(":"(",")":")","\\":"\\"}[c];});
+}
+function scrubPdf(u8){
+  var s=latin1(u8);
+  if(/\/Encrypt\b/.test(s))throw new Error("This PDF is encrypted - a password-protected file can't be honestly scrubbed in place. Remove the password first, then clean it here.");
+  var found=[],cleared=0,uncleared=[];
+  // scan the whole file for Info-style keys with literal string values; blank value bytes in place
+  PDF_KEYS.forEach(function(key){
+    var re=new RegExp("/"+key+"\\s*\\(","g"),m;
+    while((m=re.exec(s))!==null){
+      var open=m.index+m[0].length-1, i=open+1, depth=1;
+      while(i<s.length&&depth>0){
+        var ch=s[i];
+        if(ch==="\\")i++;
+        else if(ch==="(")depth++;
+        else if(ch===")")depth--;
+        i++;
+      }
+      var val=s.slice(open+1,i-1);
+      if(val.length){
+        found.push({key:key,value:decodePdfString(val).slice(0,140)});
+        for(var b=open+1;b<i-1;b++)u8[b]=0x20;
+        cleared++;
+      }
+    }
+    // hex string form /Key <...>
+    var reH=new RegExp("/"+key+"\\s*<([0-9A-Fa-f\\s]+)>","g"),mh;
+    while((mh=reH.exec(s))!==null){
+      var st=mh.index+mh[0].indexOf("<")+1,en=mh.index+mh[0].length-1;
+      var hex=mh[1].replace(/\s+/g,""),txt="";
+      for(var k2=0;k2+1<hex.length;k2+=2)txt+=String.fromCharCode(parseInt(hex.substr(k2,2),16));
+      if(txt){found.push({key:key,value:decodePdfString(txt).slice(0,140)});
+        for(var b2=st;b2<en;b2++)if(u8[b2]!==0x20&&u8[b2]!==10&&u8[b2]!==13)u8[b2]=0x30;
+        cleared++;}
+    }
+  });
+  // XMP packets: blank interior, keep the xpacket wrappers (padding is legal there)
+  var xStart=0,xmpCount=0;
+  while(true){
+    var a=s.indexOf("<?xpacket begin",xStart);if(a<0)break;
+    var aEnd=s.indexOf("?>",a);var b3=s.indexOf("<?xpacket end",a);
+    if(aEnd<0||b3<0)break;
+    for(var p=aEnd+2;p<b3;p++)u8[p]=0x20;
+    xmpCount++;xStart=b3+10;
+  }
+  // detect Info hiding in object streams (referenced but no raw strings found)
+  if(/\/Info\s+\d+\s+\d+\s+R/.test(s)&&!found.length&&!xmpCount)
+    uncleared.push("an /Info dictionary is referenced but stored inside compressed object streams this in-place scrub can't reach");
+  return {u8:u8,found:found,xmp:xmpCount,uncleared:uncleared};
+}
+
+/* ---------- DOCX: zip rewrite, docProps swapped, entries copied verbatim ---------- */
+function rd16(u8,o){return u8[o]|(u8[o+1]<<8);}
+function rd32(u8,o){return (u8[o]|(u8[o+1]<<8)|(u8[o+2]<<16)|(u8[o+3]<<24))>>>0;}
+function readZip(u8){
+  var eocd=-1;
+  for(var i=u8.length-22;i>=Math.max(0,u8.length-66000);i--){
+    if(rd32(u8,i)===0x06054b50){eocd=i;break;}
+  }
+  if(eocd<0)throw new Error("Not a valid .docx - the zip end record is missing.");
+  var n=rd16(u8,eocd+10),cdOff=rd32(u8,eocd+16),entries=[],o=cdOff;
+  for(var e=0;e<n;e++){
+    if(rd32(u8,o)!==0x02014b50)break;
+    var nameLen=rd16(u8,o+28),extraLen=rd16(u8,o+30),cmtLen=rd16(u8,o+32);
+    var ent={
+      method:rd16(u8,o+10),time:rd16(u8,o+12),date:rd16(u8,o+14),crc:rd32(u8,o+16),
+      csize:rd32(u8,o+20),usize:rd32(u8,o+24),
+      name:new TextDecoder().decode(u8.subarray(o+46,o+46+nameLen)),
+      lho:rd32(u8,o+42)
+    };
+    var lh=ent.lho;
+    var lNameLen=rd16(u8,lh+26),lExtraLen=rd16(u8,lh+28);
+    ent.dataOff=lh+30+lNameLen+lExtraLen;
+    entries.push(ent);
+    o+=46+nameLen+extraLen+cmtLen;
+  }
+  return entries;
+}
+async function inflateEntry(u8,ent){
+  var raw=u8.subarray(ent.dataOff,ent.dataOff+ent.csize);
+  if(ent.method===0)return raw;
+  var ds=new DecompressionStream("deflate-raw");
+  var stream=new Blob([raw]).stream().pipeThrough(ds);
+  return new Uint8Array(await new Response(stream).arrayBuffer());
+}
+var CRC_T=(function(){var t=[],c,k,n;for(n=0;n<256;n++){c=n;for(k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(u8){var c=0xFFFFFFFF;for(var i=0;i<u8.length;i++)c=CRC_T[(c^u8[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function buildZip(items){ // items: {name, method, crc, csize, usize, time, date, data(compressed-or-stored bytes)}
+  var enc=new TextEncoder(),parts=[],cd=[],off=0;
+  function u16(n){return [n&255,(n>>8)&255];}
+  function u32(n){return [n&255,(n>>8)&255,(n>>16)&255,(n>>>24)&255];}
+  items.forEach(function(f){
+    var name=enc.encode(f.name);
+    var head=[].concat(u32(0x04034b50),u16(20),u16(0),u16(f.method),u16(f.time||0),u16(f.date||0),u32(f.crc),u32(f.data.length),u32(f.usize),u16(name.length),u16(0));
+    parts.push(new Uint8Array(head),name,f.data);
+    cd.push({f:f,name:name,off:off});
+    off+=head.length+name.length+f.data.length;
+  });
+  var cdStart=off,cdLen=0;
+  cd.forEach(function(e){
+    var f=e.f;
+    var rec=[].concat(u32(0x02014b50),u16(20),u16(20),u16(0),u16(f.method),u16(f.time||0),u16(f.date||0),u32(f.crc),u32(f.data.length),u32(f.usize),u16(e.name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(e.off));
+    parts.push(new Uint8Array(rec),e.name);cdLen+=rec.length+e.name.length;
+  });
+  parts.push(new Uint8Array([].concat(u32(0x06054b50),u16(0),u16(0),u16(cd.length),u16(cd.length),u32(cdLen),u32(cdStart),u16(0))));
+  return new Blob(parts,{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+}
+const CORE_CLEAN='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title></dc:title><dc:creator></dc:creator><cp:lastModifiedBy></cp:lastModifiedBy></cp:coreProperties>';
+const APP_CLEAN='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"><Application></Application></Properties>';
+const CUSTOM_CLEAN='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"></Properties>';
+async function scrubDocx(u8){
+  var entries=readZip(u8),found=[];
+  var core=entries.find(function(e){return e.name==="docProps/core.xml";});
+  var app=entries.find(function(e){return e.name==="docProps/app.xml";});
+  async function report(ent,keys){
+    if(!ent)return;
+    var xml=new TextDecoder().decode(await inflateEntry(u8,ent));
+    keys.forEach(function(k){
+      var m=xml.match(new RegExp("<"+k.tag+"[^>]*>([^<]+)<"));
+      if(m&&m[1].trim())found.push({key:k.label,value:m[1].trim().slice(0,140)});
+    });
+  }
+  await report(core,[{tag:"dc:creator",label:"Author"},{tag:"cp:lastModifiedBy",label:"Last modified by"},{tag:"dc:title",label:"Title"},{tag:"dcterms:created",label:"Created"},{tag:"dcterms:modified",label:"Modified"},{tag:"cp:revision",label:"Revision"}]);
+  await report(app,[{tag:"Application",label:"Software"},{tag:"Company",label:"Company"},{tag:"TotalTime",label:"Editing minutes"},{tag:"AppVersion",label:"App version"}]);
+  var enc=new TextEncoder();
+  var items=[];
+  entries.forEach(function(ent){
+    if(ent.name==="docProps/core.xml"||ent.name==="docProps/app.xml"||ent.name==="docProps/custom.xml"){
+      var data=enc.encode(ent.name==="docProps/custom.xml"?CUSTOM_CLEAN:(ent.name.indexOf("core")>=0?CORE_CLEAN:APP_CLEAN));
+      items.push({name:ent.name,method:0,crc:crc32(data),usize:data.length,time:0,date:0,data:data});
+    }else{
+      items.push({name:ent.name,method:ent.method,crc:ent.crc,usize:ent.usize,time:ent.time,date:ent.date,data:u8.subarray(ent.dataOff,ent.dataOff+ent.csize)});
+    }
+  });
+  return {blob:buildZip(items),found:found,droppedCustom:entries.some(function(e){return e.name==="docProps/custom.xml";})};
+}
+
+function renderFound(found,notes){
+  if(!found.length&&!notes.length){$("found").innerHTML='<p class="file-stat">No metadata values were found in this file.</p>';return;}
+  var h='<table><tr><th>Field</th><th>Value found (now removed)</th></tr>';
+  found.forEach(function(f){h+='<tr><td class="k">'+esc(f.key)+'</td><td class="gone">'+esc(f.value)+"</td></tr>";});
+  h+="</table>";
+  notes.forEach(function(n){h+='<p class="file-stat" style="color:var(--accent-ink);">⚠ '+esc(n)+"</p>";});
+  $("found").innerHTML=h;
+}
+async function handle(f){
+  $("err").textContent="";$("stat").textContent="";$("dl").hidden=true;$("found").innerHTML="";
+  if(!f)return;
+  $("stat").textContent="Reading "+f.name+" locally…";
+  try{
+    var u8=new Uint8Array(await f.arrayBuffer());
+    var dl=$("dl");if(dl.href)URL.revokeObjectURL(dl.href);
+    if(u8[0]===0x25&&u8[1]===0x50&&u8[2]===0x44&&u8[3]===0x46){ // %PDF
+      var r=scrubPdf(u8);
+      renderFound(r.found,r.uncleared);
+      dl.href=URL.createObjectURL(new Blob([r.u8],{type:"application/pdf"}));
+      dl.download=f.name.replace(/\.pdf$/i,"")+"-clean.pdf";dl.hidden=false;
+      $("stat").textContent=r.found.length+" metadata value"+(r.found.length===1?"":"s")+" blanked"+(r.xmp?" + "+r.xmp+" XMP packet"+(r.xmp===1?"":"s")+" emptied":"")+" - structure preserved byte-for-byte.";
+    }else if(u8[0]===0x50&&u8[1]===0x4B){ // PK zip
+      var r2=await scrubDocx(u8);
+      renderFound(r2.found,r2.droppedCustom?["a custom-properties part was present and all its values have been removed"]:[]);
+      dl.href=URL.createObjectURL(r2.blob);
+      dl.download=f.name.replace(/\.docx$/i,"")+"-clean.docx";dl.hidden=false;
+      $("stat").textContent=r2.found.length+" metadata value"+(r2.found.length===1?"":"s")+" removed - document content copied untouched.";
+    }else throw new Error("This doesn't look like a PDF or .docx file.");
+  }catch(e){
+    $("stat").textContent="";$("err").textContent=String(e&&e.message||e);
+  }
+}
+input.addEventListener("change",function(){handle(input.files[0]);});
+zone.addEventListener("dragover",function(e){e.preventDefault();zone.classList.add("hot");});
+zone.addEventListener("dragleave",function(){zone.classList.remove("hot");});
+zone.addEventListener("drop",function(e){e.preventDefault();zone.classList.remove("hot");handle(e.dataTransfer.files[0]);});
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

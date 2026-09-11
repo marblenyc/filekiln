@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URL Slug Generator - Clean, SEO-Friendly Slugs | FileKiln</title>
+<meta name="description" content="Turn titles into clean URL slugs: lowercase, hyphenated, accents transliterated. One per line for batches. Runs in your browser.">
+<link rel="canonical" href="https://filekiln.com/slug-generator/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="URL Slug Generator - Clean, SEO-Friendly Slugs | FileKiln">
+<meta property="og:description" content="Turn titles into clean URL slugs: lowercase, hyphenated, accents transliterated. One per line for batches. Runs in your browser.">
+<meta property="og:url" content="https://filekiln.com/slug-generator/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="URL Slug Generator - Clean, SEO-Friendly Slugs | FileKiln">
+<meta name="twitter:description" content="Turn titles into clean URL slugs: lowercase, hyphenated, accents transliterated. One per line for batches. Runs in your browser.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"URL Slug Generator","url":"https://filekiln.com/slug-generator/","description":"Turn titles into clean URL slugs: lowercase, hyphenated, accents transliterated. One per line for batches. Runs in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why hyphens instead of underscores?","acceptedAnswer":{"@type":"Answer","text":"Search engines treat hyphens as word separators in URLs; underscores historically glue words together. “blue-widgets” reads as two words to a crawler, “blue_widgets” may not."}},{"@type":"Question","name":"What happens to accented and non-Latin characters?","acceptedAnswer":{"@type":"Answer","text":"Accented Latin letters are decomposed and their accents stripped, so é becomes e. Characters with no Latin base form (Chinese, Arabic, emoji) are dropped - for those languages, meaningful slugs need transliteration rules this tool won't pretend to have."}},{"@type":"Question","name":"Are stop words like “a” and “the” removed?","acceptedAnswer":{"@type":"Answer","text":"No. Slug length rarely matters to ranking, and removing words can change meaning (“the-office” vs “office”). Trim words by hand where you actually want to."}},{"@type":"Question","name":"Is there a length limit for slugs?","acceptedAnswer":{"@type":"Answer","text":"No technical one worth worrying about, but shorter slugs are kinder in shared links. A common practice is keeping the 3-6 words that carry the title's meaning."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>URL Slug Generator</h1>
+<p class="sub">Turn titles into clean URL slugs: lowercase, hyphenated, accents transliterated. One per line for batches. Runs in your browser.</p>
+
+<div class="tool">
+  <div class="tool-head">slug it</div>
+  <div class="tool-grid">
+    <div><label class="io" for="in">Titles in (one per line)</label>
+      <textarea id="in" spellcheck="false" placeholder="How Frédéric's Café Doubled Revenue - A 2026 Case Study"></textarea></div>
+    <div><label class="io" for="out">Slugs out</label>
+      <textarea id="out" spellcheck="false" readonly></textarea></div>
+  </div>
+  <div class="bar">
+    <button id="run">Slugify</button>
+    <button id="copy" class="ghost" type="button">Copy result</button>
+    <button id="clear" class="ghost" type="button">Clear</button>
+    <p class="err" id="err" role="alert"></p>
+    <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+    <span class="bar-note">Local execution &middot; no network egress</span>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> The conversion happens in this page's JavaScript. Nothing you paste here leaves your machine, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Paste one title per line and get <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.3" rel="noopener">URL-ready slugs</a>: lowercase, words joined with single hyphens, punctuation dropped, and accented characters transliterated to their base letters (<code>Caf&eacute;</code> becomes <code>cafe</code>) via Unicode normalization rather than a lookup table, so it works across Latin-script languages. Hyphens are the right separator - Google has said for years that it treats hyphens as word boundaries in URLs but not underscores - and clean slugs survive being pasted into chat, email, and markdown without percent-encoding noise.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>Why hyphens instead of underscores?</h3>
+<p>Search engines treat hyphens as word separators in URLs; underscores historically glue words together. “blue-widgets” reads as two words to a crawler, “blue_widgets” may not.</p>
+<h3>What happens to accented and non-Latin characters?</h3>
+<p>Accented Latin letters are decomposed and their accents stripped, so é becomes e. Characters with no Latin base form (Chinese, Arabic, emoji) are dropped - for those languages, meaningful slugs need transliteration rules this tool won't pretend to have.</p>
+<h3>Are stop words like “a” and “the” removed?</h3>
+<p>No. Slug length rarely matters to ranking, and removing words can change meaning (“the-office” vs “office”). Trim words by hand where you actually want to.</p>
+<h3>Is there a length limit for slugs?</h3>
+<p>No technical one worth worrying about, but shorter slugs are kinder in shared links. A common practice is keeping the 3-6 words that carry the title's meaning.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/ab-test-calculator/"><span class="t">a/b significance</span><span class="d">Is your test result real? Rates, p-value, and a plain verdict.</span></a></li>
+<li><a href="/utm-builder/"><span class="t">utm builder</span><span class="d">Campaign URLs with correctly-encoded UTM parameters.</span></a></li>
+<li><a href="/open-graph-preview/"><span class="t">og preview</span><span class="d">See your social share card before you ship it; copy the tags.</span></a></li>
+<li><a href="/word-counter/"><span class="t">word count</span><span class="d">Words, characters, sentences, reading and speaking time.</span></a></li>
+</ul>
+</section>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function convert(input, input2) { 
+      if (!input.trim()) return "";
+      return input.split("\n").map(function (line) {
+        return line.normalize("NFKD").replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      }).join("\n"); }
+  function fail(e) { $("out").value = ""; $("err").textContent = String(e.message || e); }
+  $("run").addEventListener("click", function () {
+    $("err").textContent = "";
+    var i2 = $("in2") ? $("in2").value : undefined;
+    try { Promise.resolve(convert($("in").value, i2)).then(function (v) { $("out").value = v; }, fail); }
+    catch (e) { fail(e); }
+  });
+  $("copy").addEventListener("click", function () {
+    if ($("out").value) navigator.clipboard.writeText($("out").value);
+  });
+  $("clear").addEventListener("click", function () {
+    $("in").value = ""; if ($("in2")) $("in2").value = "";
+    $("out").value = ""; $("err").textContent = "";
+    var pv = $("preview"); if (pv) pv.innerHTML = "";
+  });
+})();
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

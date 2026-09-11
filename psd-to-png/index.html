@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PSD to PNG Converter - No Photoshop, No Upload | FileKiln</title>
+<meta name="description" content="Convert a Photoshop PSD file to PNG entirely in your browser. The file is parsed locally and never uploaded - no account, no watermark, no server.">
+<link rel="canonical" href="https://filekiln.com/psd-to-png/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="PSD to PNG Converter - No Photoshop, No Upload | FileKiln">
+<meta property="og:description" content="Convert a Photoshop PSD file to PNG entirely in your browser. The file is parsed locally and never uploaded - no account, no watermark, no server.">
+<meta property="og:url" content="https://filekiln.com/psd-to-png/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PSD to PNG Converter - No Photoshop, No Upload | FileKiln">
+<meta name="twitter:description" content="Convert a Photoshop PSD file to PNG entirely in your browser. The file is parsed locally and never uploaded - no account, no watermark, no server.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"PSD to PNG Converter","url":"https://filekiln.com/psd-to-png/","description":"Convert a Photoshop PSD file to PNG entirely in your browser. The file is parsed locally and never uploaded - no account, no watermark, no server.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I convert a PSD to PNG without Photoshop?","acceptedAnswer":{"@type":"Answer","text":"Yes - that is the point. The parser reads the Photoshop file format itself, so nothing from Adobe needs to be installed or licensed. If a designer sent you a .psd and all you need is the image, this page is the whole workflow."}},{"@type":"Question","name":"Is my PSD uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The file is read with JavaScript in this tab, parsed locally, and rendered to an in-page canvas. You can load the page, disconnect from the internet, and the conversion still works."}},{"@type":"Question","name":"Which parser does this use?","acceptedAnswer":{"@type":"Answer","text":"The open-source @webtoon/psd parser (MIT licensed), built and maintained by the WEBTOON engineering team. It reads the standard Photoshop file format, including RLE-compressed image data and .psb large-document files."}},{"@type":"Question","name":"Does it keep my layers?","acceptedAnswer":{"@type":"Answer","text":"It exports the flattened composite - the merged image as Photoshop would show it - at full resolution. Extracting individual layers as separate PNGs is a planned addition; converting to layered formats is not possible in PNG, which has no layers."}},{"@type":"Question","name":"Why does my very old or unusual PSD fail?","acceptedAnswer":{"@type":"Answer","text":"Files saved in exotic color modes (Duotone, some Lab/CMYK variants) or by non-Photoshop editors occasionally deviate from the spec. The error message says what the parser objected to; re-saving the file as RGB in your editor usually fixes it."}},{"@type":"Question","name":"Is there a file size limit?","acceptedAnswer":{"@type":"Answer","text":"Only your machine's memory. Multi-hundred-megabyte PSBs parse fine on a modern laptop; the browser tab does the work a desktop app would."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>PSD to PNG Converter</h1>
+<p class="sub">Convert a Photoshop PSD file to PNG entirely in your browser. The file is parsed locally and never uploaded - no account, no watermark, no server.</p>
+
+<div class="tool">
+  <div class="tool-head">psd → png</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".psd,.psb">
+    <label for="file"><strong>Choose a .psd or .psb file</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <a id="dl" class="btn-dl" hidden>Download PNG</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <canvas id="cv" hidden></canvas>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Pick a Photoshop <code>.psd</code> (or large-format <code>.psb</code>) file and get the flattened image back as a <a href="https://www.libpng.org/pub/png/spec/1.2/PNG-Contents.html" rel="noopener">PNG</a>, rendered by an open-source PSD parser running inside this page. Nothing is uploaded - which is exactly how converting design files should work, because PSDs routinely contain unreleased product art, client work under NDA, and layered material you never agreed to hand to a stranger's server. The conversion produces the merged, full-resolution composite with a live preview, and the PNG downloads straight from your browser's memory. No account, no watermark, no email-me-the-result.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>Can I convert a PSD to PNG without Photoshop?</h3>
+<p>Yes - that is the point. The parser reads the Photoshop file format itself, so nothing from Adobe needs to be installed or licensed. If a designer sent you a .psd and all you need is the image, this page is the whole workflow.</p>
+<h3>Is my PSD uploaded anywhere?</h3>
+<p>No. The file is read with JavaScript in this tab, parsed locally, and rendered to an in-page canvas. You can load the page, disconnect from the internet, and the conversion still works.</p>
+<h3>Which parser does this use?</h3>
+<p>The open-source @webtoon/psd parser (MIT licensed), built and maintained by the WEBTOON engineering team. It reads the standard Photoshop file format, including RLE-compressed image data and .psb large-document files.</p>
+<h3>Does it keep my layers?</h3>
+<p>It exports the flattened composite - the merged image as Photoshop would show it - at full resolution. Extracting individual layers as separate PNGs is a planned addition; converting to layered formats is not possible in PNG, which has no layers.</p>
+<h3>Why does my very old or unusual PSD fail?</h3>
+<p>Files saved in exotic color modes (Duotone, some Lab/CMYK variants) or by non-Photoshop editors occasionally deviate from the spec. The error message says what the parser objected to; re-saving the file as RGB in your editor usually fixes it.</p>
+<h3>Is there a file size limit?</h3>
+<p>Only your machine's memory. Multi-hundred-megabyte PSBs parse fine on a modern laptop; the browser tab does the work a desktop app would.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/bank-statement-to-csv/"><span class="t">statement → csv</span><span class="d">Statement PDF in, clean transaction CSV/Excel out - never uploaded.</span></a></li>
+<li><a href="/stl-to-gcode/"><span class="t">stl → gcode</span><span class="d">Real CuraEngine slicing in your tab - STL in, G-code out.</span></a></li>
+<li><a href="/pdf-to-csv/"><span class="t">pdf → csv</span><span class="d">PDF tables out as CSV - bank statements never leave your machine.</span></a></li>
+<li><a href="/mp3-to-midi/"><span class="t">mp3 → midi</span><span class="d">Audio in, MIDI notes out - Spotify's ML model, run locally.</span></a></li>
+</ul>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Printable templates</h2>
+<ul class="tool-index">
+<li><a href="/templates/real-estate-flyer/"><span class="t">real estate flyer</span><span class="d">Listing details and a photo in, a clean printable property flyer out.</span></a></li>
+</ul>
+</section>
+<script type="module">
+import Psd from "https://cdn.jsdelivr.net/npm/@webtoon/psd@0.4.0/dist/index.js";
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+async function handle(f) {
+  $("err").textContent = ""; $("dl").hidden = true; $("cv").hidden = true;
+  if (!f) return;
+  $("stat").textContent = "Reading " + f.name + " (" + Math.round(f.size / 1024) + " KB) locally\u2026";
+  let psd = null;
+  try {
+    psd = Psd.parse(await f.arrayBuffer());
+    const pixels = await psd.composite();
+    const cv = $("cv");
+    try {
+      cv.width = psd.width; cv.height = psd.height;
+      cv.getContext("2d").putImageData(new ImageData(pixels, psd.width, psd.height), 0, 0);
+    } catch (canvasErr) {
+      throw new Error("This PSD is " + psd.width + " \u00d7 " + psd.height + " px. It parsed fine, but that's larger than the canvas this browser can render (browsers typically cap canvases around 16,384px per side, or roughly 268 million total pixels). Downscale the image and try again.");
+    }
+    cv.hidden = false;
+    const blob = await new Promise((res) => cv.toBlob(res, "image/png"));
+    const dl = $("dl");
+    if (dl.href) URL.revokeObjectURL(dl.href);
+    dl.href = URL.createObjectURL(blob);
+    dl.download = f.name.replace(/\.(psd|psb)$/i, "") + ".png";
+    dl.hidden = false;
+    $("stat").textContent = psd.width + " \u00d7 " + psd.height + " px \u2192 PNG, " + Math.round(blob.size / 1024) + " KB. Preview below.";
+  } catch (e) {
+    $("stat").textContent = "";
+    $("err").textContent = (psd ? "Could not render that PSD: " : "Could not read that file as a Photoshop document: ") + (e && e.message || e);
+  }
+}
+input.addEventListener("change", () => handle(input.files[0]));
+zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("hot"); });
+zone.addEventListener("dragleave", () => zone.classList.remove("hot"));
+zone.addEventListener("drop", (e) => { e.preventDefault(); zone.classList.remove("hot"); handle(e.dataTransfer.files[0]); });
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

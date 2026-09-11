@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cron Expression Parser - Explain Any Crontab Line | FileKiln</title>
+<meta name="description" content="Paste a cron expression and get a field-by-field explanation plus the next five run times in your local timezone. Runs in your browser.">
+<link rel="canonical" href="https://filekiln.com/cron-expression-parser/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="Cron Expression Parser - Explain Any Crontab Line | FileKiln">
+<meta property="og:description" content="Paste a cron expression and get a field-by-field explanation plus the next five run times in your local timezone. Runs in your browser.">
+<meta property="og:url" content="https://filekiln.com/cron-expression-parser/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cron Expression Parser - Explain Any Crontab Line | FileKiln">
+<meta name="twitter:description" content="Paste a cron expression and get a field-by-field explanation plus the next five run times in your local timezone. Runs in your browser.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Cron Expression Parser","url":"https://filekiln.com/cron-expression-parser/","description":"Paste a cron expression and get a field-by-field explanation plus the next five run times in your local timezone. Runs in your browser.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What do the five fields mean?","acceptedAnswer":{"@type":"Answer","text":"In order: minute (0-59), hour (0-23), day of month (1-31), month (1-12), day of week (0-7, where both 0 and 7 mean Sunday). Each field takes numbers, ranges, lists, steps, or * for every value."}},{"@type":"Question","name":"Why does my job run on days I didn't expect?","acceptedAnswer":{"@type":"Answer","text":"Almost always the OR rule: if you restrict both day-of-month and day-of-week (say “1 * * 1” hoping for Mondays that are the 1st), standard cron fires on the 1st OR on Mondays. Restrict only one of the two fields, or guard inside the script."}},{"@type":"Question","name":"Are the next-run times in my timezone?","acceptedAnswer":{"@type":"Answer","text":"Yes - they are computed with your browser's local clock. Remember the server running the actual crontab uses its own timezone, which on most servers is UTC."}},{"@type":"Question","name":"Does this support 6-field (seconds) or @daily syntax?","acceptedAnswer":{"@type":"Answer","text":"No. Six-field expressions are Quartz/Spring syntax, not crontab, and @daily-style shortcuts vary by implementation. Translate them to five fields (@daily is “0 0 * * *”) and paste that."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>Cron Expression Parser</h1>
+<p class="sub">Paste a cron expression and get a field-by-field explanation plus the next five run times in your local timezone. Runs in your browser.</p>
+
+<div class="tool">
+  <div class="tool-head">cron explain</div>
+  <div class="tool-grid">
+    <div><label class="io" for="in">Cron expression in</label>
+      <textarea id="in" spellcheck="false" placeholder="*/15 9-17 * * mon-fri"></textarea></div>
+    <div><label class="io" for="out">Schedule out</label>
+      <textarea id="out" spellcheck="false" readonly></textarea></div>
+  </div>
+  <div class="bar">
+    <button id="run">Explain</button>
+    <button id="copy" class="ghost" type="button">Copy result</button>
+    <button id="clear" class="ghost" type="button">Clear</button>
+    <p class="err" id="err" role="alert"></p>
+    <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+    <span class="bar-note">Local execution &middot; no network egress</span>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> The conversion happens in this page's JavaScript. Nothing you paste here leaves your machine, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Paste any <a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html" rel="noopener">standard five-field crontab</a> expression and get two things: a field-by-field breakdown of what each part means, and the next five times it will actually fire, computed in your local timezone. Steps (<code>*/15</code>), ranges (<code>9-17</code>), lists (<code>1,15</code>), and names (<code>mon-fri</code>, <code>jan</code>) are all supported. The parser also flags cron's most misunderstood rule: when both the day-of-month and day-of-week fields are restricted, standard cron fires when <em>either</em> matches - an OR, not the AND almost everyone expects. Schedules that look right but fire on the wrong days are usually this rule.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>What do the five fields mean?</h3>
+<p>In order: minute (0-59), hour (0-23), day of month (1-31), month (1-12), day of week (0-7, where both 0 and 7 mean Sunday). Each field takes numbers, ranges, lists, steps, or * for every value.</p>
+<h3>Why does my job run on days I didn't expect?</h3>
+<p>Almost always the OR rule: if you restrict both day-of-month and day-of-week (say “1 * * 1” hoping for Mondays that are the 1st), standard cron fires on the 1st OR on Mondays. Restrict only one of the two fields, or guard inside the script.</p>
+<h3>Are the next-run times in my timezone?</h3>
+<p>Yes - they are computed with your browser's local clock. Remember the server running the actual crontab uses its own timezone, which on most servers is UTC.</p>
+<h3>Does this support 6-field (seconds) or @daily syntax?</h3>
+<p>No. Six-field expressions are Quartz/Spring syntax, not crontab, and @daily-style shortcuts vary by implementation. Translate them to five fields (@daily is “0 0 * * *”) and paste that.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/regex-tester/"><span class="t">regex test</span><span class="d">Pattern on line 1, text below - every match and group listed.</span></a></li>
+<li><a href="/uuid-generator/"><span class="t">uuid v4</span><span class="d">Cryptographically random UUID v4s, one or a thousand at a time.</span></a></li>
+<li><a href="/password-generator/"><span class="t">password gen</span><span class="d">Crypto-random passwords with the entropy math shown.</span></a></li>
+<li><a href="/sha256-hash-generator/"><span class="t">sha hash</span><span class="d">SHA-256, SHA-1, and SHA-512 digests of any text, computed locally.</span></a></li>
+</ul>
+</section>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function convert(input, input2) { 
+      var s = input.trim();
+      if (!s) return "";
+      var fields = s.split(/\s+/);
+      if (fields.length !== 5) throw new Error("A cron expression has 5 fields (minute hour day-of-month month day-of-week); this has " + fields.length + ". Seconds fields (6-field Quartz syntax) are not standard crontab.");
+      var NAMES = { jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12,sun:0,mon:1,tue:2,wed:3,thu:4,fri:5,sat:6 };
+      function parseField(f, lo, hi, isDow) {
+        f = f.toLowerCase().replace(/[a-z]{3}/g, function (w) { return NAMES[w] === undefined ? w : String(NAMES[w]); });
+        var set = {}, star = f === "*";
+        f.split(",").forEach(function (part) {
+          var step = 1, sm = part.match(/^(.+)\/(\d+)$/);
+          if (sm) { part = sm[1]; step = parseInt(sm[2], 10); if (step < 1) throw new Error("Step must be at least 1."); }
+          var a, b, rm;
+          if (part === "*") { a = lo; b = hi; }
+          else if (/^\d+$/.test(part)) { a = b = parseInt(part, 10); }
+          else if ((rm = part.match(/^(\d+)-(\d+)$/))) { a = parseInt(rm[1], 10); b = parseInt(rm[2], 10); }
+          else throw new Error('Cannot parse "' + part + '".');
+          if (a < lo || b > hi || a > b) throw new Error('"' + part + '" is outside the ' + lo + "-" + hi + " range for this field.");
+          for (var v = a; v <= b; v += step) set[isDow && v === 7 ? 0 : v] = true;
+        });
+        return { set: set, star: star };
+      }
+      var MIN = parseField(fields[0], 0, 59), HR = parseField(fields[1], 0, 23),
+          DOM = parseField(fields[2], 1, 31), MON = parseField(fields[3], 1, 12),
+          DOW = parseField(fields[4], 0, 7, true);
+      function list(p, name) {
+        if (p.star) return "every " + name;
+        return Object.keys(p.set).map(Number).sort(function (a, b) { return a - b; }).join(", ");
+      }
+      var runs = [], d = new Date(); d.setSeconds(0, 0); d.setMinutes(d.getMinutes() + 1);
+      var guard = 0;
+      while (runs.length < 5 && guard++ < 400000) {
+        var domOk = DOM.set[d.getDate()], dowOk = DOW.set[d.getDay()];
+        var dayOk = DOM.star && DOW.star ? true : (!DOM.star && !DOW.star) ? (domOk || dowOk) : DOM.star ? dowOk : domOk;
+        if (!MON.set[d.getMonth() + 1] || !dayOk) { d.setDate(d.getDate() + 1); d.setHours(0, 0, 0, 0); continue; }
+        if (!HR.set[d.getHours()]) { d.setHours(d.getHours() + 1, 0, 0, 0); continue; }
+        if (!MIN.set[d.getMinutes()]) { d.setMinutes(d.getMinutes() + 1); continue; }
+        runs.push(new Date(d)); d.setMinutes(d.getMinutes() + 1);
+      }
+      var out = [
+        "minute        " + list(MIN, "minute"),
+        "hour          " + list(HR, "hour"),
+        "day of month  " + list(DOM, "day"),
+        "month         " + list(MON, "month"),
+        "day of week   " + list(DOW, "weekday") + (DOW.star ? "" : "   (0 = Sunday)")
+      ];
+      if (!DOM.star && !DOW.star) out.push("", "note: day-of-month AND day-of-week are both restricted.", "Standard cron runs when EITHER matches (an OR, not an AND).");
+      out.push("", runs.length ? "next " + runs.length + " runs (your local time):" : "No matching time found in the next several years - is the date possible?");
+      runs.forEach(function (r) {
+        out.push("  " + r.toLocaleString(undefined, { weekday: "short", year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit" }));
+      });
+      return out.join("\n"); }
+  function fail(e) { $("out").value = ""; $("err").textContent = String(e.message || e); }
+  $("run").addEventListener("click", function () {
+    $("err").textContent = "";
+    var i2 = $("in2") ? $("in2").value : undefined;
+    try { Promise.resolve(convert($("in").value, i2)).then(function (v) { $("out").value = v; }, fail); }
+    catch (e) { fail(e); }
+  });
+  $("copy").addEventListener("click", function () {
+    if ($("out").value) navigator.clipboard.writeText($("out").value);
+  });
+  $("clear").addEventListener("click", function () {
+    $("in").value = ""; if ($("in2")) $("in2").value = "";
+    $("out").value = ""; $("err").textContent = "";
+    var pv = $("preview"); if (pv) pv.innerHTML = "";
+  });
+})();
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

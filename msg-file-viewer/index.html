@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MSG File Viewer - Open .msg Without Outlook | FileKiln</title>
+<meta name="description" content="Open Outlook .msg and .eml email files in your browser - headers, body, and attachments - without Outlook and without uploading.">
+<link rel="canonical" href="https://filekiln.com/msg-file-viewer/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="MSG File Viewer - Open .msg Without Outlook | FileKiln">
+<meta property="og:description" content="Open Outlook .msg and .eml email files in your browser - headers, body, and attachments - without Outlook and without uploading.">
+<meta property="og:url" content="https://filekiln.com/msg-file-viewer/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MSG File Viewer - Open .msg Without Outlook | FileKiln">
+<meta name="twitter:description" content="Open Outlook .msg and .eml email files in your browser - headers, body, and attachments - without Outlook and without uploading.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MSG File Viewer","url":"https://filekiln.com/msg-file-viewer/","description":"Open Outlook .msg and .eml email files in your browser - headers, body, and attachments - without Outlook and without uploading.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I open a .msg file without Outlook?","acceptedAnswer":{"@type":"Answer","text":"Yes. A .msg file is a Microsoft compound document, and this page parses that format directly in your browser - sender, recipients, subject, date, body, and attachments - with no Outlook, no plugin, and no upload. Drop the file and read the email."}},{"@type":"Question","name":"Is my email uploaded to view it?","acceptedAnswer":{"@type":"Answer","text":"No - never. Emails are among the most private files there are, which is exactly why this viewer runs entirely as JavaScript inside your tab. There is no upload endpoint on this site. Load the page, go offline, and it still opens your files."}},{"@type":"Question","name":"Why don't remote images load?","acceptedAnswer":{"@type":"Answer","text":"By design. Images hosted on a sender's server are how tracking pixels work - loading them would both phone home and break this site's no-network promise. Images embedded inside the email itself are shown normally; remote ones are blocked by the viewer's sandbox."}},{"@type":"Question","name":"Can I save the attachments?","acceptedAnswer":{"@type":"Answer","text":"Yes - every attachment found in the file is listed with its name and size, and each downloads straight out of your browser's memory. Nothing round-trips through a server."}},{"@type":"Question","name":"Does it open .eml files too?","acceptedAnswer":{"@type":"Answer","text":"Yes. The .eml format (standard internet mail, used by Thunderbird, Apple Mail, and most export tools) is parsed alongside .msg - including multipart bodies, encoded headers, quoted-printable and base64 parts, and attachments."}},{"@type":"Question","name":"What doesn't it handle yet?","acceptedAnswer":{"@type":"Answer","text":"Honestly: RTF-only message bodies (rare - most emails carry a plain-text or HTML body, which is shown), winmail.dat / TNEF wrappers. For .mbox mailbox archives use our MBOX viewer. Password-protected or corrupted compound files are reported as unreadable rather than guessed at. Email hello@filekiln.com if one of these matters to you."}},{"@type":"Question","name":"How do I open a .msg file on a Mac?","acceptedAnswer":{"@type":"Answer","text":"The .msg format is Outlook-for-Windows' own container, which is why double-clicking one on a Mac gets you nothing - even Outlook for Mac stores mail differently. This page is the shortcut: it runs in the browser, so macOS, Windows, Linux, and ChromeOS all open the file the same way, with no install."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>MSG File Viewer</h1>
+<p class="sub">Open Outlook .msg and .eml email files right in your browser - headers, body, and attachments - without Outlook and without uploading. The email never leaves your machine.</p>
+<div class="tool">
+  <div class="tool-head">msg / eml → readable email</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".msg,.eml,message/rfc822">
+    <label for="file"><strong>Choose a .msg or .eml file</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <div id="mail" hidden>
+      <div id="mhead"></div>
+      <div id="matt"></div>
+      <iframe id="mbody" title="Email body" sandbox="allow-popups allow-popups-to-escape-sandbox" style="width:100%;min-height:380px;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;"></iframe>
+      <details style="margin-top:12px;"><summary style="cursor:pointer;font:500 13px var(--sans);color:var(--muted);">Raw message headers</summary>
+      <textarea id="mraw" spellcheck="false" readonly style="min-height:160px;margin-top:8px;"></textarea></details>
+    </div>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, remote tracking images are blocked, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Someone sends you a <code>.msg</code> file and you don't have Outlook. The search results offer two kinds of help: install something, or upload the email - and an email is exactly the file you shouldn't hand to a stranger's server. It carries addresses, names, whole conversations, attachments. This viewer is the third answer: a <code>.msg</code> file is a Microsoft compound document with <a href="https://learn.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oxmsg/" rel="noopener">a known structure</a>, and this page parses it directly - the sector tables, the property streams, the attachment storages - in JavaScript, in your tab. Unplug the network after the page loads and it keeps opening files, because there was never anything to send.</p>
+<p>It reads both of email's file formats: Outlook's <code>.msg</code> and the standard <code>.eml</code> (Thunderbird, Apple Mail, most "export message" buttons), including multipart bodies, encoded subject lines, quoted-printable and base64 parts. HTML bodies render in a sandboxed frame with scripts stripped and remote images blocked - the embedded images the sender attached are shown, the tracking pixels their newsletter tool added are not. Attachments are listed and download straight from browser memory.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>Can I open a .msg file without Outlook?</h3>
+<p>Yes. A .msg file is a Microsoft compound document, and this page parses that format directly in your browser - sender, recipients, subject, date, body, and attachments - with no Outlook, no plugin, and no upload. Drop the file and read the email.</p>
+<h3>Is my email uploaded to view it?</h3>
+<p>No - never. Emails are among the most private files there are, which is exactly why this viewer runs entirely as JavaScript inside your tab. There is no upload endpoint on this site. Load the page, go offline, and it still opens your files.</p>
+<h3>Why don't remote images load?</h3>
+<p>By design. Images hosted on a sender's server are how tracking pixels work - loading them would both phone home and break this site's no-network promise. Images embedded inside the email itself are shown normally; remote ones are blocked by the viewer's sandbox.</p>
+<h3>Can I save the attachments?</h3>
+<p>Yes - every attachment found in the file is listed with its name and size, and each downloads straight out of your browser's memory. Nothing round-trips through a server.</p>
+<h3>Does it open .eml files too?</h3>
+<p>Yes. The .eml format (standard internet mail, used by Thunderbird, Apple Mail, and most export tools) is parsed alongside .msg - including multipart bodies, encoded headers, quoted-printable and base64 parts, and attachments.</p>
+<h3>What doesn't it handle yet?</h3>
+<p>Honestly: RTF-only message bodies (rare - most emails carry a plain-text or HTML body, which is shown), winmail.dat / TNEF wrappers. For .mbox mailbox archives use our <a href="/mbox-viewer/">MBOX viewer</a>. Password-protected or corrupted compound files are reported as unreadable rather than guessed at. Email hello@filekiln.com if one of these matters to you.</p>
+<h3>How do I open a .msg file on a Mac?</h3>
+<p>The .msg format is Outlook-for-Windows' own container, which is why double-clicking one on a Mac gets you nothing - even Outlook for Mac stores mail differently. This page is the shortcut: it runs in the browser, so macOS, Windows, Linux, and ChromeOS all open the file the same way, with no install.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/bank-statement-to-csv/"><span class="t">statement → csv</span><span class="d">Statement PDF in, clean transaction CSV/Excel out - never uploaded.</span></a></li>
+<li><a href="/psd-to-png/"><span class="t">psd → png</span><span class="d">Photoshop file in, flattened PNG out - parsed locally, never uploaded.</span></a></li>
+<li><a href="/pdf-to-csv/"><span class="t">pdf → csv</span><span class="d">PDF tables out as CSV - bank statements never leave your machine.</span></a></li>
+<li><a href="/base64-encode-decode/"><span class="t">base64 ⇄ text</span><span class="d">Base64 both directions, UTF-8 safe, emoji included.</span></a></li>
+</ul>
+</section>
+<style>
+#mhead{border:1px solid var(--line);border-radius:var(--r-md);background:var(--raised);padding:14px 16px;margin:0 0 12px;}
+#mhead .subj{font:600 17px var(--display);margin:0 0 8px;}
+#mhead .row{font:13px var(--sans);color:var(--muted);line-height:1.7;}
+#mhead .row b{color:var(--text);font-weight:600;}
+#mhead .row .lbl{display:inline-block;width:44px;color:var(--faint);}
+#matt{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;}
+#matt a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;background:var(--panel);
+  padding:7px 14px;font:500 12.5px var(--sans);color:var(--text);}
+#matt a:hover{border-color:var(--accent);text-decoration:none;}
+#matt a .sz{color:var(--faint);font:11px var(--mono);}
+</style>
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+
+/* ---------- shared helpers ---------- */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function fmtSize(n){return n>=1048576?(n/1048576).toFixed(1)+" MB":n>=1024?Math.round(n/1024)+" KB":n+" B";}
+function decodeBytes(u8,cs){try{return new TextDecoder(cs||"utf-8").decode(u8);}catch(e){return new TextDecoder("utf-8").decode(u8);}}
+function utf16(u8){var out="",n=u8.length&~1;for(var i=0;i<n;i+=2){var c=u8[i]|(u8[i+1]<<8);if(c===0)break;out+=String.fromCharCode(c);}return out;}
+function b64ToU8(b64){var bin=atob(b64.replace(/\s+/g,""));var u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return u;}
+
+/* ---------- CFBF (compound file) reader for .msg ---------- */
+function parseCfb(buf){
+  const dv=new DataView(buf), u8=new Uint8Array(buf);
+  if(buf.byteLength<512||dv.getUint32(0,true)!==0xE011CFD0||dv.getUint32(4,true)!==0xE11AB1A1)
+    throw new Error("Not a .msg file - the compound-document signature is missing. If this is an .eml, rename it or drop it as-is; .eml is detected by content too.");
+  const ssz=1<<dv.getUint16(30,true), cutoff=dv.getUint32(56,true);
+  const nDifat=dv.getUint32(72,true);
+  var difat=[];
+  for(let i=0;i<109;i++)difat.push(dv.getUint32(76+4*i,true));
+  var ds=dv.getUint32(68,true);
+  for(let i=0;i<nDifat&&ds<0xFFFFFFFE;i++){
+    const off=512+ds*ssz;
+    for(let j=0;j<ssz/4-1;j++)difat.push(dv.getUint32(off+4*j,true));
+    ds=dv.getUint32(off+ssz-4,true);
+  }
+  const fat=[];
+  difat.forEach(function(s){if(s>=0xFFFFFFFE)return;const off=512+s*ssz;for(let j=0;j<ssz/4;j++)fat.push(dv.getUint32(off+4*j,true));});
+  function chain(start,tbl){const out=[];let s=start,g=0;while(s<0xFFFFFFFE&&g++<2e6){out.push(s);s=tbl[s];if(s===undefined)break;}return out;}
+  function readChain(start,size){const secs=chain(start,fat);const out=new Uint8Array(secs.length*ssz);
+    secs.forEach(function(s,i){out.set(u8.subarray(512+s*ssz,512+s*ssz+ssz),i*ssz);});return out.subarray(0,size);}
+  const dirSecs=chain(dv.getUint32(48,true),fat);
+  const dirBytes=readChain(dv.getUint32(48,true),dirSecs.length*ssz);
+  const entries=[];
+  for(let off=0;off+128<=dirBytes.length;off+=128){
+    const nameLen=dirBytes[off+64]|(dirBytes[off+65]<<8);
+    if(!nameLen||nameLen>64){entries.push(null);continue;}
+    let name="";for(let i=0;i<nameLen-2;i+=2)name+=String.fromCharCode(dirBytes[off+i]|(dirBytes[off+i+1]<<8));
+    const e32=function(o){return (dirBytes[off+o]|(dirBytes[off+o+1]<<8)|(dirBytes[off+o+2]<<16)|(dirBytes[off+o+3]<<24))>>>0;};
+    entries.push({name:name,type:dirBytes[off+66],left:e32(68)|0,right:e32(72)|0,child:e32(76)|0,start:e32(116),size:e32(120)});
+  }
+  const root=entries[0];
+  const miniStream=readChain(root.start,root.size);
+  const miniFat=[];
+  chain(dv.getUint32(60,true),fat).forEach(function(s){const off=512+s*ssz;for(let j=0;j<ssz/4;j++)miniFat.push(dv.getUint32(off+4*j,true));});
+  function readMini(start,size){const out=new Uint8Array(size);let s=start,pos=0,g=0;
+    while(s<0xFFFFFFFE&&pos<size&&g++<2e6){const n=Math.min(64,size-pos);out.set(miniStream.subarray(s*64,s*64+n),pos);pos+=n;s=miniFat[s];if(s===undefined)break;}return out;}
+  const files={};
+  (function walk(id,prefix){
+    if(id<0||id>=entries.length||!entries[id])return;
+    const e=entries[id];
+    walk(e.left,prefix);walk(e.right,prefix);
+    const p=prefix+e.name;
+    if(e.type===2)files[p]={read:function(){return e.size<cutoff?readMini(e.start,e.size):readChain(e.start,e.size);},size:e.size};
+    else walk(e.child,p+"/");
+  })(root.child,"");
+  return files;
+}
+function parseMsg(buf){
+  const files=parseCfb(buf);
+  function str(prefix,id){
+    var k=prefix+"__substg1.0_"+id;
+    if(files[k+"001F"])return utf16(files[k+"001F"].read());
+    if(files[k+"001E"])return decodeBytes(files[k+"001E"].read(),"windows-1252");
+    return "";
+  }
+  const m={
+    subject:str("","0037"), fromName:str("","0C1A"),
+    fromAddr:str("","5D01")||str("","0C1F"),
+    to:str("","0E04"), cc:str("","0E03"),
+    text:str("","1000"), headers:str("","007D"), date:null, html:null, atts:[]
+  };
+  if(files["__substg1.0_10130102"]) m.html=decodeBytes(files["__substg1.0_10130102"].read(),"windows-1252");
+  else{var h=str("","1013"); if(h)m.html=h;}
+  if(m.headers){var dm=m.headers.match(/^Date:\s*(.+)$/mi);if(dm){var d=new Date(dm[1].trim());if(!isNaN(d))m.date=d;}}
+  if(!m.date&&files["__properties_version1.0"]){
+    var p=files["__properties_version1.0"].read(), pv=new DataView(p.buffer,p.byteOffset,p.byteLength);
+    for(var off=32;off+16<=p.length;off+=16){
+      var tag=pv.getUint32(off,true);
+      if(tag===0x00390040||tag===0x0E060040){
+        var lo=pv.getUint32(off+8,true),hi=pv.getUint32(off+12,true);
+        var t=(BigInt(hi)<<32n)|BigInt(lo);
+        var d2=new Date(Number(t/10000n)-11644473600000);
+        if(!isNaN(d2)&&d2.getFullYear()>1990){m.date=d2;break;}
+      }
+    }
+  }
+  Object.keys(files).forEach(function(k){
+    var am=k.match(/^__attach_version1\.0_#\d{8}\/__substg1\.0_37010102$/);
+    if(!am)return;
+    var prefix=k.slice(0,k.indexOf("/")+1);
+    var name=str(prefix,"3707")||str(prefix,"3704")||"attachment";
+    var cid=str(prefix,"3712");
+    var mime=str(prefix,"370E")||"application/octet-stream";
+    m.atts.push({name:name,cid:cid,mime:mime,data:files[k].read()});
+  });
+  return m;
+}
+
+/* ---------- EML (RFC 822) reader ---------- */
+function decodeWord(s){
+  return s.replace(/=\?([^?]+)\?([bBqQ])\?([^?]*)\?=/g,function(_,cs,enc,txt){
+    try{
+      if(enc.toLowerCase()==="b")return decodeBytes(b64ToU8(txt),cs);
+      var bytes=[];txt=txt.replace(/_/g," ");
+      for(var i=0;i<txt.length;i++){
+        if(txt[i]==="="&&i+2<txt.length){bytes.push(parseInt(txt.substr(i+1,2),16));i+=2;}
+        else bytes.push(txt.charCodeAt(i));
+      }
+      return decodeBytes(new Uint8Array(bytes),cs);
+    }catch(e){return _;}
+  });
+}
+function parseHeaders(txt){
+  const h={};
+  txt.split(/\r?\n(?=\S|$)/).forEach(function(line){
+    const m=line.match(/^([\w-]+):\s*([\s\S]*)$/);
+    if(m)h[m[1].toLowerCase()]=decodeWord(m[2].replace(/\r?\n\s+/g," ").trim());
+  });
+  return h;
+}
+function qpDecode(s){
+  s=s.replace(/=\r?\n/g,"");
+  var bytes=[];
+  for(var i=0;i<s.length;i++){
+    if(s[i]==="="&&i+2<s.length&&/[0-9A-Fa-f]{2}/.test(s.substr(i+1,2))){bytes.push(parseInt(s.substr(i+1,2),16));i+=2;}
+    else bytes.push(s.charCodeAt(i)&0xFF);
+  }
+  return new Uint8Array(bytes);
+}
+function partBytes(body,enc){
+  enc=(enc||"").toLowerCase();
+  if(enc==="base64")return b64ToU8(body);
+  if(enc==="quoted-printable")return qpDecode(body);
+  var u=new Uint8Array(body.length);for(var i=0;i<body.length;i++)u[i]=body.charCodeAt(i)&0xFF;return u;
+}
+function charsetOf(ct){var m=(ct||"").match(/charset="?([\w.-]+)"?/i);return m?m[1]:"utf-8";}
+function parseEml(raw){
+  const m={subject:"",fromName:"",fromAddr:"",to:"",cc:"",date:null,text:"",html:null,headers:"",atts:[]};
+  function walkPart(txt){
+    const split=txt.match(/^([\s\S]*?)\r?\n\r?\n([\s\S]*)$/);
+    const headTxt=split?split[1]:txt, body=split?split[2]:"";
+    const h=parseHeaders(headTxt);
+    const ct=h["content-type"]||"text/plain";
+    const bm=ct.match(/boundary="?([^";]+)"?/i);
+    if(/^multipart\//i.test(ct)&&bm){
+      body.split(new RegExp("--"+bm[1].replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?:--)?\r?\n?")).slice(1,-1)
+        .forEach(function(p){if(p.trim())walkPart(p.replace(/\r?\n$/,""));});
+      return;
+    }
+    const enc=h["content-transfer-encoding"], disp=h["content-disposition"]||"";
+    const fn=(disp.match(/filename\*?="?([^";]+)"?/i)||ct.match(/name="?([^";]+)"?/i)||[])[1];
+    const bytes=partBytes(body,enc);
+    if(/attachment/i.test(disp)||(fn&&!/^text\/(plain|html)/i.test(ct))){
+      m.atts.push({name:decodeWord(fn||"attachment"),cid:(h["content-id"]||"").replace(/[<>]/g,""),mime:ct.split(";")[0].trim(),data:bytes});
+    }else if(/^text\/html/i.test(ct)){m.html=decodeBytes(bytes,charsetOf(ct));}
+    else if(/^text\/plain/i.test(ct)){m.text=m.text||decodeBytes(bytes,charsetOf(ct));}
+    else if(fn){m.atts.push({name:decodeWord(fn),cid:(h["content-id"]||"").replace(/[<>]/g,""),mime:ct.split(";")[0].trim(),data:bytes});}
+  }
+  const top=raw.match(/^([\s\S]*?)\r?\n\r?\n/);
+  m.headers=top?top[1]:raw;
+  const h=parseHeaders(m.headers);
+  m.subject=h.subject||"";
+  const fm=(h.from||"").match(/^\s*"?([^"<]*)"?\s*<([^>]+)>/);
+  if(fm){m.fromName=fm[1].trim();m.fromAddr=fm[2];}else m.fromAddr=(h.from||"").trim();
+  m.to=h.to||"";m.cc=h.cc||"";
+  if(h.date){var d=new Date(h.date);if(!isNaN(d))m.date=d;}
+  walkPart(raw);
+  return m;
+}
+
+/* ---------- render ---------- */
+function render(m,fname){
+  const head=$("mhead");
+  head.innerHTML='<p class="subj">'+esc(m.subject||"(no subject)")+"</p>"+
+    '<p class="row"><span class="lbl">From</span><b>'+esc(m.fromName||m.fromAddr||"unknown")+"</b>"+(m.fromName&&m.fromAddr?" &lt;"+esc(m.fromAddr)+"&gt;":"")+"</p>"+
+    (m.to?'<p class="row"><span class="lbl">To</span>'+esc(m.to)+"</p>":"")+
+    (m.cc?'<p class="row"><span class="lbl">Cc</span>'+esc(m.cc)+"</p>":"")+
+    (m.date?'<p class="row"><span class="lbl">Date</span>'+esc(m.date.toLocaleString())+"</p>":"");
+  const att=$("matt");att.innerHTML="";
+  m.atts.forEach(function(a){
+    const url=URL.createObjectURL(new Blob([a.data],{type:a.mime}));
+    const el=document.createElement("a");
+    el.href=url;el.download=a.name;
+    el.innerHTML="&#128206; "+esc(a.name)+' <span class="sz">'+fmtSize(a.data.length)+"</span>";
+    att.appendChild(el);
+  });
+  var html=m.html;
+  if(html){
+    m.atts.forEach(function(a){
+      if(!a.cid)return;
+      var url="data:"+(a.mime||"image/png")+";base64,"+btoa(Array.from(a.data,function(b){return String.fromCharCode(b);}).join(""));
+      html=html.split("cid:"+a.cid).join(url);
+    });
+    html=html.replace(/<script[\s\S]*?<\/script\s*>/gi,"");
+    $("mbody").srcdoc='<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data:; style-src \'unsafe-inline\'">'+
+      '<base target="_blank">'+html;
+  }else{
+    $("mbody").srcdoc='<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'">'+
+      '<pre style="white-space:pre-wrap;font:14px/1.6 system-ui,sans-serif;margin:12px;">'+esc(m.text||"(no readable body - this message may carry an RTF-only body, which is not decoded yet)")+"</pre>";
+  }
+  $("mraw").value=m.headers||"(no transport headers in this file)";
+  $("mail").hidden=false;
+  $("stat").textContent=fname+" opened locally · "+(m.atts.length?m.atts.length+" attachment"+(m.atts.length===1?"":"s")+" · ":"")+"remote images blocked, scripts stripped.";
+}
+
+async function handle(f){
+  $("err").textContent="";$("stat").textContent="";$("mail").hidden=true;
+  if(!f)return;
+  $("stat").textContent="Reading "+f.name+" ("+fmtSize(f.size)+") locally…";
+  try{
+    const buf=await f.arrayBuffer();
+    const u8=new Uint8Array(buf);
+    var isCfb=u8.length>7&&u8[0]===0xD0&&u8[1]===0xCF&&u8[2]===0x11&&u8[3]===0xE0;
+    var m=isCfb?parseMsg(buf):parseEml(decodeBytes(u8,"utf-8"));
+    if(!isCfb&&!m.subject&&!m.fromAddr&&!m.text&&!m.html)
+      throw new Error("This doesn't look like a .msg or .eml email - no compound-file signature and no mail headers were found.");
+    render(m,f.name);
+  }catch(e){
+    $("stat").textContent="";
+    $("err").textContent=String(e&&e.message||e);
+  }
+}
+input.addEventListener("change",function(){handle(input.files[0]);});
+zone.addEventListener("dragover",function(e){e.preventDefault();zone.classList.add("hot");});
+zone.addEventListener("dragleave",function(){zone.classList.remove("hot");});
+zone.addEventListener("drop",function(e){e.preventDefault();zone.classList.remove("hot");handle(e.dataTransfer.files[0]);});
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

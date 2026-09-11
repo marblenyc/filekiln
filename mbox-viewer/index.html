@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MBOX Viewer - Open Mailbox Files, No Thunderbird | FileKiln</title>
+<meta name="description" content="Open an .mbox mailbox file, Gmail Takeout included, in your browser. Browse messages, read bodies, save attachments. Nothing is uploaded.">
+<link rel="canonical" href="https://filekiln.com/mbox-viewer/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="MBOX Viewer - Open Mailbox Files, No Thunderbird | FileKiln">
+<meta property="og:description" content="Open an .mbox mailbox file, Gmail Takeout included, in your browser. Browse messages, read bodies, save attachments. Nothing is uploaded.">
+<meta property="og:url" content="https://filekiln.com/mbox-viewer/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MBOX Viewer - Open Mailbox Files, No Thunderbird | FileKiln">
+<meta name="twitter:description" content="Open an .mbox mailbox file, Gmail Takeout included, in your browser. Browse messages, read bodies, save attachments. Nothing is uploaded.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"MBOX Viewer","url":"https://filekiln.com/mbox-viewer/","description":"Open an .mbox mailbox file, Gmail Takeout included, in your browser. Browse messages, read bodies, save attachments. Nothing is uploaded.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I open an .mbox file without Thunderbird?","acceptedAnswer":{"@type":"Answer","text":"Drop it on this page. The mbox format is a plain concatenation of email messages, and this viewer indexes it in your browser - a message list with sender, subject, and date, and a full reader for each message including attachments. No mail client, no import, no upload."}},{"@type":"Question","name":"Can it open a Gmail Takeout export?","acceptedAnswer":{"@type":"Answer","text":"Yes - Google Takeout delivers your Gmail as .mbox, and that is exactly what this page reads. A whole mail archive is about as private as files get, so the fact that it never leaves your machine is the point."}},{"@type":"Question","name":"Is my mail archive uploaded?","acceptedAnswer":{"@type":"Answer","text":"No - never. The file is indexed and read entirely by JavaScript in your tab. There is no upload endpoint on this site. Load the page, go offline, and it still works."}},{"@type":"Question","name":"How large a file can it handle?","acceptedAnswer":{"@type":"Answer","text":"The whole file is held in your browser's memory, so a few hundred megabytes is comfortable on a normal machine; multi-gigabyte archives depend on your RAM. Messages are only decoded when you open them, which keeps browsing fast even in big boxes. If your archive is too big, split it by year in Takeout."}},{"@type":"Question","name":"Are remote images and scripts blocked?","acceptedAnswer":{"@type":"Answer","text":"Yes - message bodies render in a sandboxed frame with scripts stripped and remote images blocked, so newsletter tracking pixels stay dead. Images embedded in the message itself are shown."}},{"@type":"Question","name":"Can't I just open an mbox file in a text editor?","acceptedAnswer":{"@type":"Answer","text":"Technically yes - mbox is a 1970s plain-text format, messages stacked end to end with From separator lines. Practically no: a Takeout export is thousands of messages with base64-encoded bodies and attachments inlined as text walls, and editors choke on the file size. This viewer reads the same plain text, but with an index, decoding, and a message list - and Thunderbird's known slowdown on multi-gigabyte imports never enters the picture."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>MBOX Viewer</h1>
+<p class="sub">Open an .mbox mailbox file - Gmail Takeout included - right in your browser. Browse messages, read bodies, save attachments. The archive never leaves your machine.</p>
+<div class="tool">
+  <div class="tool-head">mbox → readable mailbox</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".mbox,application/mbox">
+    <label for="file"><strong>Choose an .mbox file</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <div id="list" style="max-height:300px;overflow:auto;margin:0 0 14px;"></div>
+    <div id="mail" hidden>
+      <div id="mhead"></div>
+      <div id="matt"></div>
+      <iframe id="mbody" title="Email body" sandbox="allow-popups allow-popups-to-escape-sandbox" style="width:100%;min-height:340px;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;"></iframe>
+    </div>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your archive is opened with JavaScript inside this page. It is never transmitted, remote tracking images are blocked, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Google Takeout hands you your Gmail as an <code>.mbox</code> file, and then leaves you alone with it: no Google tool opens it, and the standard advice is "install Thunderbird and import your entire mail history into it," which is a lot of ceremony to read some emails. The other advice - an upload-based mbox viewer - is worse, because a mail archive is the single most private file you own. This page is the quiet third option: <a href="https://datatracker.ietf.org/doc/html/rfc4155" rel="noopener">mbox</a> is just messages concatenated with <code>From&nbsp;</code> separator lines, so the viewer indexes those boundaries in your browser, lists every message, and decodes one only when you click it.</p>
+<p>The reader is the same engine as our <a href="/msg-file-viewer/">MSG / EML viewer</a>: multipart bodies, encoded subjects, quoted-printable and base64, attachments downloadable from memory, HTML rendered in a sandboxed frame with scripts stripped and remote tracking images blocked. Browsing stays fast in big boxes because nothing is decoded until you ask.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>How do I open an .mbox file without Thunderbird?</h3>
+<p>Drop it on this page. The mbox format is a plain concatenation of email messages, and this viewer indexes it in your browser - a message list with sender, subject, and date, and a full reader for each message including attachments. No mail client, no import, no upload.</p>
+<h3>Can it open a Gmail Takeout export?</h3>
+<p>Yes - Google Takeout delivers your Gmail as .mbox, and that is exactly what this page reads. A whole mail archive is about as private as files get, so the fact that it never leaves your machine is the point.</p>
+<h3>Is my mail archive uploaded?</h3>
+<p>No - never. The file is indexed and read entirely by JavaScript in your tab. There is no upload endpoint on this site. Load the page, go offline, and it still works.</p>
+<h3>How large a file can it handle?</h3>
+<p>The whole file is held in your browser's memory, so a few hundred megabytes is comfortable on a normal machine; multi-gigabyte archives depend on your RAM. Messages are only decoded when you open them, which keeps browsing fast even in big boxes. If your archive is too big, split it by year in Takeout.</p>
+<h3>Are remote images and scripts blocked?</h3>
+<p>Yes - message bodies render in a sandboxed frame with scripts stripped and remote images blocked, so newsletter tracking pixels stay dead. Images embedded in the message itself are shown.</p>
+<h3>Can't I just open an mbox file in a text editor?</h3>
+<p>Technically yes - mbox is a 1970s plain-text format, messages stacked end to end with From separator lines. Practically no: a Takeout export is thousands of messages with base64-encoded bodies and attachments inlined as text walls, and editors choke on the file size. This viewer reads the same plain text, but with an index, decoding, and a message list - and Thunderbird's known slowdown on multi-gigabyte imports never enters the picture.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/msg-file-viewer/"><span class="t">msg / eml → readable email</span><span class="d">Open Outlook emails - body, headers, attachments - without Outlook.</span></a></li>
+<li><a href="/ics-file-viewer/"><span class="t">ics → readable events</span><span class="d">Open calendar files - events, attendees, locations - and export CSV.</span></a></li>
+<li><a href="/vcf-to-csv/"><span class="t">vcf → csv</span><span class="d">Contacts out of vCard files and into a spreadsheet, locally.</span></a></li>
+<li><a href="/base64-encode-decode/"><span class="t">base64 ⇄ text</span><span class="d">Base64 both directions, UTF-8 safe, emoji included.</span></a></li>
+</ul>
+</section>
+<style>
+#list .msg-row{display:grid;grid-template-columns:200px 1fr 130px;gap:10px;width:100%;text-align:left;padding:8px 10px;
+  border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--text);font:13px var(--sans);cursor:pointer;align-items:baseline;}
+#list .msg-row:hover{background:var(--raised);}
+#list .msg-row[data-open="true"]{background:var(--raised);box-shadow:inset 3px 0 0 var(--accent);}
+#list .msg-row .f{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#list .msg-row .s{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#list .msg-row .d{color:var(--faint);font:11.5px var(--mono);text-align:right;white-space:nowrap;}
+@media (max-width:700px){#list .msg-row{grid-template-columns:1fr;gap:2px;}#list .msg-row .d{text-align:left;}}
+#mhead{border:1px solid var(--line);border-radius:var(--r-md);background:var(--raised);padding:14px 16px;margin:0 0 12px;}
+#mhead .subj{font:600 17px var(--display);margin:0 0 8px;}
+#mhead .row{font:13px var(--sans);color:var(--muted);line-height:1.7;}
+#mhead .row b{color:var(--text);font-weight:600;}
+#mhead .row .lbl{display:inline-block;width:44px;color:var(--faint);}
+#matt{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;}
+#matt a{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;background:var(--panel);
+  padding:7px 14px;font:500 12.5px var(--sans);color:var(--text);}
+#matt a:hover{border-color:var(--accent);text-decoration:none;}
+#matt a .sz{color:var(--faint);font:11px var(--mono);}
+</style>
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function fmtSize(n){return n>=1048576?(n/1048576).toFixed(1)+" MB":n>=1024?Math.round(n/1024)+" KB":n+" B";}
+function decodeBytes(u8,cs){try{return new TextDecoder(cs||"utf-8").decode(u8);}catch(e){return new TextDecoder("utf-8").decode(u8);}}
+function b64ToU8(b64){var bin=atob(b64.replace(/\s+/g,""));var u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return u;}
+function latin1(u8){var s="";for(var i=0;i<u8.length;i+=32768)s+=String.fromCharCode.apply(null,u8.subarray(i,i+32768));return s;}
+
+/* ---- EML parsing (same engine as the MSG / EML viewer) ---- */
+function decodeWord(s){
+  return s.replace(/=\?([^?]+)\?([bBqQ])\?([^?]*)\?=/g,function(_,cs,enc,txt){
+    try{
+      if(enc.toLowerCase()==="b")return decodeBytes(b64ToU8(txt),cs);
+      var bytes=[];txt=txt.replace(/_/g," ");
+      for(var i=0;i<txt.length;i++){
+        if(txt[i]==="="&&i+2<txt.length){bytes.push(parseInt(txt.substr(i+1,2),16));i+=2;}
+        else bytes.push(txt.charCodeAt(i));
+      }
+      return decodeBytes(new Uint8Array(bytes),cs);
+    }catch(e){return _;}
+  });
+}
+function parseHeaders(txt){
+  const h={};
+  txt.split(/\r?\n(?=\S|$)/).forEach(function(line){
+    const m=line.match(/^([\w-]+):\s*([\s\S]*)$/);
+    if(m)h[m[1].toLowerCase()]=decodeWord(m[2].replace(/\r?\n\s+/g," ").trim());
+  });
+  return h;
+}
+function qpDecode(s){
+  s=s.replace(/=\r?\n/g,"");
+  var bytes=[];
+  for(var i=0;i<s.length;i++){
+    if(s[i]==="="&&i+2<s.length&&/[0-9A-Fa-f]{2}/.test(s.substr(i+1,2))){bytes.push(parseInt(s.substr(i+1,2),16));i+=2;}
+    else bytes.push(s.charCodeAt(i)&0xFF);
+  }
+  return new Uint8Array(bytes);
+}
+function partBytes(body,enc){
+  enc=(enc||"").toLowerCase();
+  if(enc==="base64")return b64ToU8(body);
+  if(enc==="quoted-printable")return qpDecode(body);
+  var u=new Uint8Array(body.length);for(var i=0;i<body.length;i++)u[i]=body.charCodeAt(i)&0xFF;return u;
+}
+function charsetOf(ct){var m=(ct||"").match(/charset="?([\w.-]+)"?/i);return m?m[1]:"utf-8";}
+function parseEml(raw){
+  const m={subject:"",fromName:"",fromAddr:"",to:"",cc:"",date:null,text:"",html:null,headers:"",atts:[]};
+  function walkPart(txt){
+    const split=txt.match(/^([\s\S]*?)\r?\n\r?\n([\s\S]*)$/);
+    const headTxt=split?split[1]:txt, body=split?split[2]:"";
+    const h=parseHeaders(headTxt);
+    const ct=h["content-type"]||"text/plain";
+    const bm=ct.match(/boundary="?([^";]+)"?/i);
+    if(/^multipart\//i.test(ct)&&bm){
+      body.split(new RegExp("--"+bm[1].replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"(?:--)?\r?\n?")).slice(1,-1)
+        .forEach(function(p){if(p.trim())walkPart(p.replace(/\r?\n$/,""));});
+      return;
+    }
+    const enc=h["content-transfer-encoding"], disp=h["content-disposition"]||"";
+    const fn=(disp.match(/filename\*?="?([^";]+)"?/i)||ct.match(/name="?([^";]+)"?/i)||[])[1];
+    const bytes=partBytes(body,enc);
+    if(/attachment/i.test(disp)||(fn&&!/^text\/(plain|html)/i.test(ct))){
+      m.atts.push({name:decodeWord(fn||"attachment"),cid:(h["content-id"]||"").replace(/[<>]/g,""),mime:ct.split(";")[0].trim(),data:bytes});
+    }else if(/^text\/html/i.test(ct)){m.html=decodeBytes(bytes,charsetOf(ct));}
+    else if(/^text\/plain/i.test(ct)){m.text=m.text||decodeBytes(bytes,charsetOf(ct));}
+    else if(fn){m.atts.push({name:decodeWord(fn),cid:(h["content-id"]||"").replace(/[<>]/g,""),mime:ct.split(";")[0].trim(),data:bytes});}
+  }
+  const top=raw.match(/^([\s\S]*?)\r?\n\r?\n/);
+  m.headers=top?top[1]:raw;
+  const h=parseHeaders(m.headers);
+  m.subject=h.subject||"";
+  const fm=(h.from||"").match(/^\s*"?([^"<]*)"?\s*<([^>]+)>/);
+  if(fm){m.fromName=fm[1].trim();m.fromAddr=fm[2];}else m.fromAddr=(h.from||"").trim();
+  m.to=h.to||"";m.cc=h.cc||"";
+  if(h.date){var d=new Date(h.date);if(!isNaN(d))m.date=d;}
+  walkPart(raw);
+  return m;
+}
+
+/* ---- mbox index + UI ---- */
+var U8=null, bounds=[];
+function indexMbox(u8){
+  const out=[];
+  if(u8.length>4&&u8[0]===0x46&&u8[1]===0x72&&u8[2]===0x6F&&u8[3]===0x6D&&u8[4]===0x20)out.push(0);
+  for(let i=0;i<u8.length-6;i++){
+    if(u8[i]===0x0A&&u8[i+1]===0x46&&u8[i+2]===0x72&&u8[i+3]===0x6F&&u8[i+4]===0x6D&&u8[i+5]===0x20)out.push(i+1);
+  }
+  return out;
+}
+function sliceMsg(i){
+  const start=bounds[i], end=i+1<bounds.length?bounds[i+1]:U8.length;
+  var raw=latin1(U8.subarray(start,end));
+  raw=raw.replace(/^From [^\n]*\n/,"").replace(/^>From /gm,"From ");
+  return raw;
+}
+function openMsg(i){
+  document.querySelectorAll("#list .msg-row").forEach(function(b){b.dataset.open=b.dataset.i==i;});
+  const m=parseEml(sliceMsg(i));
+  const head=$("mhead");
+  head.innerHTML='<p class="subj">'+esc(m.subject||"(no subject)")+"</p>"+
+    '<p class="row"><span class="lbl">From</span><b>'+esc(m.fromName||m.fromAddr||"unknown")+"</b>"+(m.fromName&&m.fromAddr?" &lt;"+esc(m.fromAddr)+"&gt;":"")+"</p>"+
+    (m.to?'<p class="row"><span class="lbl">To</span>'+esc(m.to)+"</p>":"")+
+    (m.cc?'<p class="row"><span class="lbl">Cc</span>'+esc(m.cc)+"</p>":"")+
+    (m.date?'<p class="row"><span class="lbl">Date</span>'+esc(m.date.toLocaleString())+"</p>":"");
+  const att=$("matt");att.innerHTML="";
+  m.atts.forEach(function(a){
+    const url=URL.createObjectURL(new Blob([a.data],{type:a.mime}));
+    const el=document.createElement("a");
+    el.href=url;el.download=a.name;
+    el.innerHTML="&#128206; "+esc(a.name)+' <span class="sz">'+fmtSize(a.data.length)+"</span>";
+    att.appendChild(el);
+  });
+  var html=m.html;
+  if(html){
+    m.atts.forEach(function(a){
+      if(!a.cid)return;
+      var url="data:"+(a.mime||"image/png")+";base64,"+btoa(Array.from(a.data,function(b){return String.fromCharCode(b);}).join(""));
+      html=html.split("cid:"+a.cid).join(url);
+    });
+    html=html.replace(/<script[\s\S]*?<\/script\s*>/gi,"");
+    $("mbody").srcdoc='<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data:; style-src \'unsafe-inline\'">'+
+      '<base target="_blank">'+html;
+  }else{
+    $("mbody").srcdoc='<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; style-src \'unsafe-inline\'">'+
+      '<pre style="white-space:pre-wrap;font:14px/1.6 system-ui,sans-serif;margin:12px;">'+esc(m.text||"(no readable body)")+"</pre>";
+  }
+  $("mail").hidden=false;
+  $("mail").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+async function handle(f){
+  $("err").textContent="";$("stat").textContent="";$("list").innerHTML="";$("mail").hidden=true;
+  if(!f)return;
+  $("stat").textContent="Indexing "+f.name+" ("+fmtSize(f.size)+") locally…";
+  try{
+    U8=new Uint8Array(await f.arrayBuffer());
+    bounds=indexMbox(U8);
+    if(!bounds.length)throw new Error("No mbox message boundaries found - an .mbox starts each message with a line beginning \"From \". If this is a single email, try the MSG / EML viewer.");
+    const SHOW=Math.min(bounds.length,400);
+    var frag=document.createDocumentFragment();
+    for(let i=0;i<SHOW;i++){
+      const raw=sliceMsg(i);
+      const h=parseHeaders((raw.match(/^([\s\S]*?)\r?\n\r?\n/)||[,raw])[1]);
+      const b=document.createElement("button");
+      b.type="button";b.className="msg-row";b.dataset.i=i;
+      const d=h.date?new Date(h.date):null;
+      b.innerHTML='<span class="f">'+esc((h.from||"?").replace(/<[^>]*>/,"").trim()||h.from||"?")+"</span>"+
+        '<span class="s">'+esc(h.subject||"(no subject)")+"</span>"+
+        '<span class="d">'+(d&&!isNaN(d)?esc(d.toLocaleDateString()):"")+"</span>";
+      b.addEventListener("click",function(){openMsg(i);});
+      frag.appendChild(b);
+    }
+    $("list").appendChild(frag);
+    $("stat").textContent=bounds.length+" message"+(bounds.length===1?"":"s")+" indexed locally"+(bounds.length>SHOW?" · list shows first "+SHOW:"")+" - click one to read it.";
+  }catch(e){
+    $("stat").textContent="";$("err").textContent=String(e&&e.message||e);
+  }
+}
+input.addEventListener("change",function(){handle(input.files[0]);});
+zone.addEventListener("dragover",function(e){e.preventDefault();zone.classList.add("hot");});
+zone.addEventListener("dragleave",function(){zone.classList.remove("hot");});
+zone.addEventListener("drop",function(e){e.preventDefault();zone.classList.remove("hot");handle(e.dataTransfer.files[0]);});
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

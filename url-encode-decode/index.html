@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URL Encode & Decode Online (percent-encoding) | FileKiln</title>
+<meta name="description" content="Percent-encode text for URLs or decode %-sequences back to text, in your browser. Component mode encodes everything; full-URL mode preserves separators.">
+<link rel="canonical" href="https://filekiln.com/url-encode-decode/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="URL Encode & Decode Online (percent-encoding) | FileKiln">
+<meta property="og:description" content="Percent-encode text for URLs or decode %-sequences back to text, in your browser. Component mode encodes everything; full-URL mode preserves separators.">
+<meta property="og:url" content="https://filekiln.com/url-encode-decode/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="URL Encode & Decode Online (percent-encoding) | FileKiln">
+<meta name="twitter:description" content="Percent-encode text for URLs or decode %-sequences back to text, in your browser. Component mode encodes everything; full-URL mode preserves separators.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"URL Encoder / Decoder","url":"https://filekiln.com/url-encode-decode/","description":"Percent-encode text for URLs or decode %-sequences back to text, in your browser. Component mode encodes everything; full-URL mode preserves separators.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When do I need component mode?","acceptedAnswer":{"@type":"Answer","text":"When encoding one value that goes inside a URL, like a search term for a query parameter. Whole-URL mode is for encoding an already-structured URL without breaking it."}},{"@type":"Question","name":"Why does + decode to a space?","acceptedAnswer":{"@type":"Answer","text":"HTML form submissions historically encode spaces as +. This decoder treats + as a space, which matches what servers receiving form data expect."}},{"@type":"Question","name":"What standard does this follow?","acceptedAnswer":{"@type":"Answer","text":"The encodeURIComponent and encodeURI functions implement RFC 3986 percent-encoding, the standard all modern browsers and servers use."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>URL Encoder / Decoder</h1>
+<p class="sub">Percent-encode text for URLs or decode %-sequences back to text, in your browser. Component mode encodes everything; full-URL mode preserves separators.</p>
+
+<div class="tool">
+  <div class="tool-head">url ⇄ text</div>
+  <div class="tool-grid">
+    <div><label class="io" for="in">Input</label>
+      <textarea id="in" spellcheck="false" placeholder="https://example.com/search?q=café & crème"></textarea></div>
+    <div><label class="io" for="out">Output</label>
+      <textarea id="out" spellcheck="false" readonly></textarea></div>
+  </div>
+  <div class="bar">
+    <button id="run">Encode</button>
+    <button id="run2">Decode</button><button id="copy" class="ghost" type="button">Copy result</button>
+    <button id="clear" class="ghost" type="button">Clear</button>
+    <label class="ok-note" style="display:flex;align-items:center;gap:6px;">
+      <input type="checkbox" id="component" checked> component mode (encode <code>/ ? & =</code> too)</label><p class="err" id="err" role="alert"></p>
+    <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+    <span class="bar-note">Local execution &middot; no network egress</span>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> The conversion happens in this page's JavaScript. Nothing you paste here leaves your machine, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>Two modes, because there are two jobs. <strong>Component mode</strong> encodes every <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-2.2" rel="noopener">reserved character</a>, which is what you want for a single query-string value. Unchecking it switches to whole-URL mode, which leaves structural characters like <code>/</code>, <code>?</code> and <code>&amp;</code> intact so a full URL stays a URL. Decoding also converts <code>+</code> to spaces, matching how HTML forms encode them.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>When do I need component mode?</h3>
+<p>When encoding one value that goes inside a URL, like a search term for a query parameter. Whole-URL mode is for encoding an already-structured URL without breaking it.</p>
+<h3>Why does + decode to a space?</h3>
+<p>HTML form submissions historically encode spaces as +. This decoder treats + as a space, which matches what servers receiving form data expect.</p>
+<h3>What standard does this follow?</h3>
+<p>The encodeURIComponent and encodeURI functions implement RFC 3986 percent-encoding, the standard all modern browsers and servers use.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/base64-encode-decode/"><span class="t">base64 ⇄ text</span><span class="d">Base64 both directions, UTF-8 safe, emoji included.</span></a></li>
+<li><a href="/html-entity-encode-decode/"><span class="t">html ⇄ entities</span><span class="d">Escape text for HTML, or decode entities back to text.</span></a></li>
+<li><a href="/jwt-decoder/"><span class="t">jwt decoder</span><span class="d">Decode JWT header, payload, and expiry - locally, because tokens are credentials.</span></a></li>
+</ul>
+</section>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function convert(input, input2) { 
+      if (!input) return "";
+      var comp = document.getElementById("component").checked;
+      return comp ? encodeURIComponent(input) : encodeURI(input); }
+  function fail(e) { $("out").value = ""; $("err").textContent = String(e.message || e); }
+  $("run").addEventListener("click", function () {
+    $("err").textContent = "";
+    var i2 = $("in2") ? $("in2").value : undefined;
+    try { Promise.resolve(convert($("in").value, i2)).then(function (v) { $("out").value = v; }, fail); }
+    catch (e) { fail(e); }
+  });
+  $("copy").addEventListener("click", function () {
+    if ($("out").value) navigator.clipboard.writeText($("out").value);
+  });
+  $("clear").addEventListener("click", function () {
+    $("in").value = ""; if ($("in2")) $("in2").value = "";
+    $("out").value = ""; $("err").textContent = "";
+    var pv = $("preview"); if (pv) pv.innerHTML = "";
+  });
+
+  function convert2(input) { 
+      if (!input) return "";
+      return decodeURIComponent(input.replace(/\+/g, "%20")); }
+  $("run2").addEventListener("click", function () {
+    $("err").textContent = "";
+    try { $("out").value = convert2($("in").value); }
+    catch (e) { $("out").value = ""; $("err").textContent = String(e.message || e); }
+  });
+})();
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>

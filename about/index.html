@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About FileKiln</title>
+<meta name="description" content="What FileKiln is, how the tools work, and why everything runs in your browser.">
+<link rel="canonical" href="https://filekiln.com/about/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="About FileKiln">
+<meta property="og:description" content="What FileKiln is, how the tools work, and why everything runs in your browser.">
+<meta property="og:url" content="https://filekiln.com/about/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About FileKiln">
+<meta name="twitter:description" content="What FileKiln is, how the tools work, and why everything runs in your browser.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<h1>The kiln fires locally.</h1>
+<p class="sub">FileKiln is a set of small, fast conversion tools for the formats people handle every day - YAML, JSON, CSV, Base64, URLs, timestamps, colors. Each tool does one job, states exactly how it does it, and runs entirely on your machine.</p>
+
+<div class="local-note" style="max-width:none;">
+<strong>The one rule</strong>
+Conversions run in your browser, never on a server. The pages are static and the logic is readable client-side JavaScript. That rule exists because the things people paste into converters - configs, exports, tokens, customer data - are precisely the things that should never touch a stranger's server. FileKiln has no upload endpoint to trust, because there is no upload.
+</div>
+
+<ul class="tool-index" style="padding-top:24px;">
+<li><a href="/#tools"><span class="t">verify it yourself</span><span class="d">Load any tool, then disconnect from the internet. Everything keeps working, because nothing ever left.</span></a></li>
+<li><a href="/yaml-to-json/"><span class="t">real parsers</span><span class="d">YAML runs on js-yaml, the same parser your toolchain uses. CSV follows RFC 4180 quoting. Errors come back with line numbers, not shrugs.</span></a></li>
+<li><a href="/contact/"><span class="t">a person answers</span><span class="d">Found a bug, or want a converter that isn't here yet? Write to hello@filekiln.com - reports with the input that misbehaved get fixed fastest.</span></a></li>
+</ul>
+
+<section class="prose">
+<h2>What's here today</h2>
+<p>39 tools: <a href="/yaml-to-json/">YAML to JSON Converter</a>, <a href="/json-to-yaml/">JSON to YAML Converter</a>, <a href="/csv-to-json/">CSV to JSON Converter</a>, <a href="/json-to-csv/">JSON to CSV Converter</a>, <a href="/base64-encode-decode/">Base64 Encoder / Decoder</a>, <a href="/url-encode-decode/">URL Encoder / Decoder</a>, <a href="/unix-timestamp-converter/">Unix Timestamp Converter</a>, <a href="/hex-to-rgb/">HEX to RGB Converter</a>, <a href="/json-formatter/">JSON Formatter & Validator</a>, <a href="/jwt-decoder/">JWT Decoder</a>, <a href="/uuid-generator/">UUID Generator</a>, <a href="/sha256-hash-generator/">SHA-256 Hash Generator</a>, <a href="/word-counter/">Word Counter</a>, <a href="/text-diff-checker/">Text Diff Checker</a>, <a href="/case-converter/">Case Converter</a>, <a href="/markdown-to-html/">Markdown to HTML Converter</a>, <a href="/cron-expression-parser/">Cron Expression Parser</a>, <a href="/password-generator/">Password Generator</a>, <a href="/lorem-ipsum-generator/">Lorem Ipsum Generator</a>, <a href="/number-base-converter/">Number Base Converter</a>, <a href="/html-entity-encode-decode/">HTML Entity Encoder / Decoder</a>, <a href="/remove-duplicate-lines/">Remove Duplicate Lines</a>, <a href="/regex-tester/">Regex Tester</a>, <a href="/slug-generator/">URL Slug Generator</a>, <a href="/ab-test-calculator/">A/B Test Significance Calculator</a>, <a href="/utm-builder/">UTM Link Builder</a>, <a href="/open-graph-preview/">Open Graph Preview & Meta Tag Generator</a>, <a href="/psd-to-png/">PSD to PNG Converter</a>, <a href="/bank-statement-to-csv/">Bank Statement to CSV Converter</a>, <a href="/bank-statement-to-qbo/">Bank Statement to QBO Converter</a>, <a href="/msg-file-viewer/">MSG File Viewer</a>, <a href="/qbo-to-csv/">QBO to CSV Converter</a>, <a href="/ics-file-viewer/">ICS File Viewer</a>, <a href="/mbox-viewer/">MBOX Viewer</a>, <a href="/vcf-to-csv/">VCF to CSV Converter</a>, <a href="/remove-pdf-metadata/">PDF &amp; Word Metadata Remover</a>, <a href="/pdf-to-csv/">PDF to CSV Converter</a>, <a href="/mp3-to-midi/">MP3 to MIDI Converter</a>, <a href="/stl-to-gcode/">STL to G-code Converter (Slicer)</a>. All of them live on the <a href="/">workbench</a>, and each has its own page. More are in the kiln - file converters that do genuinely hard work without an upload are the point of this site, and they ship when they work honestly, not before.</p>
+</section></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+</body></html>

@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bank Statement to CSV Converter - No Upload | FileKiln</title>
+<meta name="description" content="Convert a bank statement PDF to clean CSV or Excel transactions - date, description, amount - entirely in your browser. Nothing leaves your machine.">
+<link rel="canonical" href="https://filekiln.com/bank-statement-to-csv/">
+<meta name="msvalidate.01" content="4A304B70B5E04F4C2EC9D535D69855C0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FileKiln">
+<meta property="og:title" content="Bank Statement to CSV Converter - No Upload | FileKiln">
+<meta property="og:description" content="Convert a bank statement PDF to clean CSV or Excel transactions - date, description, amount - entirely in your browser. Nothing leaves your machine.">
+<meta property="og:url" content="https://filekiln.com/bank-statement-to-csv/">
+<meta property="og:image" content="https://filekiln.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bank Statement to CSV Converter - No Upload | FileKiln">
+<meta name="twitter:description" content="Convert a bank statement PDF to clean CSV or Excel transactions - date, description, amount - entirely in your browser. Nothing leaves your machine.">
+<meta name="twitter:image" content="https://filekiln.com/assets/og.png">
+<script>try{var s=localStorage.getItem('fk-theme');if(s==='light'||s==='dark')document.documentElement.setAttribute('data-theme',s)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css?v=8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6178837044036395" crossorigin="anonymous"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='4' fill='%231b1e25'/><rect x='5' y='5' width='6' height='6' rx='2' fill='%23e0a15c'/></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Bank Statement to CSV Converter","url":"https://filekiln.com/bank-statement-to-csv/","description":"Convert a bank statement PDF to clean CSV or Excel transactions - date, description, amount - entirely in your browser. Nothing leaves your machine.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"browserRequirements":"Requires JavaScript"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I convert a bank statement to CSV without uploading it?","acceptedAnswer":{"@type":"Answer","text":"Yes - with this tool the statement is never uploaded, full stop. Parsing runs in your browser tab using Mozilla's open-source pdf.js. There is no upload endpoint on this site: the code that would receive your statement was never written. You can verify it - load the page, go offline, and convert."}},{"@type":"Question","name":"Is it safe to use an online bank statement converter?","acceptedAnswer":{"@type":"Answer","text":"It is exactly as safe as where the file goes. Upload-based converters require trusting an unknown server with your account numbers and every transaction you have made. This one removes the question: processing is local JavaScript you can read, and your statement stays in your tab's memory only."}},{"@type":"Question","name":"Can I get the transactions as an Excel file?","acceptedAnswer":{"@type":"Answer","text":"Yes - the Excel button downloads a real .xlsx workbook (built in your browser, like everything else here) with Date, Description, Amount, and Balance columns. Amounts are true numbers, so sums and pivots work immediately."}},{"@type":"Question","name":"How do I get these transactions into QuickBooks?","acceptedAnswer":{"@type":"Answer","text":"Two ways. QuickBooks Online imports CSV files with Date, Description, and Amount columns, which is exactly this tool's output. Or use our bank statement to QBO converter - the same parser writing a native .qbo Web Connect file that QuickBooks Desktop and Online both import as a bank feed, still without uploading anything."}},{"@type":"Question","name":"Why did it say my statement is a scan?","acceptedAnswer":{"@type":"Answer","text":"Some statements are scanned images of paper, which contain no machine-readable text - reading them requires OCR, which this tool does not pretend to do yet. Statements downloaded as PDF from online banking are digital text and parse."}},{"@type":"Question","name":"My bank's layout came out wrong. What now?","acceptedAnswer":{"@type":"Answer","text":"Statement layouts vary endlessly, and this parser is honest about being heuristic: dates, amounts, and column headers guide it, and the preview table shows exactly what it understood. If your bank's layout defeats it, the generic PDF to CSV tool extracts every row as-is so you can fix columns in a spreadsheet - and if you email hello@filekiln.com the bank's name (never the statement), that layout goes on the fix list."}}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="wordmark" href="/"><span class="mark"><span></span></span>FileKiln</a>
+<nav class="top"><a href="/#tools">All tools</a><a href="/templates/">Templates</a><a href="/how-it-works/">How it works</a><a href="/about/">About</a>
+<button class="toggle" id="fk-theme-btn" type="button" aria-label="Toggle color theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Theme</span></button></nav>
+</div></header>
+<main><div class="wrap">
+<p class="new-strip"><span>New in the kiln</span><a href="/remove-pdf-metadata/">pdf / docx → cleaned copy</a><a href="/vcf-to-csv/">vcf → csv</a><a href="/mbox-viewer/">mbox → readable mailbox</a><a href="/ics-file-viewer/">ics → readable events</a><a href="/qbo-to-csv/">qbo / qfx / ofx / qif → csv</a><a href="/msg-file-viewer/">msg / eml → readable email</a><a href="/bank-statement-to-qbo/">statement → qbo</a></p>
+<h1>Bank Statement to CSV Converter</h1>
+<p class="sub">Convert a bank statement PDF to clean CSV or Excel transactions - date, description, amount - entirely in your browser. Your statement never leaves your machine.</p>
+
+<div class="tool">
+  <div class="tool-head">statement → csv</div>
+  <div class="file-zone" id="zone">
+    <input type="file" id="file" accept=".pdf,application/pdf">
+    <label for="file"><strong>Choose a bank statement .pdf</strong><span>or drag &amp; drop it here - the file is read locally and never uploaded</span></label>
+  </div>
+  <div class="file-stage">
+    <p class="err" id="err" role="alert"></p>
+    <p class="file-stat" id="stat"></p>
+    <div class="bar" style="padding:0 0 14px;">
+      <a id="dl" class="btn-dl" hidden>Download CSV</a>
+      <button id="fk-share" class="btn-share" type="button" aria-label="Share this tool"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.7l6.8-3.9M8.6 13.3l6.8 3.9"/></svg><span class="sl">Share</span></button>
+      <span class="bar-note">Local execution &middot; no network egress</span>
+    </div>
+    <textarea id="out" spellcheck="false" readonly style="min-height:240px;" placeholder="Parsed transactions appear here as CSV."></textarea>
+  </div>
+</div>
+<p class="local-note"><strong>Private by construction.</strong> Your file is opened with JavaScript inside this page. It is never transmitted, and the tool keeps working with the network unplugged.</p>
+<section class="prose">
+<p>There is a Reddit thread in r/Scams titled, in full, <em>"Convert bank statement to csv files online - surely a scam?"</em> It is the right instinct. A bank statement is the single most sensitive document people feed to free converters, and nearly every converter answers with an upload button. This tool is the other answer: the statement is parsed by JavaScript inside this page, transactions are reconstructed on your machine, and the CSV or Excel file you download is assembled in your own browser's memory. Load the page, disconnect from the internet, and it keeps working - because the network's part ended before you chose the file.</p>
+<p>The parser is specialized for statement layouts: it finds rows that begin with a date and carry an amount, joins wrapped description lines, detects debit/credit/balance columns from the statement's own headers (falling back to position when there are none), signs withdrawals negative, and skips balance-only lines like "Beginning balance." Every parsed transaction is shown in a table before you download, so a mis-read row is caught by your eyes, not discovered at reconciliation. When a layout defeats it, it says so and points you at the generic <a href="/pdf-to-csv/">PDF to CSV</a> extractor rather than returning confident garbage.</p>
+<h2>Questions this tool gets asked</h2>
+<h3>Can I convert a bank statement to CSV without uploading it?</h3>
+<p>Yes - with this tool the statement is never uploaded, full stop. Parsing runs in your browser tab using Mozilla's open-source pdf.js. There is no upload endpoint on this site: the code that would receive your statement was never written. You can verify it - load the page, go offline, and convert.</p>
+<h3>Is it safe to use an online bank statement converter?</h3>
+<p>It is exactly as safe as where the file goes. Upload-based converters require trusting an unknown server with your account numbers and every transaction you have made. This one removes the question: processing is local JavaScript you can read, and your statement stays in your tab's memory only.</p>
+<h3>Can I get the transactions as an Excel file?</h3>
+<p>Yes - the Excel button downloads a real .xlsx workbook (built in your browser, like everything else here) with Date, Description, Amount, and Balance columns. Amounts are true numbers, so sums and pivots work immediately.</p>
+<h3>How do I get these transactions into QuickBooks?</h3>
+<p>Two ways. QuickBooks Online imports CSV files with Date, Description, and Amount columns, which is exactly this tool's output. Or use our <a href="/bank-statement-to-qbo/">bank statement to QBO converter</a> - the same parser writing a native .qbo Web Connect file that QuickBooks Desktop and Online both import as a bank feed, still without uploading anything.</p>
+<h3>Why did it say my statement is a scan?</h3>
+<p>Some statements are scanned images of paper, which contain no machine-readable text - reading them requires OCR, which this tool does not pretend to do yet. Statements downloaded as PDF from online banking are digital text and parse.</p>
+<h3>My bank's layout came out wrong. What now?</h3>
+<p>Statement layouts vary endlessly, and this parser is honest about being heuristic: dates, amounts, and column headers guide it, and the preview table shows exactly what it understood. If your bank's layout defeats it, the generic PDF to CSV tool extracts every row as-is so you can fix columns in a spreadsheet - and if you email hello@filekiln.com the bank's name (never the statement), that layout goes on the fix list.</p>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Related tools</h2>
+<ul class="tool-index">
+<li><a href="/stl-to-gcode/"><span class="t">stl → gcode</span><span class="d">Real CuraEngine slicing in your tab - STL in, G-code out.</span></a></li>
+<li><a href="/psd-to-png/"><span class="t">psd → png</span><span class="d">Photoshop file in, flattened PNG out - parsed locally, never uploaded.</span></a></li>
+<li><a href="/pdf-to-csv/"><span class="t">pdf → csv</span><span class="d">PDF tables out as CSV - bank statements never leave your machine.</span></a></li>
+<li><a href="/mp3-to-midi/"><span class="t">mp3 → midi</span><span class="d">Audio in, MIDI notes out - Spotify's ML model, run locally.</span></a></li>
+</ul>
+</section>
+<section class="prose" style="max-width:none;">
+<h2>Printable templates</h2>
+<ul class="tool-index">
+<li><a href="/templates/rent-receipt/"><span class="t">rent receipt</span><span class="d">A month's rent, receipted: amount, period, method, signature line.</span></a></li>
+</ul>
+</section>
+<script type="module">
+import * as pdfjs from "/assets/vendor/pdf.min.mjs";
+pdfjs.GlobalWorkerOptions.workerPort = new Worker("/assets/vendor/pdf.worker.min.mjs", { type: "module" });
+const $ = (id) => document.getElementById(id);
+const zone = $("zone"), input = $("file");
+
+// extra UI: preview table above the CSV textarea, Excel button beside CSV
+const stage = document.querySelector(".file-stage");
+const pv = document.createElement("div");
+pv.id = "pv"; pv.style.cssText = "overflow:auto;max-height:360px;margin:0 0 14px;";
+stage.insertBefore(pv, $("out"));
+const dlx = document.createElement("a");
+dlx.className = "btn-dl"; dlx.hidden = true; dlx.textContent = "Download Excel (.xlsx)";
+const barEl = stage.querySelector(".bar");
+barEl.insertBefore(dlx, document.getElementById("fk-share")||barEl.querySelector(".bar-note"));
+
+var MON = "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec";
+var DATE_RES = [
+  new RegExp("^\\d{1,2}[\\/.-]\\d{1,2}(?:[\\/.-]\\d{2,4})?$"),
+  new RegExp("^\\d{4}-\\d{2}-\\d{2}$"),
+  new RegExp("^(?:" + MON + ")[a-z]*\\.?\\s+\\d{1,2}(?:,?\\s*\\d{4})?$", "i"),
+  new RegExp("^\\d{1,2}\\s+(?:" + MON + ")[a-z]*\\.?(?:\\s+\\d{2,4})?$", "i"),
+];
+var DATE_PREFIX = new RegExp("^(\\d{1,2}[\\/.-]\\d{1,2}(?:[\\/.-]\\d{2,4})?)\\s+(.*)$");
+var AMT_RE = new RegExp("^[-+(]?\\$?\\s?-?\\d{1,3}(?:,\\d{3})*\\.\\d{2}\\)?-?$");
+function isDate(s) { return DATE_RES.some(function (re) { return re.test(s.trim()); }); }
+function isAmt(s) { return AMT_RE.test(s.trim()); }
+function parseAmt(s) {
+  s = s.trim();
+  var neg = /^\(/.test(s) || /-$/.test(s) || /^-/.test(s.replace(/^[($]+/, ""));
+  var v = parseFloat(s.replace(/[$,()\s]/g, "").replace(/-/g, ""));
+  return neg ? -v : v;
+}
+function csvCell(s) { s = String(s).replace(/\s+/g, " ").trim(); /* Spreadsheet formula injection: Excel, LibreOffice and Sheets EXECUTE a cell that begins with = + @ or -, so a description lifted out of a PDF can carry a payload into the machine that opens the CSV. A leading apostrophe forces text. A negative NUMBER must stay a number, so - is only neutralised when what follows is not numeric. Tab and CR need no test: the whitespace collapse above has already removed them. */ if(/^[=+@]/.test(s)||(/^-/.test(s)&&!/^-?\d+(?:\.\d+)?$/.test(s)))s="'"+s; return /[",]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
+
+// ---- minimal .xlsx writer: STORED zip + inlineStr sheet, zero deps ----
+var CRC_T = (function () { var t = [], c, k, n; for (n = 0; n < 256; n++) { c = n; for (k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function crc32(u8) { var c = 0xFFFFFFFF; for (var i = 0; i < u8.length; i++) c = CRC_T[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function makeZip(files) {
+  var enc = new TextEncoder(), parts = [], cd = [], off = 0;
+  function u16(n) { return [n & 255, (n >> 8) & 255]; }
+  function u32(n) { return [n & 255, (n >> 8) & 255, (n >> 16) & 255, (n >>> 24) & 255]; }
+  files.forEach(function (f) {
+    var name = enc.encode(f[0]), data = enc.encode(f[1]), crc = crc32(data);
+    var head = [].concat(u32(0x04034b50), u16(20), u16(0), u16(0), u16(0), u16(0), u32(crc), u32(data.length), u32(data.length), u16(name.length), u16(0));
+    parts.push(new Uint8Array(head), name, data);
+    cd.push({ name: name, crc: crc, size: data.length, off: off });
+    off += head.length + name.length + data.length;
+  });
+  var cdStart = off, cdLen = 0;
+  cd.forEach(function (e) {
+    var rec = [].concat(u32(0x02014b50), u16(20), u16(20), u16(0), u16(0), u16(0), u16(0), u32(e.crc), u32(e.size), u32(e.size), u16(e.name.length), u16(0), u16(0), u16(0), u16(0), u32(0), u32(e.off));
+    parts.push(new Uint8Array(rec), e.name); cdLen += rec.length + e.name.length;
+  });
+  parts.push(new Uint8Array([].concat(u32(0x06054b50), u16(0), u16(0), u16(cd.length), u16(cd.length), u32(cdLen), u32(cdStart), u16(0))));
+  return new Blob(parts, { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+}
+function xmlEsc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+function makeXlsx(header, rows) {
+  var body = [header].concat(rows).map(function (r, ri) {
+    return "<row>" + r.map(function (c) {
+      if (ri > 0 && typeof c === "number") return '<c t="n"><v>' + c + "</v></c>";
+      return '<c t="inlineStr"><is><t xml:space="preserve">' + xmlEsc(c == null ? "" : c) + "</t></is></c>";
+    }).join("") + "</row>";
+  }).join("");
+  return makeZip([
+    ["[Content_Types].xml", '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>'],
+    ["_rels/.rels", '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'],
+    ["xl/workbook.xml", '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Transactions" sheetId="1" r:id="rId1"/></sheets></workbook>'],
+    ["xl/_rels/workbook.xml.rels", '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>'],
+    ["xl/worksheets/sheet1.xml", '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>' + body + "</sheetData></worksheet>"],
+  ]);
+}
+
+async function handle(f) {
+  $("err").textContent = ""; $("dl").hidden = true; dlx.hidden = true; $("out").value = ""; pv.innerHTML = "";
+  if (!f) return;
+  $("stat").textContent = "Reading " + f.name + " (" + Math.round(f.size / 1024) + " KB) locally\u2026";
+  try {
+    const pdf = await pdfjs.getDocument({ data: await f.arrayBuffer() }).promise;
+    var allRows = [], anyText = false;
+    for (let p = 1; p <= pdf.numPages; p++) {
+      const tc = await (await pdf.getPage(p)).getTextContent();
+      const its = tc.items.filter((it) => it.str && it.str.trim())
+        .map((it) => ({ x: it.transform[4], y: it.transform[5], s: it.str, w: it.width }));
+      if (its.length) anyText = true;
+      its.sort((a, b) => (b.y - a.y) || (a.x - b.x));
+      var rows = [], row = [], rowY = null;
+      for (const it of its) {
+        if (rowY === null || Math.abs(it.y - rowY) <= 3) { row.push(it); if (rowY === null) rowY = it.y; }
+        else { rows.push(row); row = [it]; rowY = it.y; }
+      }
+      if (row.length) rows.push(row);
+      for (const r of rows) {
+        r.sort((a, b) => a.x - b.x);
+        var cells = [], cur = r[0].s, curX = r[0].x, end = r[0].x + r[0].w;
+        for (let i = 1; i < r.length; i++) {
+          const gap = r[i].x - end;
+          if (gap > 7) { cells.push({ t: cur.trim(), x: curX }); cur = r[i].s; curX = r[i].x; }
+          else cur += (gap > 1 ? " " : "") + r[i].s;
+          end = r[i].x + r[i].w;
+        }
+        cells.push({ t: cur.trim(), x: curX });
+        allRows.push(cells);
+      }
+    }
+    if (!anyText) throw new Error("No extractable text - this statement is a scan (images of text). Scans need OCR, which this tool honestly does not do yet. Statements downloaded from online banking are digital text and work.");
+
+    // classify rows into transactions
+    var txns = [], last = null;
+    for (const cells of allRows) {
+      var work = cells.slice();
+      // split a leading "07/15 CARD PURCHASE ..." cell into date + text
+      var m0 = work.length && !isDate(work[0].t) ? work[0].t.match(DATE_PREFIX) : null;
+      if (m0) work = [{ t: m0[1], x: work[0].x }, { t: m0[2], x: work[0].x + 40 }].concat(work.slice(1));
+      var hasDate = work.length && isDate(work[0].t);
+      var amts = work.filter((c) => isAmt(c.t));
+      if (hasDate && amts.length) {
+        var di = 1;
+        if (work[1] && isDate(work[1].t)) di = 2; // txn date + post date: keep first
+        var descCells = work.slice(di).filter((c) => !isAmt(c.t));
+        txns.push({ date: work[0].t, desc: descCells.map((c) => c.t).join(" ").trim(), amts: amts, extra: 0 });
+        last = txns[txns.length - 1];
+      } else if (!hasDate && !amts.length && last && last.extra < 2 && work.length) {
+        var txt = work.map((c) => c.t).join(" ").trim();
+        if (txt && txt.length < 90) { last.desc = (last.desc + " " + txt).trim(); last.extra++; }
+      } else if (amts.length) { last = null; }
+    }
+    if (!txns.length) throw new Error("Text was extracted, but no transaction rows (date + amount) were recognized in this layout. Try the generic PDF to CSV tool below - it extracts every row as-is so nothing is lost.");
+
+    // cluster amount x-positions into columns
+    var xs = [];
+    txns.forEach((t) => t.amts.forEach((a) => xs.push(a.x)));
+    xs.sort((a, b) => a - b);
+    var cols = [];
+    xs.forEach(function (x) {
+      var c = cols[cols.length - 1];
+      if (c && x - c.max <= 30) { c.max = Math.max(c.max, x); c.n++; }
+      else cols.push({ min: x, max: x, n: 1 });
+    });
+    // assign roles from header keywords when present, else by convention
+    var roles = cols.map(function () { return ""; });
+    for (const cells of allRows) {
+      var line = cells.map((c) => c.t.toLowerCase()).join(" ");
+      if (!/balance|debit|credit|withdraw|deposit|amount|payment/.test(line)) continue;
+      cells.forEach(function (c) {
+        var w = c.t.toLowerCase(); var ci = -1, best = 1e9;
+        cols.forEach(function (col, i) { var d = Math.abs(c.x - col.min); if (d < best) { best = d; ci = i; } });
+        if (ci < 0 || best > 120) return;
+        if (/balance/.test(w)) roles[ci] = roles[ci] || "balance";
+        else if (/withdraw|debit|payment|charge/.test(w)) roles[ci] = roles[ci] || "debit";
+        else if (/deposit|credit/.test(w)) roles[ci] = roles[ci] || "credit";
+        else if (/amount/.test(w)) roles[ci] = roles[ci] || "amount";
+      });
+      if (roles.some(Boolean)) break;
+    }
+    if (!roles.some(Boolean)) {
+      if (cols.length === 1) roles = ["amount"];
+      else if (cols.length === 2) roles = ["amount", "balance"];
+      else if (cols.length >= 3) { roles = cols.map(() => ""); roles[cols.length - 1] = "balance"; roles[cols.length - 2] = "credit"; roles[cols.length - 3] = "debit"; }
+    }
+    var colOf = function (a) { var ci = -1, best = 1e9; cols.forEach(function (col, i) { var d = Math.abs(a.x - col.min); if (d < best) { best = d; ci = i; } }); return roles[ci] || "amount"; };
+    var hasBalance = roles.indexOf("balance") >= 0;
+
+    var out = [], skipped = 0;
+    txns.forEach(function (t) {
+      var amount = null, balance = null;
+      t.amts.forEach(function (a) {
+        var role = colOf(a), v = parseAmt(a.t);
+        if (role === "balance") balance = v;
+        else if (role === "debit") amount = -Math.abs(v);
+        else if (role === "credit") amount = Math.abs(v);
+        else if (amount === null) amount = v;
+      });
+      if (amount === null) { skipped++; return; } // balance-only rows (e.g. "Beginning balance")
+      out.push({ date: t.date, desc: t.desc || "(no description)", amount: amount, balance: balance });
+    });
+    if (!out.length) throw new Error("Rows were found but every one carried only a running balance - no transaction amounts. Try the generic PDF to CSV tool below.");
+
+    // CSV
+    var headerRow = hasBalance ? ["Date", "Description", "Amount", "Balance"] : ["Date", "Description", "Amount"];
+    var csv = [headerRow.join(",")].concat(out.map(function (r) {
+      var cells = [csvCell(r.date), csvCell(r.desc), r.amount.toFixed(2)];
+      if (hasBalance) cells.push(r.balance === null ? "" : r.balance.toFixed(2));
+      return cells.join(",");
+    })).join("\n");
+    $("out").value = csv;
+
+    // preview table
+    var tb = '<table style="width:100%;border-collapse:collapse;font-size:13px;">' +
+      "<tr>" + headerRow.map(function (h) { return '<th style="text-align:' + (h === "Date" || h === "Description" ? "left" : "right") + ';padding:6px 10px;border-bottom:2px solid var(--line);white-space:nowrap;">' + h + "</th>"; }).join("") + "</tr>";
+    out.slice(0, 300).forEach(function (r) {
+      tb += '<tr><td style="padding:5px 10px;border-bottom:1px solid var(--line);white-space:nowrap;">' + xmlEsc(r.date) + "</td>" +
+        '<td style="padding:5px 10px;border-bottom:1px solid var(--line);">' + xmlEsc(r.desc) + "</td>" +
+        '<td style="padding:5px 10px;border-bottom:1px solid var(--line);text-align:right;' + (r.amount < 0 ? "" : "color:var(--ok,inherit);") + '">' + r.amount.toFixed(2) + "</td>" +
+        (hasBalance ? '<td style="padding:5px 10px;border-bottom:1px solid var(--line);text-align:right;">' + (r.balance === null ? "" : r.balance.toFixed(2)) + "</td>" : "") + "</tr>";
+    });
+    tb += "</table>" + (out.length > 300 ? '<p class="file-stat">Preview shows first 300 rows; exports contain all ' + out.length + ".</p>" : "");
+    pv.innerHTML = tb;
+
+    var base = f.name.replace(/\.pdf$/i, "");
+    var dl = $("dl");
+    if (dl.href) URL.revokeObjectURL(dl.href);
+    dl.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    dl.download = base + "-transactions.csv"; dl.hidden = false;
+    var xrows = out.map(function (r) { return hasBalance ? [r.date, r.desc, r.amount, r.balance === null ? "" : r.balance] : [r.date, r.desc, r.amount]; });
+    if (dlx.href) URL.revokeObjectURL(dlx.href);
+    dlx.href = URL.createObjectURL(makeXlsx(headerRow, xrows));
+    dlx.download = base + "-transactions.xlsx"; dlx.hidden = false;
+
+    var colNote = roles.filter(Boolean).length ? " \u00b7 columns: " + roles.filter(Boolean).join("/") : "";
+    $("stat").textContent = out.length + " transactions parsed from " + pdf.numPages + " page" + (pdf.numPages === 1 ? "" : "s") + colNote + (skipped ? " \u00b7 " + skipped + " balance-only rows skipped" : "") + " - review every row below before you trust it.";
+  } catch (e) {
+    $("stat").textContent = "";
+    $("err").textContent = String(e && e.message || e);
+  }
+}
+input.addEventListener("change", () => handle(input.files[0]));
+zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("hot"); });
+zone.addEventListener("dragleave", () => zone.classList.remove("hot"));
+zone.addEventListener("drop", (e) => { e.preventDefault(); zone.classList.remove("hot"); handle(e.dataTransfer.files[0]); });
+</script></div></main>
+<aside class="featured"><div class="wrap">
+<span class="fk-label">Featured on</span>
+<a href="https://www.saashub.com/filekiln?utm_source=badge&amp;utm_campaign=badge&amp;utm_content=filekiln&amp;badge_variant=color&amp;badge_kind=approved" target="_blank" rel="noopener nofollow" aria-label="FileKiln - approved on SaaSHub"><img src="https://cdn-b.saashub.com/img/badges/approved-color.png?v=1" alt="SaaSHub - approved badge" width="150" height="54" loading="lazy" style="max-width:150px;height:auto;display:block"></a>
+<a href="https://www.producthunt.com/products/filekiln/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-filekiln" target="_blank" rel="noopener" aria-label="Review FileKiln on Product Hunt"><img src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1309268&amp;theme=light" alt="FileKiln - 50&#0043;&#0032;free&#0032;file&#0032;tools&#0032;that&#0032;never&#0032;upload&#0032;your&#0032;files | Product Hunt" width="250" height="54" loading="lazy" style="width:250px;height:54px;display:block"></a>
+</div></aside>
+<footer class="site"><div class="wrap">
+<span>&copy; 2026 FileKiln</span>
+<a href="/about/">About</a>
+<a href="/how-it-works/">How it works</a>
+<a href="/templates/">Templates</a>
+<a href="/privacy/">Privacy</a>
+<a href="/terms/">Terms</a>
+<a href="/contact/">Contact</a>
+<span>Every tool on this site runs inside your browser. Files and text are never uploaded.</span><span>Part of the Kiln family with <a href="https://gradekiln.com" rel="noopener">GradeKiln</a>, <a href="https://shapekiln.com" rel="noopener">ShapeKiln</a>, <a href="https://makerkiln.com" rel="noopener">MakerKiln</a>, and <a href="https://officekiln.com" rel="noopener">OfficeKiln</a>.</span>
+</div></footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('fk-theme-btn');if(!b)return;
+function dark(){var t=r.getAttribute('data-theme');if(t)return t==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+b.addEventListener('click',function(){var n=dark()?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('fk-theme',n)}catch(e){}});})();
+</script>
+<script>/* kiln header: hide on scroll, return on hover-at-top or at top */(function(){var h=document.querySelector('header');if(!h)return;var cs=getComputedStyle(h);if(cs.position!=='sticky'&&cs.position!=='fixed'){h.style.position='sticky';h.style.top='0';if(cs.zIndex==='auto')h.style.zIndex='60';}h.style.transition='transform .25s ease,opacity .2s ease';var hid=false;function set(v){if(hid===v)return;hid=v;h.style.transform=v?'translateY(-110%)':'none';h.style.opacity=v?'0':'1';}function onS(){if(window.scrollY<24||h.matches(':hover'))set(false);else set(true);}window.addEventListener('scroll',onS,{passive:true});window.addEventListener('mousemove',function(e){if(e.clientY<72)set(false);},{passive:true});h.addEventListener('focusin',function(){set(false);});})();</script>
+<script>
+(function(){var b=document.getElementById('fk-share');if(!b)return;
+var c=document.querySelector('link[rel="canonical"]');
+var url=(c&&c.href)||location.href;
+b.addEventListener('click',function(){
+  if(navigator.share){navigator.share({title:document.title,url:url}).catch(function(){});return}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){
+      var t=b.querySelector('.sl'),o=t.textContent;
+      t.textContent='Link copied';b.classList.add('ok');
+      setTimeout(function(){t.textContent=o;b.classList.remove('ok')},1600);
+    });
+  }
+});})();
+</script>
+</body></html>
